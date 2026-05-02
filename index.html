@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>𝐓𝐎𝐎𝐋𝐊𝐈𝐓 𝐒𝐄𝐃𝐄𝐑𝐇𝐀𝐍𝐀</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ===== GLOBAL RESET & VARS ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#050508;--surface:#0d0f17;--surface2:#12151f;--surface3:#171b28;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --green:#00ff87;--green2:#00e676;--green-dim:rgba(0,255,135,.08);
+  --green-glow:0 0 30px rgba(0,255,135,.25);
+  --cyan:#00d4ff;--purple:#7c3aed;--red:#ff4560;--red-dim:rgba(255,69,96,.1);
+  --blue:#3b82f6;--violet:#7c3aed;
+  --text:#e8eaf6;--muted:#4a5568;--muted2:#718096;
+  --accent:#22c55e;--accent2:#3b82f6;
+}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;overflow-x:hidden;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 10%,rgba(0,255,135,.05),transparent),
+    radial-gradient(ellipse 50% 50% at 80% 80%,rgba(0,212,255,.04),transparent),
+    radial-gradient(ellipse 40% 30% at 60% 40%,rgba(124,58,237,.04),transparent);
+  animation:bgShift 8s ease-in-out infinite alternate;
+}
+@keyframes bgShift{0%{opacity:.6}100%{opacity:1}}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+
+/* ===== SCAN LINE ===== */
+.scan-line{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,135,.15),transparent);animation:scan 5s linear infinite;pointer-events:none;z-index:999}
+@keyframes scan{from{top:0}to{top:100vh}}
+
+/* ===== TOP BAR ===== */
+.topbar{
+  position:sticky;top:0;z-index:100;
+  background:rgba(5,5,8,.92);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border2);
+  padding:0 20px;
+}
+.topbar-inner{
+  max-width:960px;margin:0 auto;
+  display:flex;align-items:center;gap:14px;
+  padding:12px 0 0;
+}
+.app-logo{
+  width:34px;height:34px;border-radius:10px;flex-shrink:0;
+  background:linear-gradient(135deg,#00ff87,#00d4ff);
+  display:flex;align-items:center;justify-content:center;font-size:16px;
+  box-shadow:0 0 14px rgba(0,255,135,.4);
+}
+.app-title{font-size:.9rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.app-title em{font-style:normal;color:var(--green)}
+.marquee-wrap{
+  flex:1;overflow:hidden;height:16px;
+  border-left:1px solid var(--border2);margin-left:6px;padding-left:12px;
+}
+.marquee-wrap span{
+  display:inline-block;padding-left:100%;white-space:nowrap;
+  font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted2);
+  letter-spacing:.1em;animation:marquee 22s linear infinite;
+}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+
+/* ===== TAB NAV ===== */
+.tab-nav{
+  display:flex;gap:4px;padding:10px 0 0;
+  max-width:960px;margin:0 auto;
+  overflow-x:auto;
+}
+.tab-btn{
+  font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;
+  padding:8px 16px;border-radius:10px 10px 0 0;
+  border:1px solid transparent;border-bottom:none;
+  background:transparent;color:var(--muted);cursor:pointer;
+  transition:all .2s;letter-spacing:.05em;white-space:nowrap;
+  position:relative;bottom:-1px;
+}
+.tab-btn:hover{color:var(--text);background:var(--surface)}
+.tab-btn.active{color:var(--text);background:var(--surface);border-color:var(--border2);border-bottom-color:var(--surface)}
+.tab-btn.active[data-tab="totp"]{color:var(--green)}
+.tab-btn.active[data-tab="name"]{color:var(--blue)}
+.tab-btn.active[data-tab="word"]{color:var(--cyan)}
+
+/* ===== MAIN CONTENT ===== */
+.main{position:relative;z-index:1;padding:20px 20px 60px;max-width:960px;margin:0 auto}
+.tab-panel{display:none;animation:fadeIn .3s ease}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes slideDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:none}}
+
+/* ==================================================
+   TOTP PANEL
+   ================================================== */
+#tab-totp .wrap{display:flex;flex-direction:column;gap:14px}
+
+#tab-totp .t-header{
+  display:flex;align-items:center;justify-content:space-between;padding:20px 28px;
+  background:linear-gradient(135deg,var(--surface),var(--surface2));
+  border:1px solid var(--border2);border-radius:20px;position:relative;overflow:hidden;
+  animation:slideDown .5s cubic-bezier(.16,1,.3,1) both;
+  box-shadow:0 4px 40px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.07);
+}
+#tab-totp .t-header::before{content:'';position:absolute;top:-1px;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+#tab-totp .t-h-left{display:flex;align-items:center;gap:14px}
+#tab-totp .t-h-logo{width:46px;height:46px;border-radius:14px;background:linear-gradient(135deg,#00ff87,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 24px rgba(0,255,135,.4),0 4px 12px rgba(0,0,0,.3);animation:logoPulse 3s ease-in-out infinite}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 24px rgba(0,255,135,.4),0 4px 12px rgba(0,0,0,.3)}50%{box-shadow:0 0 40px rgba(0,255,135,.6),0 4px 20px rgba(0,0,0,.3)}}
+#tab-totp .t-title-main{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}
+#tab-totp .t-title-main em{font-style:normal;color:var(--green)}
+#tab-totp .t-title-sub{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted2);letter-spacing:.12em;text-transform:uppercase;margin-top:2px}
+#tab-totp .t-badge{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;padding:6px 14px;border-radius:30px;background:rgba(0,0,0,.4);border:1px solid var(--border);color:var(--muted2);display:flex;align-items:center;gap:7px;transition:.4s}
+#tab-totp .t-badge.live{color:var(--green);border-color:rgba(0,255,135,.3);background:var(--green-dim);box-shadow:0 0 16px rgba(0,255,135,.1)}
+#tab-totp .t-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+#tab-totp .t-badge.live .t-dot{animation:blink 1.4s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.7)}}
+
+#tab-totp .t-timer{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px 24px;display:flex;align-items:center;gap:20px;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+#tab-totp .t-timer-info{display:flex;flex-direction:column;gap:2px;flex-shrink:0;min-width:60px}
+#tab-totp .t-timer-num{font-family:'JetBrains Mono',monospace;font-size:2.2rem;font-weight:700;line-height:1;color:var(--green);text-shadow:0 0 20px rgba(0,255,135,.5);transition:color .3s,text-shadow .3s}
+#tab-totp .t-timer-num.urgent{color:var(--red);text-shadow:0 0 20px rgba(255,69,96,.5)}
+#tab-totp .t-timer-sub{font-size:.63rem;color:var(--muted2);letter-spacing:.06em;text-transform:uppercase;font-family:'JetBrains Mono',monospace}
+#tab-totp .t-bar-track{flex:1;height:8px;background:rgba(255,255,255,.05);border-radius:6px;overflow:hidden;border:1px solid var(--border)}
+#tab-totp .t-bar-fill{height:100%;border-radius:6px;background:linear-gradient(90deg,var(--green),var(--cyan));box-shadow:0 0 10px rgba(0,255,135,.4);transition:width 1s linear,background .4s}
+#tab-totp .t-bar-fill.urgent{background:linear-gradient(90deg,var(--red),#ff8c42);box-shadow:0 0 10px rgba(255,69,96,.4)}
+#tab-totp .t-bar-pct{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--muted2);flex-shrink:0;min-width:36px;text-align:right}
+
+#tab-totp .t-sync{background:var(--surface);border:1px solid rgba(0,212,255,.15);border-radius:14px;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+#tab-totp .t-sync-left{display:flex;align-items:center;gap:10px;flex:1}
+#tab-totp .t-sync-icon{font-size:1.2rem}
+#tab-totp .t-sync-text{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted2);line-height:1.5}
+#tab-totp .t-sync-text b{color:var(--cyan);display:block;font-size:.75rem}
+#tab-totp .t-sync-val{font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:600;padding:5px 12px;border-radius:8px;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--cyan);flex-shrink:0}
+#tab-totp .t-sync-val.bad{background:rgba(255,69,96,.08);border-color:rgba(255,69,96,.2);color:var(--red)}
+#tab-totp .t-sync-val.good{background:rgba(0,255,135,.08);border-color:rgba(0,255,135,.2);color:var(--green)}
+#tab-totp .t-sync-btn{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;padding:6px 14px;border-radius:9px;border:1px solid rgba(0,212,255,.25);background:rgba(0,212,255,.06);color:var(--cyan);cursor:pointer;transition:.2s;flex-shrink:0}
+#tab-totp .t-sync-btn:hover{background:rgba(0,212,255,.15);border-color:rgba(0,212,255,.4)}
+
+#tab-totp .t-input-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 24px;display:flex;flex-direction:column;gap:12px;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+#tab-totp .t-card-label{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;color:var(--muted2);letter-spacing:.14em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+#tab-totp .t-card-label::before{content:'';width:3px;height:12px;background:var(--green);border-radius:2px;box-shadow:0 0 8px var(--green)}
+#tab-totp textarea{font-family:'JetBrains Mono',monospace;font-size:.78rem;width:100%;height:130px;background:rgba(0,0,0,.4);border:1px solid var(--border);border-radius:12px;color:var(--text);padding:14px 16px;resize:vertical;outline:none;line-height:1.9;transition:.25s}
+#tab-totp textarea::placeholder{color:var(--muted)}
+#tab-totp textarea:focus{border-color:rgba(0,255,135,.35);box-shadow:0 0 0 3px rgba(0,255,135,.06);background:rgba(0,0,0,.6)}
+#tab-totp .t-hint{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--muted2);line-height:2;padding:12px 16px;background:rgba(0,255,135,.03);border-radius:10px;border:1px solid rgba(0,255,135,.1)}
+#tab-totp .t-hint .hl{color:var(--green);font-weight:600}
+
+#tab-totp .t-results{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.3)}
+#tab-totp .t-res-head{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:var(--surface2)}
+#tab-totp .t-res-title{font-size:.82rem;font-weight:600;color:var(--muted2);display:flex;align-items:center;gap:8px}
+#tab-totp .t-res-title::before{content:'';width:3px;height:11px;background:var(--cyan);border-radius:2px;box-shadow:0 0 8px var(--cyan)}
+#tab-totp .t-res-count{font-family:'JetBrains Mono',monospace;font-size:.67rem;color:var(--muted);background:rgba(0,0,0,.4);padding:3px 12px;border-radius:20px;border:1px solid var(--border)}
+#tab-totp .t-res-body{min-height:80px}
+#tab-totp .t-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 24px;gap:12px;color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.72rem;text-align:center;line-height:1.8}
+#tab-totp .t-empty-icon{font-size:2.5rem;opacity:.25;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+#tab-totp .t-otp-row{display:flex;align-items:center;gap:14px;padding:15px 24px;border-bottom:1px solid var(--border);transition:background .2s;animation:rowSlide .25s cubic-bezier(.16,1,.3,1) both;position:relative;overflow:hidden}
+#tab-totp .t-otp-row::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:linear-gradient(180deg,transparent,var(--green),transparent);opacity:0;transition:.3s}
+#tab-totp .t-otp-row:last-child{border-bottom:none}
+#tab-totp .t-otp-row:hover{background:rgba(255,255,255,.02)}
+#tab-totp .t-otp-row:hover::before{opacity:1}
+@keyframes rowSlide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+#tab-totp .t-p-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
+#tab-totp .pi-ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)}
+#tab-totp .pi-fb{background:#1877f2}
+#tab-totp .pi-wa{background:linear-gradient(135deg,#075e54,#128c7e)}
+#tab-totp .pi-th{background:#111;border:1px solid #333}
+#tab-totp .pi-def{background:var(--surface3);border:1px solid var(--border2)}
+#tab-totp .t-row-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+#tab-totp .t-row-name{font-size:.85rem;font-weight:600;color:var(--text);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#tab-totp .t-row-sub{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.04em}
+#tab-totp .t-code-wrap{display:flex;align-items:center;gap:6px;flex-shrink:0}
+#tab-totp .t-code-block{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.6rem;color:var(--green);text-shadow:0 0 18px rgba(0,255,135,.5);letter-spacing:.08em;transition:color .3s,text-shadow .3s;background:rgba(0,255,135,.05);border:1px solid rgba(0,255,135,.12);border-radius:8px;padding:4px 10px}
+#tab-totp .t-code-block.urgent{color:var(--red);text-shadow:0 0 18px rgba(255,69,96,.5);background:rgba(255,69,96,.05);border-color:rgba(255,69,96,.12)}
+#tab-totp .t-code-dot{color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:1rem}
+#tab-totp .t-code-invalid{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--red);font-weight:600;padding:4px 10px;background:rgba(255,69,96,.08);border:1px solid rgba(255,69,96,.2);border-radius:8px}
+#tab-totp .t-copy-btn{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:600;padding:7px 14px;border-radius:9px;border:1px solid var(--border2);background:rgba(255,255,255,.04);color:var(--muted2);cursor:pointer;transition:.2s;flex-shrink:0;display:flex;align-items:center;gap:5px}
+#tab-totp .t-copy-btn svg{width:11px;height:11px}
+#tab-totp .t-copy-btn:hover{background:var(--green-dim);border-color:rgba(0,255,135,.35);color:var(--green);box-shadow:0 0 12px rgba(0,255,135,.1)}
+#tab-totp .t-copy-btn.ok{background:var(--green-dim);border-color:rgba(0,255,135,.4);color:var(--green)}
+
+#tab-totp .t-footer{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+#tab-totp .t-btn{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.88rem;padding:15px 20px;border-radius:14px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:9px;transition:all .25s cubic-bezier(.16,1,.3,1);position:relative;overflow:hidden}
+#tab-totp .t-btn::after{content:'';position:absolute;inset:0;background:white;opacity:0;transition:.15s}
+#tab-totp .t-btn:active::after{opacity:.06}
+#tab-totp .t-btn-reset{background:var(--red-dim);color:var(--red);border:1px solid rgba(255,69,96,.2)}
+#tab-totp .t-btn-reset:hover{background:var(--red);color:#fff;box-shadow:0 8px 32px rgba(255,69,96,.35);transform:translateY(-2px)}
+#tab-totp .t-btn-copy-all{background:linear-gradient(135deg,var(--green),var(--cyan));color:#050508;font-weight:800;box-shadow:0 4px 20px rgba(0,255,135,.25)}
+#tab-totp .t-btn-copy-all:hover{box-shadow:0 8px 40px rgba(0,255,135,.45);transform:translateY(-2px);filter:brightness(1.1)}
+#tab-totp .t-btn-copy-all.ok{background:var(--green-dim);color:var(--green);border:1px solid rgba(0,255,135,.3);box-shadow:none}
+
+/* ==================================================
+   NAME PANEL
+   ================================================== */
+#tab-name .n-title{text-align:center;font-size:1.3rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+#tab-name .n-subtitle{overflow:hidden;white-space:nowrap;margin-bottom:20px;border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:6px 0}
+#tab-name .n-scroll{display:inline-block;padding-left:100%;animation:scrollLeft 12s linear infinite;color:#38bdf8;font-size:12px;letter-spacing:2px}
+@keyframes scrollLeft{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+#tab-name .n-panel{background:var(--surface);border-radius:16px;padding:24px;border:1px solid var(--border2);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+#tab-name .n-controls{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+#tab-name select,#tab-name input[type=number]{flex:1;min-width:140px;padding:10px 14px;border-radius:8px;border:1px solid var(--border2);background:#020617;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.85rem;outline:none}
+#tab-name select:focus,#tab-name input[type=number]:focus{border-color:rgba(59,130,246,.4)}
+#tab-name textarea{width:100%;height:260px;border-radius:8px;border:1px solid var(--border);background:#020617;color:var(--text);padding:12px 14px;resize:vertical;outline:none;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.8}
+#tab-name .n-buttons{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+#tab-name .n-buttons button{flex:1;min-width:100px;padding:11px;border:none;border-radius:8px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;transition:all .2s}
+#tab-name .n-btn-full{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff}
+#tab-name .n-btn-full:hover{filter:brightness(1.15);transform:translateY(-1px)}
+#tab-name .n-btn-user{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff}
+#tab-name .n-btn-user:hover{filter:brightness(1.15);transform:translateY(-1px)}
+#tab-name .n-btn-copy{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff}
+#tab-name .n-btn-copy:hover{filter:brightness(1.15);transform:translateY(-1px)}
+#tab-name .n-info{text-align:center;font-size:.75rem;margin-top:10px;color:var(--muted2);font-family:'JetBrains Mono',monospace}
+
+/* ==================================================
+   WORD PANEL
+   ================================================== */
+#tab-word .w-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+#tab-word .w-card{background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:18px;display:flex;flex-direction:column}
+#tab-word label{font-size:.75rem;color:var(--muted2);margin-top:10px;display:block}
+#tab-word label:first-child{margin-top:0}
+#tab-word select,#tab-word textarea{width:100%;padding:12px;margin-top:6px;border-radius:10px;border:1px solid var(--border);background:#020617;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.78rem;outline:none}
+#tab-word select:focus,#tab-word textarea:focus{border-color:rgba(0,212,255,.3)}
+#tab-word button{margin-top:12px;padding:13px;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;transition:all .2s}
+#tab-word button:hover{filter:brightness(1.1);transform:translateY(-1px)}
+#tab-word .w-btn-copy{background:linear-gradient(135deg,#06b6d4,#22c55e) !important}
+#tab-word .w-result{flex:1;margin-top:10px;white-space:pre-wrap;color:#f1f5f9;font-family:'JetBrains Mono',monospace;font-size:.78rem;line-height:1.7;min-height:60px}
+
+/* ==================================================
+   RESPONSIVE
+   ================================================== */
+@media(max-width:660px){
+  #tab-totp .t-footer{grid-template-columns:1fr}
+  #tab-totp .t-code-block{font-size:1.25rem;padding:3px 8px}
+  #tab-totp .t-header{flex-direction:column;gap:12px;align-items:flex-start}
+  #tab-totp .t-sync{flex-direction:column;align-items:flex-start}
+  #tab-word .w-grid{grid-template-columns:1fr}
+  .tab-btn{font-size:.59rem;padding:6px 10px}
+}
+</style>
+</head>
+<body>
+
+<div class="scan-line"></div>
+
+<!-- ===== TOP BAR ===== -->
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="app-logo">🛠️</div>
+    <div class="app-title">𝐓𝐎𝐎𝐋𝐊𝐈𝐓 <em>𝐓𝐔𝐍𝐆𝐆𝐀𝐊 𝐃𝐎𝐑𝐎</em></div>
+    <div class="marquee-wrap">
+      <span>🚨 𝐒𝐄𝐌𝐎𝐆𝐀 𝐌𝐄𝐌𝐁𝐀𝐍𝐓𝐔 𝐏𝐄𝐊𝐄𝐑𝐉𝐀𝐀𝐍 𝐀𝐍𝐃𝐀</span>
+    </div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" data-tab="totp" onclick="switchTab('totp')">🔐 TOTP Generator</button>
+    <button class="tab-btn" data-tab="name" onclick="switchTab('name')">👤 Name Generator</button>
+    <button class="tab-btn" data-tab="word" onclick="switchTab('word')">📝 Word System</button>
+  </div>
+</div>
+
+<!-- ===== MAIN ===== -->
+<div class="main">
+
+  <!-- ========== TOTP PANEL ========== -->
+  <div id="tab-totp" class="tab-panel active">
+    <div class="wrap">
+
+      <div class="t-header">
+        <div class="t-h-left">
+          <div class="t-h-logo">🔐</div>
+          <div>
+            <div class="t-title-main">Bulk <em>TOTP</em> Generator</div>
+            <div class="t-title-sub">RFC 6238 · HMAC-SHA1 · 30s window</div>
+          </div>
+        </div>
+        <div class="t-badge" id="totp-badge"><span class="t-dot"></span><span id="totp-badgeText">Menunggu input...</span></div>
+      </div>
+
+      <div class="t-timer">
+        <div class="t-timer-info">
+          <div class="t-timer-num" id="totp-timerNum">30</div>
+          <div class="t-timer-sub">detik tersisa</div>
+        </div>
+        <div class="t-bar-track"><div class="t-bar-fill" id="totp-bar" style="width:100%"></div></div>
+        <div class="t-bar-pct" id="totp-timerPct">100%</div>
+      </div>
+
+      <div class="t-sync">
+        <div class="t-sync-left">
+          <div class="t-sync-icon">🌐</div>
+          <div class="t-sync-text">
+            <b>Sinkronisasi Waktu</b>
+            Offset jam vs server: <span id="totp-offsetVal">Mengecek...</span>
+          </div>
+        </div>
+        <div class="t-sync-val" id="totp-offsetBadge">...</div>
+        <button class="t-sync-btn" onclick="totpSyncTime()">🔄 Sync</button>
+      </div>
+
+      <div class="t-input-card">
+        <div class="t-card-label">Input Secret Keys</div>
+        <textarea id="totp-inp" placeholder="Masukkan secret TOTP satu per baris...
+
+Contoh:
+6QRQ 76O4 SSYQ TKSL QRMC LMJJ GGLY GZ7R
+Instagram: JBSWY3DPEHPK3PXP
+otpauth://totp/Facebook?secret=JBSWY3DPEHPK3PXP"></textarea>
+        <div class="t-hint">
+          <span class="hl">SECRET</span> — base32 (spasi otomatis dihapus) &nbsp;|&nbsp;
+          <span class="hl">Nama: SECRET</span> — dengan label &nbsp;|&nbsp;
+          <span class="hl">otpauth://totp/...</span> — URI lengkap
+        </div>
+      </div>
+
+      <div class="t-results">
+        <div class="t-res-head">
+          <div class="t-res-title">Hasil Kode OTP</div>
+          <div class="t-res-count" id="totp-cnt">0 akun</div>
+        </div>
+        <div class="t-res-body" id="totp-body">
+          <div class="t-empty">
+            <div class="t-empty-icon">🛡️</div>
+            Masukkan secret key di atas<br>untuk generate kode OTP
+          </div>
+        </div>
+      </div>
+
+      <div class="t-footer">
+        <button class="t-btn t-btn-reset" onclick="totpResetAll()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Reset
+        </button>
+        <button class="t-btn t-btn-copy-all" id="totp-copyAllBtn" onclick="totpCopyAll()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+          Salin Semua Kode
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========== NAME PANEL ========== -->
+  <div id="tab-name" class="tab-panel">
+    <div class="n-title">𝐀𝐑𝐀𝐍𝐄 𝐔𝐖𝐎𝐍𝐆 𝐑𝐀𝐍𝐃𝐎𝐌</div>
+    <div class="n-subtitle">
+      <span class="n-scroll">𝐂𝐨𝐧𝐭𝐨𝐡 : 𝐈𝐲𝐚𝐧 𝐆𝐚𝐣𝐞𝐡/𝐈𝐲𝐚𝐧.𝐠𝐚𝐣𝐞𝐡𝟕𝟏𝟎𝟖</span>
+    </div>
+    <div class="n-panel">
+      <div class="n-controls">
+        <select id="name-country">
+          <option value="">𝐒𝐀𝐌𝐏𝐄𝐀𝐍 𝐏𝐈𝐋𝐄𝐇 𝐍𝐄𝐆𝐎𝐑𝐎 𝐎𝐏𝐎 ❓</option>
+          <option value="us">United States</option>
+          <option value="fr">France</option>
+          <option value="de">Germany</option>
+        </select>
+        <input type="number" id="name-jumlah" placeholder="𝐒𝐀𝐌𝐏𝐄𝐀𝐍 𝐓𝐔𝐋𝐈𝐒 𝐉𝐔𝐌𝐋𝐀𝐇" min="1"/>
+      </div>
+      <textarea id="name-result"></textarea>
+      <div class="n-buttons">
+        <button class="n-btn-full" onclick="nameGenerateFull()">Full Name</button>
+        <button class="n-btn-user" onclick="nameGenerateUser()">Username</button>
+        <button class="n-btn-copy" onclick="nameCopyText()">Copy</button>
+      </div>
+      <div class="n-info" id="name-info"></div>
+    </div>
+  </div>
+
+  <!-- ========== WORD PANEL ========== -->
+  <div id="tab-word" class="tab-panel">
+    <div class="w-grid">
+
+      <div class="w-card">
+        <label>📊 𝗨𝗻𝘁𝘂𝗸 𝗦𝘁𝗮𝘁𝘂𝘀</label>
+        <select id="word-mode">
+          <option value="premium">Premium</option>
+          <option value="click">Click Focus</option>
+          <option value="mind">Mind Game</option>
+          <option value="personal">Personal</option>
+        </select>
+        <label>𝗟𝗶𝗻𝗸 (𝟭 𝘁𝗮𝘂𝘁𝗮𝗻 𝗽𝗲𝗿 𝗯𝗮𝗿𝗶𝘀)</label>
+        <textarea id="word-links"></textarea>
+        <button onclick="wordGenerate()">Generate Status</button>
+      </div>
+
+      <div class="w-card">
+        <label>💬 𝗛𝗮𝘀𝗶𝗹 𝗦𝘁𝗮𝘁𝘂𝘀</label>
+        <div id="word-output" class="w-result"></div>
+        <button class="w-btn-copy" onclick="wordCopyText()">Copy</button>
+      </div>
+
+      <div class="w-card">
+        <label>💌 𝗨𝗻𝘁𝘂𝗸 𝗣𝗲𝘀𝗮𝗻</label>
+        <label>𝗟𝗶𝗻𝗸 (𝟭 𝘁𝗮𝘂𝘁𝗮𝗻 𝗽𝗲𝗿 𝗯𝗮𝗿𝗶𝘀)</label>
+        <textarea id="word-msgLinks"></textarea>
+        <button onclick="wordGenerateMsg()">Generate Message</button>
+        <div id="word-msgOutput" class="w-result"></div>
+        <button class="w-btn-copy" onclick="wordCopyMsg()">Copy Message</button>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+/* ============================
+   TAB NAVIGATION
+   ============================ */
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  document.querySelector('[data-tab="' + name + '"]').classList.add('active');
+}
+
+/* ============================
+   TOTP — ENGINE
+   ============================ */
+function totpBase32Decode(s) {
+  const alpha = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+  s = s.toUpperCase().replace(/[\s=\-]/g, '');
+  let bits = 0, val = 0, out = [];
+  for (let i = 0; i < s.length; i++) {
+    const idx = alpha.indexOf(s[i]);
+    if (idx < 0) throw new Error('Bad char: ' + s[i]);
+    val = (val << 5) | idx;
+    bits += 5;
+    if (bits >= 8) { out.push((val >>> (bits - 8)) & 0xff); bits -= 8; }
+  }
+  return new Uint8Array(out);
+}
+
+let totpTimeOffset = 0;
+
+async function totpGenTOTP(secret, digits, period, offsetMs) {
+  const key = totpBase32Decode(secret);
+  const now = Date.now() + (offsetMs || 0);
+  const T = Math.floor(now / 1000 / period);
+  const buf = new ArrayBuffer(8);
+  const dv = new DataView(buf);
+  dv.setUint32(0, Math.floor(T / 0x100000000), false);
+  dv.setUint32(4, T >>> 0, false);
+  const ck = await crypto.subtle.importKey('raw', key, {name:'HMAC',hash:'SHA-1'}, false, ['sign']);
+  const mac = new Uint8Array(await crypto.subtle.sign('HMAC', ck, buf));
+  const off = mac[19] & 0x0f;
+  const num = ((mac[off]&0x7f)<<24)|((mac[off+1]&0xff)<<16)|((mac[off+2]&0xff)<<8)|(mac[off+3]&0xff);
+  return String(num % Math.pow(10, digits)).padStart(digits, '0');
+}
+
+async function totpSyncTime() {
+  const badge = document.getElementById('totp-offsetBadge');
+  const val = document.getElementById('totp-offsetVal');
+  badge.textContent = 'Syncing...';
+  badge.className = 't-sync-val';
+  try {
+    const samples = [];
+    for (let i = 0; i < 3; i++) {
+      const t0 = Date.now();
+      const r = await fetch('https://worldtimeapi.org/api/timezone/UTC', {cache:'no-store'});
+      const t1 = Date.now();
+      const data = await r.json();
+      const serverMs = new Date(data.datetime).getTime();
+      samples.push((serverMs + (t1-t0)/2) - t1);
+    }
+    samples.sort((a,b)=>a-b);
+    totpTimeOffset = samples[1];
+    const s = Math.round(totpTimeOffset / 1000);
+    val.textContent = (s >= 0 ? '+' : '') + s + 's dari server';
+    badge.textContent = (s >= 0 ? '+' : '') + s + 's';
+    badge.className = 't-sync-val ' + (Math.abs(s) <= 2 ? 'good' : 'bad');
+    await totpGenerate();
+  } catch {
+    try {
+      await fetch('https://www.google.com/generate_204', {cache:'no-store', mode:'no-cors'});
+      totpTimeOffset = 0;
+      val.textContent = 'Tidak bisa sync (offset: 0s)';
+      badge.textContent = '±0s';
+      badge.className = 't-sync-val good';
+    } catch {
+      val.textContent = 'Sync gagal';
+      badge.textContent = 'Error';
+      badge.className = 't-sync-val bad';
+    }
+  }
+}
+
+window.addEventListener('load', () => { totpSyncTime(); });
+
+function totpParseLine(line) {
+  line = line.trim();
+  if (!line) return null;
+  if (/^otpauth:\/\//i.test(line)) {
+    try {
+      const u = new URL(line);
+      const secret = u.searchParams.get('secret') || '';
+      const issuer = u.searchParams.get('issuer') || '';
+      let label = decodeURIComponent(u.pathname.replace(/^\/totp\//, ''));
+      if (label.includes(':')) label = label.split(':').slice(1).join(':').trim();
+      return { name: issuer || label || 'Unknown', secret, digits: parseInt(u.searchParams.get('digits')||'6'), period: parseInt(u.searchParams.get('period')||'30') };
+    } catch { return { name:'URI Error', secret:'', digits:6, period:30 }; }
+  }
+  const ci = line.indexOf(':');
+  if (ci > 0) return { name: line.slice(0,ci).trim(), secret: line.slice(ci+1).trim(), digits:6, period:30 };
+  return { name:null, secret:line, digits:6, period:30 };
+}
+
+function totpPlatIcon(name) {
+  if (!name) return { icon:'🔑', cls:'pi-def' };
+  const n = name.toLowerCase();
+  if (n.includes('instagram')||n==='ig') return { icon:'📸', cls:'pi-ig' };
+  if (n.includes('facebook') ||n==='fb') return { icon:'📘', cls:'pi-fb' };
+  if (n.includes('whatsapp') ||n==='wa') return { icon:'💬', cls:'pi-wa' };
+  if (n.includes('threads'))              return { icon:'🧵', cls:'pi-th' };
+  return { icon:'🔑', cls:'pi-def' };
+}
+
+function totpEsc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;') }
+
+let totpLastResults = [];
+
+async function totpGenerate() {
+  const raw = document.getElementById('totp-inp').value;
+  const bodyEl = document.getElementById('totp-body');
+  const badge = document.getElementById('totp-badge');
+  const badgeText = document.getElementById('totp-badgeText');
+  const cnt = document.getElementById('totp-cnt');
+  const lines = raw.split('\n').filter(l => l.trim());
+  if (!lines.length) {
+    bodyEl.innerHTML = '<div class="t-empty"><div class="t-empty-icon">🛡️</div>Masukkan secret key di atas<br>untuk generate kode OTP</div>';
+    badge.className='t-badge'; badgeText.textContent='Menunggu input...';
+    cnt.textContent='0 akun'; totpLastResults=[]; return;
+  }
+  badge.className='t-badge live'; badgeText.textContent='Generating...';
+  const parsed = lines.map(totpParseLine).filter(Boolean);
+  const isUrgent = totpSecLeft() <= 5;
+  const results = await Promise.all(parsed.map(async (p, i) => {
+    let code = null;
+    try { code = await totpGenTOTP(p.secret, p.digits, p.period, totpTimeOffset); } catch(e) {}
+    return { name: p.name || ('Secret ' + (i+1)), code };
+  }));
+  totpLastResults = results;
+  bodyEl.innerHTML = '';
+  results.forEach((r, i) => {
+    const { icon, cls } = totpPlatIcon(r.name);
+    const invalid = !r.code;
+    const row = document.createElement('div');
+    row.className = 't-otp-row';
+    row.style.animationDelay = (i * 30) + 'ms';
+    let codeHtml = invalid
+      ? '<div class="t-code-invalid">⚠ SECRET TIDAK VALID</div>'
+      : '<div class="t-code-wrap"><span class="t-code-block'+(isUrgent?' urgent':'')+'">'+r.code.slice(0,3)+'</span><span class="t-code-dot">·</span><span class="t-code-block'+(isUrgent?' urgent':'')+'">'+r.code.slice(3)+'</span></div>';
+    row.innerHTML =
+      '<div class="t-p-icon '+cls+'">'+icon+'</div>'+
+      '<div class="t-row-info"><div class="t-row-name">'+totpEsc(r.name)+'</div><div class="t-row-sub">TOTP · SHA-1 · 30s</div></div>'+
+      codeHtml+
+      (!invalid ? '<button class="t-copy-btn" data-code="'+r.code+'" onclick="totpCopyCode(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>Salin</button>' : '');
+    bodyEl.appendChild(row);
+  });
+  const valid = results.filter(r => r.code).length;
+  badgeText.textContent = valid + ' kode aktif';
+  cnt.textContent = results.length + ' akun';
+}
+
+function totpSecLeft(){ return 30 - (Math.floor((Date.now() + totpTimeOffset) / 1000) % 30) }
+let totpPrevSec = -1;
+
+function totpTick() {
+  const s = totpSecLeft();
+  const pct = Math.round((s / 30) * 100);
+  document.getElementById('totp-timerNum').textContent = s;
+  document.getElementById('totp-timerPct').textContent = pct + '%';
+  document.getElementById('totp-bar').style.width = pct + '%';
+  const urgent = s <= 5;
+  document.getElementById('totp-bar').className = 't-bar-fill' + (urgent ? ' urgent' : '');
+  document.getElementById('totp-timerNum').className = 't-timer-num' + (urgent ? ' urgent' : '');
+  document.querySelectorAll('.t-code-block').forEach(el => {
+    if (urgent) el.classList.add('urgent'); else el.classList.remove('urgent');
+  });
+  if (s === 30 && totpPrevSec !== 30) totpGenerate();
+  totpPrevSec = s;
+}
+setInterval(totpTick, 500);
+totpTick();
+
+let totpDbt;
+document.getElementById('totp-inp').addEventListener('input', () => {
+  clearTimeout(totpDbt); totpDbt = setTimeout(totpGenerate, 380);
+});
+
+function totpCopyCode(btn) {
+  navigator.clipboard.writeText(btn.dataset.code).then(() => {
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>OK';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('ok'); }, 1800);
+  });
+}
+
+function totpCopyAll() {
+  const valid = totpLastResults.filter(r => r.code);
+  if (!valid.length) return;
+  navigator.clipboard.writeText(valid.map(r => r.code).join('\n')).then(() => {
+    const btn = document.getElementById('totp-copyAllBtn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Semua Kode Tersalin!';
+    btn.classList.add('ok');
+    setTimeout(() => { btn.innerHTML = orig; btn.classList.remove('ok'); }, 2000);
+  });
+}
+
+function totpResetAll() {
+  document.getElementById('totp-inp').value = '';
+  totpGenerate();
+}
+
+/* ============================
+   NAME GENERATOR
+   ============================ */
+const nameData = {
+  us: {
+    first: ["Emma","Olivia","Ava","Sophia","Isabella","Mia","Charlotte","Amelia","Harper","Evelyn","Abigail","Emily","Ella","Scarlett","Grace","Chloe","Victoria","Riley","Aria","Lily","Zoey","Nora","Hazel","Aurora","Savannah","Bella","Skylar","Lucy","Paisley","Everly","Anna","Samantha","Natalie","Leah","Brooklyn","Audrey","Claire","Violet","Stella","Ellie","Ariana","Sadie","Peyton","Julia","Alice","Madelyn","Kylie","Naomi","Sarah","Eva"],
+    middle: ["Rose","Claire","Marie","Jane","Anne","Louise","Faith","Hope","Skye","Faye","Belle","Kate","June","Elle","Noel","Dawn","Joy","Mae","Rae","Blair","Wren","Bree","Quinn","Reese"],
+    last: ["Smith","Johnson","Brown","Taylor","Anderson","Thomas","Jackson","White","Harris","Martin","Thompson","Garcia","Martinez","Robinson","Clark","Lewis","Lee","Walker","Hall","Allen","Young","King","Wright","Scott","Green","Baker","Adams","Nelson","Hill","Ramirez","Campbell","Mitchell","Roberts","Carter","Phillips","Evans","Turner","Torres","Parker","Collins"]
+  },
+  fr: {
+    first: ["Sophie","Camille","Juliette","Amelie","Chloe","Manon","Louise","Clara","Sarah","Eva","Lina","Ines","Lea","Alice","Jeanne","Lucie","Julie","Pauline","Anna","Marine","Elise","Noemie","Adele","Margot","Celeste","Anais","Laura","Helene","Caroline","Mathilde"],
+    middle: ["Marie","Claire","Louise","Anne","Rose","Noel","Belle","Fleur","Elle","Soleil","Lune","Colette","Sabine","Yvonne","Therese"],
+    last: ["Dubois","Moreau","Laurent","Simon","Michel","Garcia","David","Bertrand","Roux","Vincent","Fournier","Morel","Girard","Andre","Lefevre","Mercier","Dupont","Lambert","Bonnet","Francois","Legrand","Garnier","Faure","Renaud","Marchand","Blanc","Perrin","Morin","Giraud","Barbier"]
+  },
+  de: {
+    first: ["Anna","Mia","Emma","Hannah","Lena","Lea","Sophie","Marie","Laura","Clara","Sarah","Johanna","Emilia","Lina","Nina","Alina","Julia","Katharina","Luisa","Paula","Fiona","Marlene","Greta","Lara","Franziska","Helena","Nele","Carla","Elisa","Tanja"],
+    middle: ["Marie","Sofie","Anne","Elise","Lena","Frieda","Johanna","Greta","Luise","Klara"],
+    last: ["Muller","Schmidt","Schneider","Fischer","Weber","Meyer","Wagner","Becker","Hoffmann","Schulz","Koch","Bauer","Richter","Klein","Wolf","Schroder","Neumann","Schwarz","Zimmermann","Braun","Kruger","Hofmann","Hartmann","Lange","Schmitt","Werner","Krause","Meier","Lehmann","Huber"]
+  }
+};
+
+function nameRand(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function nameCheck(){
+  if(!document.getElementById('name-country').value){
+    alert("𝐇𝐦𝐦 𝐤𝐞𝐭𝐨𝐫𝐨 𝐬𝐚𝐦𝐩𝐞𝐚𝐧 𝐝𝐮𝐫𝐨𝐧𝐠 𝐧𝐠𝐨𝐩𝐢 𝐧𝐚𝐞 𝐭𝐚!!!");
+    return false;
+  }
+  return true;
+}
+
+function nameGenerateFull(){
+  if(!nameCheck()) return;
+  const c = document.getElementById('name-country').value;
+  const j = +document.getElementById('name-jumlah').value;
+  if(!j) return alert("Masukkan jumlah!");
+  const set = new Set();
+  while(set.size < j){
+    const t = Math.floor(Math.random()*3);
+    let name;
+    if(t===0) name = nameRand(nameData[c].first)+" "+nameRand(nameData[c].last);
+    else if(t===1) name = nameRand(nameData[c].first)+" "+nameRand(nameData[c].middle)+" "+nameRand(nameData[c].last);
+    else name = nameRand(nameData[c].first)+" "+nameRand(nameData[c].last)+" "+nameRand(nameData[c].last);
+    set.add(name);
+  }
+  document.getElementById('name-result').value = [...set].join("\n");
+  document.getElementById('name-info').innerText = "𝐖𝐄𝐒 𝐌𝐀𝐑𝐈 𝐂𝐀𝐊🔔: "+set.size;
+}
+
+function nameGenerateUser(){
+  if(!nameCheck()) return;
+  const c = document.getElementById('name-country').value;
+  const j = +document.getElementById('name-jumlah').value;
+  if(!j) return alert("Masukkan jumlah!");
+  const set = new Set();
+  while(set.size < j){
+    const f = nameRand(nameData[c].first).toLowerCase();
+    const l = nameRand(nameData[c].last).toLowerCase();
+    const sep = Math.random()>0.5 ? "." : "_";
+    const num = Math.floor(100 + Math.random()*9999);
+    set.add(f+sep+l+num);
+  }
+  document.getElementById('name-result').value = [...set].join("\n");
+  document.getElementById('name-info').innerText = "𝐖𝐄𝐒 𝐌𝐀𝐑𝐈 𝐂𝐀𝐊🔔: "+set.size;
+}
+
+function nameCopyText(){
+  document.getElementById('name-result').select();
+  document.execCommand("copy");
+}
+
+/* ============================
+   WORD SYSTEM
+   ============================ */
+let wordLinkList = [];
+let wordMsgLinkList = [];
+
+const wOpeners=["I almost didn't share this","I hesitated before posting this","I almost kept this private","I wasn't planning to show this","I paused before putting this up","I didn't expect to post this","I almost deleted this","I changed my mind last second","I wasn't sure about this","I wasn't ready to post this","I almost skipped this","I kept thinking about this","I didn't plan to share this today","I almost ignored this","I wasn't going to say anything","I wasn't sure this mattered","I didn't think I'd post this","I almost backed out","I kept this to myself for a bit","I didn't expect this to turn out like this","I wasn't planning to show this side","I almost left this unseen","I didn't think this would be worth sharing"];
+const wIntrigue=["but something feels different","and now I can't ignore it","and now I'm curious what you'll think","and I decided to share it anyway","and now it feels worth it","and now I want to see reactions","and now it's on my mind","and now it feels more real","and now I'm paying attention to it","and now I'm thinking about it more","and now I couldn't keep it to myself","and now I'm watching closely","and now it feels right","and now it's hard to ignore","and now I'm wondering about it","and now it's stuck in my head","and now it feels different than before","and now I notice it more"];
+const wCuriosity=["you might find this interesting","this might catch your attention","this isn't what you expect","you'll understand when you see it","this might surprise you","there's more here than it looks","this might be your kind of thing","this could be worth a look","this might stay on your mind","this might pull you in","I think this will stand out","this might feel different","this might be worth your time","this might change your view","this feels slightly unexpected","this might grab your attention","you might notice something here","this could interest you"];
+const wPersonal=["this made me think of you","I feel like this matches your vibe","something tells me you'll like this","I think you'll connect with this","I don't think this is for everyone… but maybe you","I feel like you'll notice this differently","I think this fits your taste","this feels like your type of thing","I feel like this speaks to you","I think this aligns with you","I feel like you'd understand this quickly","I think this was meant for someone like you","I feel like this stands out to you"];
+const wUrgency=["it might not stay here long","I might remove this later","not sure how long I'll leave this up","this won't be here forever","just leaving this here for now","this might disappear soon","this isn't staying up forever","I might take this down later","this could be temporary","this might not last here","not planning to keep this up long","this might be gone soon","only here for a short time"];
+const wEmojis=["👀","😏","✨","🔥","💭","🤭","💫","🖤","⚡","💎","😉","🌙","📍","📌","🫣","🌟","🪄","🎯","🧠","🔍","💡","🧩","📲","🌌","🧲","🎭","📸","🔗","💬","📝","🎬","📱","🪞","🌀","🧿","🧭","📎","📢","🌠","🪐","📖","🎧"];
+const wMsg1=["Hey…","Hi…","Hmm…","Hey you…","Wait…","Hold on…","Quick one…","I wasn't going to message you but…","I saw your profile and…","This might sound random but…","Okay this is a bit unexpected…","I almost didn't send this…","Don't ignore this…","Just a second…","Before you scroll…","Can I show you something?","Look at this…"];
+const wMsg2=["you seem interesting","I like your vibe","you caught my attention","you look different","something about you stands out","I feel like you'd like this","you might enjoy this","this feels like your kind of thing","I think this matches you","I think you'll be into this","this reminds me of your vibe","this feels perfect for you","I think this is your type"];
+const wMsg3=["I wanted to show you something","I found something you might like","I think you should see this","this is worth your attention","you should check this out","this might surprise you","I think you'll enjoy this","this is kinda interesting","this might catch your eye","this is not what you expect","I think you'll stay on this","this might pull you in","this is a bit addictive","this is hard to ignore"];
+const wMsg4=["just tap this link","check it here","open this","take a look here","see it yourself","don't overthink just click","click and tell me later","you'll understand once you open it","just one click","trust me just tap","don't miss this","before it disappears check this","quick look here","this is the link"];
+const wMsgE=["😏","😉","👀","🔥","💋","✨","⚡","🖤","🤭","💫","🫣","📲","💬","🔗"];
+
+function wPick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+function wordBuild(mode){
+  const o=wPick(wOpeners),i=wPick(wIntrigue),c=wPick(wCuriosity),p=wPick(wPersonal),u=wPick(wUrgency),e=wPick(wEmojis);
+  const pats=[o+"… "+i+". "+c, c+"… "+u, p+"… "+c, o+"… "+i+". "+p, c+". "+p];
+  let text=pats[Math.floor(Math.random()*pats.length)];
+  if(mode==="click") text=c+"… "+u;
+  if(mode==="mind") text="You're already thinking about it… "+c;
+  if(mode==="personal") text=p+"… "+i;
+  return text+" "+e;
+}
+
+function wordGenerate(){
+  const raw=document.getElementById("word-links").value.trim();
+  const mode=document.getElementById("word-mode").value;
+  if(!raw) return;
+  if(wordLinkList.length===0) wordLinkList=raw.split("\n").filter(x=>x.trim());
+  if(!wordLinkList.length){ document.getElementById("word-output").innerText="No links left!"; return; }
+  const link=wordLinkList.shift();
+  document.getElementById("word-output").innerText=wordBuild(mode)+"\n"+link;
+  document.getElementById("word-links").value=wordLinkList.join("\n");
+}
+
+function wordCopyText(){
+  navigator.clipboard.writeText(document.getElementById("word-output").innerText);
+}
+
+function wordGenerateMsg(){
+  const raw=document.getElementById("word-msgLinks").value.trim();
+  if(!raw){ document.getElementById("word-msgOutput").innerText="𝗜𝘀𝗶 𝘁𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗱𝗮𝗵𝘂𝗹𝘂 𝗹𝗶𝗻𝗸 𝗻𝘆𝗮 !"; return; }
+  if(wordMsgLinkList.length===0) wordMsgLinkList=raw.split("\n").filter(x=>x.trim());
+  if(!wordMsgLinkList.length){ document.getElementById("word-msgOutput").innerText="No links left!"; return; }
+  const link=wordMsgLinkList.shift();
+  const text=wPick(wMsg1)+" "+wPick(wMsg2)+"… "+wPick(wMsg3)+". "+wPick(wMsg4)+" "+wPick(wMsgE);
+  document.getElementById("word-msgOutput").innerText=text+"\n"+link;
+  document.getElementById("word-msgLinks").value=wordMsgLinkList.join("\n");
+}
+
+function wordCopyMsg(){
+  navigator.clipboard.writeText(document.getElementById("word-msgOutput").innerText);
+}
+</script>
+</body>
+</html>
