@@ -368,29 +368,31 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   <div id="tab-word" class="tab-panel">
     <div class="w-grid">
       <div class="w-card">
-        <label>📊 𝗨𝗻𝘁𝘂𝗸 𝗦𝘁𝗮𝘁𝘂𝘀</label>
+        <label>🔥 𝗠𝗼𝗱𝗲 𝗦𝘁𝗮𝘁𝘂𝘀</label>
         <select id="word-mode">
-          <option value="premium">Premium</option>
-          <option value="click">Click Focus</option>
-          <option value="mind">Mind Game</option>
-          <option value="personal">Personal</option>
+          <option value="premium">✨ Premium Mix — Campuran terbaik</option>
+          <option value="hot">🔥 Hot &amp; Teasing — Paling menggoda</option>
+          <option value="tease">😏 Tease &amp; Mystery — Misterius &amp; penasaran</option>
+          <option value="click">💋 Click Bait — Fokus bikin klik</option>
+          <option value="mind">🧠 Mind Game — Psikologis &amp; curiosity</option>
+          <option value="personal">💌 Personal — Seolah khusus buat dia</option>
         </select>
-        <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐬𝐞𝐜𝐚𝐫𝐚 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
-        <textarea id="word-links"></textarea>
-        <button onclick="wordGenerate()">Generate Status</button>
+        <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
+        <textarea id="word-links" placeholder="Tempel link di sini&#10;Satu link per baris&#10;https://link1.com&#10;https://link2.com"></textarea>
+        <button onclick="wordGenerate()">⚡ Generate Status</button>
       </div>
       <div class="w-card">
-        <label>💬 𝗛𝗮𝘀𝗶𝗹 𝗦𝘁𝗮𝘁𝘂𝘀</label>
-        <div id="word-output" class="w-result"></div>
-        <button class="w-btn-copy" onclick="wordCopyText()">Copy</button>
+        <label>💬 𝗛𝗮𝘀𝗶𝗹 𝗦𝘁𝗮𝘁𝘂𝘀 𝗙𝗕</label>
+        <div id="word-output" class="w-result" style="min-height:90px;font-size:.85rem;line-height:1.9"></div>
+        <button class="w-btn-copy" onclick="wordCopyText()">📋 Copy Status</button>
       </div>
       <div class="w-card">
-        <label>💌 𝗨𝗻𝘁𝘂𝗸 𝗣𝗲𝘀𝗮𝗻</label>
-        <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐬𝐞𝐜𝐚𝐫𝐚 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
-        <textarea id="word-msgLinks"></textarea>
-        <button onclick="wordGenerateMsg()">Generate Message</button>
-        <div id="word-msgOutput" class="w-result"></div>
-        <button class="w-btn-copy" onclick="wordCopyMsg()">Copy Message</button>
+        <label>💌 𝗣𝗲𝘀𝗮𝗻 𝗣𝗿𝗶𝗯𝗮𝗱𝗶 ( 𝗗𝗠 / 𝗜𝗻𝗯𝗼𝘅 )</label>
+        <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
+        <textarea id="word-msgLinks" placeholder="Tempel link di sini&#10;Satu link per baris&#10;https://link1.com&#10;https://link2.com"></textarea>
+        <button onclick="wordGenerateMsg()">💬 Generate Pesan</button>
+        <div id="word-msgOutput" class="w-result" style="min-height:80px;font-size:.85rem;line-height:1.9;margin-top:10px"></div>
+        <button class="w-btn-copy" onclick="wordCopyMsg()">📋 Copy Pesan</button>
       </div>
     </div>
   </div>
@@ -404,10 +406,10 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
     <div class="rt-add-section">
       <div class="rt-section-label" style="margin-bottom:.5rem">Tambah template baru</div>
       <div class="rt-add-row">
-        <textarea class="rt-textarea" id="rt-new-template" placeholder="Ketik template baru di sini...&#10;Setiap baris = satu baris teks"></textarea>
+        <textarea class="rt-textarea" id="rt-new-template" placeholder="Ketik template baru di sini...&#10;Setiap baris = satu baris teks&#10;&#10;✨ Auto-random:&#10;• Umur: "I am 58" / "I'm 60" → angka digeser ±3&#10;• Tahun: "born in 1966" → otomatis sinkron dengan umur&#10;• Tanggal: "15/06/1965" atau "15-06-1965" → dirandom&#10;• Kata: sinonim otomatis dari 200+ kamus kata"></textarea>
         <button class="rt-btn-add" onclick="rtAddTemplate()">+ Tambah</button>
       </div>
-      <p class="rt-info-note">Kata-kata dalam template baru akan dirandom otomatis menggunakan sinonim.</p>
+      <p class="rt-info-note">✨ Umur, tanggal, tahun &amp; kata-kata akan dirandom otomatis setiap generate.</p>
     </div>
     <div class="rt-controls">
       <label>Jumlah variasi:</label>
@@ -602,24 +604,89 @@ function ngClear(){
   document.getElementById('ng-info').textContent='';
 }
 
-/* ══ WORD SYSTEM ══ */
+/* ══ WORD SYSTEM v2 — HOT & FLIRTY EDITION ══ */
 let wordLinkList=[],wordMsgLinkList=[];
-const wOpeners=["I almost didn't share this","I hesitated before posting this","I almost kept this private","I wasn't planning to show this","I paused before putting this up","I didn't expect to post this","I almost deleted this","I changed my mind last second","I wasn't sure about this","I wasn't ready to post this","I almost skipped this","I kept thinking about this","I didn't plan to share this today","I almost ignored this","I wasn't going to say anything"];
-const wIntrigue=["but something feels different","and now I can't ignore it","and now I'm curious what you'll think","and I decided to share it anyway","and now it feels worth it","and now I want to see reactions","and now it's on my mind","and now it feels more real","and now I'm paying attention to it","and now I'm thinking about it more","and now I couldn't keep it to myself","and now I'm watching closely","and now it feels right","and now it's hard to ignore"];
-const wCuriosity=["you might find this interesting","this might catch your attention","this isn't what you expect","you'll understand when you see it","this might surprise you","there's more here than it looks","this might be your kind of thing","this could be worth a look","this might stay on your mind","this might pull you in","I think this will stand out","this might feel different","this might be worth your time"];
-const wPersonal=["this made me think of you","I feel like this matches your vibe","something tells me you'll like this","I think you'll connect with this","I don't think this is for everyone… but maybe you","I feel like you'll notice this differently","I think this fits your taste","this feels like your type of thing"];
-const wUrgency=["it might not stay here long","I might remove this later","not sure how long I'll leave this up","this won't be here forever","just leaving this here for now","this might disappear soon","this isn't staying up forever","I might take this down later"];
-const wEmojis=["👀","😏","✨","🔥","💭","🤭","💫","🖤","⚡","💎","😉","🌙","📍","📌","🫣","🌟","🪄","🎯","🧠","🔍","💡","🧩","📲","🌌","🧲","🎭","📸","🔗","💬","📝","🎬","📱","🪞","🌀","🧿","🧭","📎","📢","🌠","🪐","📖","🎧"];
-const wMsg1=["Hey…","Hi…","Hmm…","Hey you…","Wait…","Hold on…","Quick one…","I wasn't going to message you but…","I saw your profile and…","This might sound random but…","Okay this is a bit unexpected…","I almost didn't send this…","Don't ignore this…","Just a second…","Before you scroll…"];
-const wMsg2=["you seem interesting","I like your vibe","you caught my attention","you look different","something about you stands out","I feel like you'd like this","you might enjoy this","this feels like your kind of thing"];
-const wMsg3=["I wanted to show you something","I found something you might like","I think you should see this","this is worth your attention","you should check this out","this might surprise you","I think you'll enjoy this","this is kinda interesting"];
-const wMsg4=["just tap this link","check it here","open this","take a look here","see it yourself","don't overthink just click","click and tell me later","you'll understand once you open it"];
-const wMsgE=["😏","😉","👀","🔥","💋","✨","⚡","🖤","🤭","💫","🫣","📲","💬","🔗"];
+
+/* ── STATUS arrays ── */
+const wOpeners=[
+  "Don't tell anyone I posted this…","This isn't for everyone…","I almost deleted this before posting…","I wasn't planning to share this…","Before you scroll past…","Not everyone gets to see this side of me…","This one's for the brave ones only…","I almost didn't post this…","Something I've been keeping to myself…","I don't usually do this…","They say don't open this alone at night…","If you think you can handle it…","Not for the faint-hearted…","Only a few people get to see this…","There's something I never show here…","I was bored and this happened…","If you're up late tonight…","Anyone else curious or just me…","I don't usually post like this but…","Click it or don't, up to you…"
+];
+const wIntrigue=[
+  "but it felt wrong to keep it to myself","but I think you need to see this","and I'm curious what you'll think","but this is too good to hide","and now I can't stop thinking about it","but something tells me you'll like it","and it's not what you're imagining","but I decided to share it anyway","and trust me, it's worth it","but once you see it, you'll understand","and this is not your average content","but everyone who clicked thanked me later","and so many people have already reacted","but this one is different","and words can't really do it justice"
+];
+const wCuriosity=[
+  "You won't be disappointed if you open this","Something behind this link that keeps pulling people back","It's not what you think… it's more than that","One click and you'll get it immediately","The kind of content that makes you come back for more","Once you open it, it's hard to stop","There's something in there you won't find anywhere else","Everyone who's seen it says it hits different","This is for people who appreciate something real","No long explanation needed, just open it","This is where I'm more… honest","If you're curious, this is the place","A side of me most people never get to see","Better to look yourself than wonder","Are you the type who's curious or just a scroller?"
+];
+const wPersonal=[
+  "I don't share this with everyone, only the special ones","Something about you made me want to share this","I feel like this was made for you","For the ones who've been curious about me for a while","If you've been watching my stories… this is for you","For the ones who've been quietly wondering","I noticed you… and this is a little something for you","Something tells me you're exactly the type who'd appreciate this"
+];
+const wUrgency=[
+  "but this won't be here forever","but I might take it down tonight","but the link is limited, won't last long","but spots are almost gone","but not everyone gets access","but this is only temporary","but I'm making it private soon","but I can't promise it'll still be up tomorrow"
+];
+const wHot=[
+  "Can't sleep tonight… anyone want to keep me company? 😏","They say my eyes say more than my words ever could… see for yourself 👀","Some people say I'm too bold… they haven't seen this yet 🔥","I'm in a different kind of mood tonight ✨","People call me mysterious… I'm just selective 😉","There's a side of me only a few people know about…","If you're not afraid of surprises, this one's for you 💋","I'm not easy to figure out… but this link explains everything","Let's be honest, you've been curious for a while now…","This is not clickbait. This is genuinely different 🖤","Some nights I feel like letting someone in… tonight's one of those nights","The version of me on here is just the surface 🌙","I keep the good stuff somewhere else… follow the link","Not everything I am fits in a Facebook post 😏","I wonder who's brave enough to actually click 🔥"
+];
+const wEmojis=["👀","😏","🔥","💋","✨","🖤","⚡","💎","😉","🌙","🫣","🌟","💫","🤭","💄","🍷","🌹","💃","🎭","🪞","💌","🔮","🌸","💅","🫦"];
+
+/* ── MESSAGE arrays ── */
+const wMsg1=[
+  "Hey…","Psst…","Hey you…","Wait a second…","Hold on…","Don't ignore this…","Quick thing…","I almost didn't message you but…","I came across your profile and…","This might sound random but…","Okay this is a little unexpected…","I almost didn't send this…","Before you scroll away…","Just one second…","I don't usually do this but…"
+];
+const wMsg2=[
+  "you seem different from the rest","something about you caught my attention","I really like your vibe","you seem like someone who isn't afraid of new things","your profile made me curious","you seem like the brave type, right?","my gut says you'd enjoy this","you seem open-minded"
+];
+const wMsg3=[
+  "I wanted to show you something","I found something I think suits you","I think you should see this","this deserves your attention","you should check this out","I think this will surprise you","I have a feeling you'll enjoy this","there's something I keep only for the curious ones"
+];
+const wMsg4=[
+  "just open the link, don't just wonder","tap it first, judge later 😏","it's free for anyone brave enough to click","don't overthink it, just go","you won't regret it, I promise","see it for yourself, words aren't enough","one click is all it takes","open it if you're brave enough 🔥"
+];
+const wMsgE=["😏","😉","👀","🔥","💋","✨","🖤","🤭","💫","🫣","💎","🌙","💄","🍷","💌"];
+
 function wPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
-function wordBuild(mode){const o=wPick(wOpeners),i=wPick(wIntrigue),c=wPick(wCuriosity),p=wPick(wPersonal),u=wPick(wUrgency),e=wPick(wEmojis);const pats=[o+"… "+i+". "+c,c+"… "+u,p+"… "+c,o+"… "+i+". "+p,c+". "+p];let text=pats[Math.floor(Math.random()*pats.length)];if(mode==="click")text=c+"… "+u;if(mode==="mind")text="You're already thinking about it… "+c;if(mode==="personal")text=p+"… "+i;return text+" "+e;}
-function wordGenerate(){const raw=document.getElementById("word-links").value.trim();const mode=document.getElementById("word-mode").value;if(!raw)return;if(wordLinkList.length===0)wordLinkList=raw.split("\n").filter(x=>x.trim());if(!wordLinkList.length){document.getElementById("word-output").innerText="No links left!";return;}const link=wordLinkList.shift();document.getElementById("word-output").innerText=wordBuild(mode)+"\n"+link;document.getElementById("word-links").value=wordLinkList.join("\n");}
+
+function wordBuild(mode){
+  const o=wPick(wOpeners),i=wPick(wIntrigue),c=wPick(wCuriosity),p=wPick(wPersonal),u=wPick(wUrgency),h=wPick(wHot),e=wPick(wEmojis);
+  const pats=[
+    o+" "+i+", "+c.toLowerCase()+" "+u+". "+e,
+    h+" "+c.toLowerCase()+", "+u+". "+e,
+    p+", "+c.toLowerCase()+" "+u+". "+e,
+    o+" "+i+", "+p.toLowerCase()+". "+e,
+    c+" "+u+", "+p.toLowerCase()+". "+e,
+    h+" "+p.toLowerCase()+", "+u+". "+e,
+    o+" "+u+", "+c.toLowerCase()+". "+e
+  ];
+  let text=pats[Math.floor(Math.random()*pats.length)];
+  if(mode==="click")    text=c+" "+u+". "+e;
+  if(mode==="mind")     text=h+" "+c.toLowerCase()+", "+u+". "+e;
+  if(mode==="personal") text=p+", "+i.toLowerCase()+" "+u+". "+e;
+  if(mode==="hot")      text=h+" "+p.toLowerCase()+", "+u+". "+e;
+  if(mode==="tease")    text=o+" "+i+", "+c.toLowerCase()+" "+u+". "+e;
+  return text;
+}
+
+function wordGenerate(){
+  const raw=document.getElementById("word-links").value.trim();
+  const mode=document.getElementById("word-mode").value;
+  if(!raw)return;
+  if(wordLinkList.length===0) wordLinkList=raw.split("\n").filter(x=>x.trim());
+  if(!wordLinkList.length){document.getElementById("word-output").innerText="⚠️ Link habis!";return;}
+  const link=wordLinkList.shift();
+  document.getElementById("word-output").innerText=wordBuild(mode)+"\n"+link;
+  document.getElementById("word-links").value=wordLinkList.join("\n");
+}
 function wordCopyText(){navigator.clipboard.writeText(document.getElementById("word-output").innerText);}
-function wordGenerateMsg(){const raw=document.getElementById("word-msgLinks").value.trim();if(!raw){document.getElementById("word-msgOutput").innerText="𝗜𝘀𝗶 𝘁𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗱𝗮𝗵𝘂𝗹𝘂 𝗹𝗶𝗻𝗸 𝗻𝘆𝗮 !";return;}if(wordMsgLinkList.length===0)wordMsgLinkList=raw.split("\n").filter(x=>x.trim());if(!wordMsgLinkList.length){document.getElementById("word-msgOutput").innerText="No links left!";return;}const link=wordMsgLinkList.shift();const text=wPick(wMsg1)+" "+wPick(wMsg2)+"… "+wPick(wMsg3)+". "+wPick(wMsg4)+" "+wPick(wMsgE);document.getElementById("word-msgOutput").innerText=text+"\n"+link;document.getElementById("word-msgLinks").value=wordMsgLinkList.join("\n");}
+
+function wordGenerateMsg(){
+  const raw=document.getElementById("word-msgLinks").value.trim();
+  if(!raw){document.getElementById("word-msgOutput").innerText="𝗜𝘀𝗶 𝘁𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗱𝗮𝗵𝘂𝗹𝘂 𝗹𝗶𝗻𝗸 𝗻𝘆𝗮 !";return;}
+  if(wordMsgLinkList.length===0) wordMsgLinkList=raw.split("\n").filter(x=>x.trim());
+  if(!wordMsgLinkList.length){document.getElementById("word-msgOutput").innerText="⚠️ Link habis!";return;}
+  const link=wordMsgLinkList.shift();
+  const text=wPick(wMsg1)+" "+wPick(wMsg2)+", "+wPick(wMsg3)+" — "+wPick(wMsg4)+" "+wPick(wMsgE);
+  document.getElementById("word-msgOutput").innerText=text+"\n"+link;
+  document.getElementById("word-msgLinks").value=wordMsgLinkList.join("\n");
+}
 function wordCopyMsg(){navigator.clipboard.writeText(document.getElementById("word-msgOutput").innerText);}
 
 /* ══ RANDOM TEXT GENERATOR ══ */
@@ -652,86 +719,146 @@ function rtRandomizeNumbers(text){
   return text;
 }
 
-// ═══ KAMUS SINONIM SUPER DIPERLUAS (100+ entri, 20-25 pilihan per kata) ═══
+// ═══ KAMUS SINONIM ULTRA DIPERLUAS (200+ entri, 25-40 pilihan per kata) ═══
 const RT_SYNS = {
   // ── SIFAT POSITIF ──
-  "kind":        ["gentle","warm","understanding","accepting","open-minded","patient","welcoming","considerate","tolerant","compassionate","caring","gracious","sympathetic","thoughtful","generous","kindhearted","benevolent","tender","supportive","easygoing","forgiving","soft-hearted","charitable","humane","lenient"],
-  "gentle":      ["kind","warm","soft","understanding","patient","caring","tender","mild","calm","soothing","delicate","mellow","gracious","easy","light","peaceful","quiet","serene","mild-mannered","pleasant","unhurried","smooth","subtle","refined","featherlight"],
-  "warm":        ["kind","gentle","friendly","welcoming","caring","loving","affectionate","cordial","heartfelt","sincere","tender","cozy","comforting","nurturing","open","generous","approachable","hospitable","amiable","sweet","inviting","radiant","hearty","endearing","wholesome"],
-  "good":        ["great","wonderful","fine","nice","positive","excellent","superb","splendid","fantastic","brilliant","terrific","solid","decent","pleasant","satisfying","admirable","commendable","worthy","favorable","sound","reliable","honest","genuine","real","true"],
-  "great":       ["good","wonderful","fantastic","amazing","excellent","superb","brilliant","magnificent","outstanding","exceptional","remarkable","phenomenal","splendid","terrific","marvelous","glorious","impressive","superior","first-rate","top-notch","extraordinary","stellar","spectacular","sublime","breathtaking"],
-  "happy":       ["glad","pleased","content","joyful","cheerful","delighted","elated","thrilled","ecstatic","overjoyed","blissful","jovial","jubilant","merry","lighthearted","beaming","radiant","satisfied","upbeat","giddy","gleeful","sunny","on cloud nine","at peace","fulfilled"],
-  "positive":    ["optimistic","upbeat","hopeful","cheerful","bright","encouraging","constructive","affirmative","confident","forward-looking","buoyant","assured","inspired","enthusiastic","motivated","energized","spirited","lively","vibrant","animated","uplifting","empowering","heartening","promising","glowing"],
-  "optimistic":  ["positive","hopeful","upbeat","cheerful","encouraged","confident","bright","buoyant","sanguine","expectant","assured","forward-looking","heartened","inspired","motivated","enthusiastic","idealistic","rosy","promising","favorable","expectant","anticipating","hopeful","dreamy","sun-filled"],
-  "confident":   ["assured","secure","strong","certain","sure","self-assured","poised","bold","fearless","composed","determined","resolute","unwavering","steadfast","firm","decisive","courageous","empowered","capable","competent","self-reliant","independent","grounded","settled","unafraid"],
-  "fine":        ["well","good","great","wonderful","okay","splendid","superb","excellent","satisfactory","sufficient","adequate","decent","pleasant","nice","alright","acceptable","comfortable","content","at ease","perfectly well","doing well","in good shape","solid","stable","smooth"],
-  "well":        ["fine","good","great","wonderful","healthy","strong","thriving","flourishing","doing great","in good shape","feeling good","at peace","content","comfortable","perfectly fine","in good spirits","balanced","stable","solid","sound","energized","alive","vibrant","nourished","whole"],
-  "soft":        ["gentle","kind","easy","smooth","light","peaceful","tender","mild","calm","delicate","subtle","quiet","soothing","mellow","lenient","graceful","effortless","unhurried","gradual","feathery","silk-like","velvety","cushioned","easy-going","flowing"],
-  "grateful":    ["thankful","blessed","appreciative","content","glad","indebted","obliged","fortunate","lucky","humbled","touched","moved","honored","relieved","satisfied","overjoyed","enriched","fulfilled","at peace","deeply thankful","joy-filled","fortunate","cherished","uplifted","graced"],
-  "thankful":    ["grateful","blessed","appreciative","content","glad","indebted","obliged","fortunate","lucky","humbled","touched","moved","honored","relieved","satisfied","overjoyed","enriched","fulfilled","at peace","deeply grateful","warmly appreciative","full of gratitude","sincerely grateful","truly glad","heartfelt"],
-  "blessed":     ["grateful","thankful","fortunate","lucky","favored","enriched","graced","gifted","privileged","cherished","loved","protected","guided","watched over","uplifted","fulfilled","content","at peace","joyful","thriving","divinely touched","surrounded by goodness","wrapped in love","held","cared for"],
-  "passionate":  ["warm","enthusiastic","spirited","vibrant","cheerful","lively","fervent","ardent","intense","energetic","motivated","driven","dedicated","committed","devoted","zealous","inspired","fired up","eager","animated","wholehearted","absorbed","burning","deeply moved","stirred"],
-  "enthusiastic":["passionate","spirited","vibrant","lively","eager","excited","animated","energized","motivated","driven","fired up","keen","devoted","fervent","exuberant","bubbly","zestful","expressive","dynamic","engaged","thrilled","pumped","bright-eyed","full of energy","alive"],
-  "cheerful":    ["happy","upbeat","joyful","positive","bright","merry","radiant","lively","buoyant","light-hearted","gleeful","jolly","sunny","breezy","pleasant","spirited","animated","smiling","glowing","warm","beaming","sparkling","perky","bouncy","full of life"],
-  "lively":      ["vibrant","spirited","energetic","enthusiastic","active","animated","dynamic","bubbly","vivacious","sprightly","peppy","bright","zestful","bold","expressive","exuberant","lush","rich","full of life","sparkling","buzzing","crackling","electric","alive","thriving"],
-  "loving":      ["caring","warm","affectionate","devoted","tender","gentle","kind","nurturing","supportive","sweet","heartfelt","cherishing","adoring","doting","generous","open-hearted","wholehearted","big-hearted","soft","embracing"],
-  "strong":      ["resilient","tough","powerful","solid","determined","steadfast","bold","unbreakable","firm","sturdy","capable","unwavering","robust","enduring","grounded","stable","secure","sure","mighty","fearless"],
-  "peaceful":    ["calm","quiet","serene","tranquil","still","gentle","relaxed","undisturbed","harmonious","soothing","balanced","composed","settled","easy","mild","restful","soft","hushed","smooth","unhurried"],
-  "beautiful":   ["lovely","stunning","gorgeous","wonderful","pretty","breathtaking","magnificent","exquisite","radiant","glowing","dazzling","striking","charming","elegant","graceful","splendid","alluring","enchanting","captivating","mesmerizing","divine","heavenly","luminous","ethereal","sublime"],
-  "amazing":     ["wonderful","fantastic","incredible","great","superb","astonishing","astounding","mind-blowing","breathtaking","extraordinary","exceptional","remarkable","spectacular","magnificent","phenomenal","outstanding","impressive","awe-inspiring","jaw-dropping","unbelievable","staggering","stunning","dazzling","electrifying","sensational"],
-  "wonderful":   ["amazing","fantastic","great","splendid","marvelous","magnificent","superb","glorious","exceptional","extraordinary","remarkable","phenomenal","brilliant","terrific","outstanding","delightful","divine","heavenly","sublime","exquisite","radiant","breathtaking","stunning","blissful","charming"],
-  "interesting": ["intriguing","fascinating","captivating","engaging","compelling","thought-provoking","absorbing","riveting","stimulating","enthralling","curious","remarkable","notable","unique","distinctive","eye-catching","attention-grabbing","magnetic","alluring","appealing","enchanting","mesmerizing","gripping","thought-stirring","moving"],
+  "kind":        ["gentle","warm","understanding","accepting","open-minded","patient","welcoming","considerate","tolerant","compassionate","caring","gracious","sympathetic","thoughtful","generous","kindhearted","benevolent","tender","supportive","easygoing","forgiving","soft-hearted","charitable","humane","lenient","magnanimous","big-hearted","warm-hearted","open-hearted","selfless","giving","goodhearted","affectionate","unselfish","fair","decent"],
+  "gentle":      ["kind","warm","soft","understanding","patient","caring","tender","mild","calm","soothing","delicate","mellow","gracious","easy","light","peaceful","quiet","serene","mild-mannered","pleasant","unhurried","smooth","subtle","refined","featherlight","tranquil","airy","still","unassuming","undemanding","breezy","soft-spoken","even-tempered","relaxed","measured"],
+  "warm":        ["kind","gentle","friendly","welcoming","caring","loving","affectionate","cordial","heartfelt","sincere","tender","cozy","comforting","nurturing","open","generous","approachable","hospitable","amiable","sweet","inviting","radiant","hearty","endearing","wholesome","glowing","soft","bright","sunny","benevolent","gracious","sociable","outgoing","benign","charitable","fond"],
+  "good":        ["great","wonderful","fine","nice","positive","excellent","superb","splendid","fantastic","brilliant","terrific","solid","decent","pleasant","satisfying","admirable","commendable","worthy","favorable","sound","reliable","honest","genuine","real","true","noble","upright","virtuous","righteous","sincere","authentic","fair","square","proper","above-board","trustworthy"],
+  "great":       ["good","wonderful","fantastic","amazing","excellent","superb","brilliant","magnificent","outstanding","exceptional","remarkable","phenomenal","splendid","terrific","marvelous","glorious","impressive","superior","first-rate","top-notch","extraordinary","stellar","spectacular","sublime","breathtaking","top-tier","world-class","elite","peerless","unmatched","unrivaled","incomparable","matchless","legendary","towering","staggering","jaw-dropping","awe-inspiring"],
+  "happy":       ["glad","pleased","content","joyful","cheerful","delighted","elated","thrilled","ecstatic","overjoyed","blissful","jovial","jubilant","merry","lighthearted","beaming","radiant","satisfied","upbeat","giddy","gleeful","sunny","on cloud nine","at peace","fulfilled","gratified","blessed","fortunate","lucky","exuberant","buoyant","vivacious","bright","sparkling","zestful","alive","animated","exhilarated","enlivened"],
+  "positive":    ["optimistic","upbeat","hopeful","cheerful","bright","encouraging","constructive","affirmative","confident","forward-looking","buoyant","assured","inspired","enthusiastic","motivated","energized","spirited","lively","vibrant","animated","uplifting","empowering","heartening","promising","glowing","radiant","illuminated","sun-kissed","beam-filled","full of light","open","receptive","growing","healing","rising"],
+  "optimistic":  ["positive","hopeful","upbeat","cheerful","encouraged","confident","bright","buoyant","sanguine","expectant","assured","forward-looking","heartened","inspired","motivated","enthusiastic","idealistic","rosy","promising","favorable","anticipating","dreamy","sun-filled","full of hope","looking ahead","eyes-forward","possibility-minded","open to good","trusting the process","believing"],
+  "confident":   ["assured","secure","strong","certain","sure","self-assured","poised","bold","fearless","composed","determined","resolute","unwavering","steadfast","firm","decisive","courageous","empowered","capable","competent","self-reliant","independent","grounded","settled","unafraid","anchored","clear-headed","centered","unbothered","self-possessed","rock-solid","unshaken","steady-minded","focused","serene in self"],
+  "fine":        ["well","good","great","wonderful","okay","splendid","superb","excellent","satisfactory","sufficient","adequate","decent","pleasant","nice","alright","acceptable","comfortable","content","at ease","perfectly well","doing well","in good shape","solid","stable","smooth","intact","together","balanced","on track","at peace","undisturbed"],
+  "well":        ["fine","good","great","wonderful","healthy","strong","thriving","flourishing","doing great","in good shape","feeling good","at peace","content","comfortable","perfectly fine","in good spirits","balanced","stable","solid","sound","energized","alive","vibrant","nourished","whole","restored","renewed","refreshed","grounded","centered","clear"],
+  "soft":        ["gentle","kind","easy","smooth","light","peaceful","tender","mild","calm","delicate","subtle","quiet","soothing","mellow","lenient","graceful","effortless","unhurried","gradual","feathery","silk-like","velvety","cushioned","easy-going","flowing","liquid","yielding","supple","breathable","airy","gauzy","feather-light","tender-hearted","cottony"],
+  "grateful":    ["thankful","blessed","appreciative","content","glad","indebted","obliged","fortunate","lucky","humbled","touched","moved","honored","relieved","satisfied","overjoyed","enriched","fulfilled","at peace","deeply thankful","joy-filled","cherished","uplifted","graced","held","carried","lifted","warmed","embraced","recognized","seen","treasured"],
+  "thankful":    ["grateful","blessed","appreciative","content","glad","indebted","obliged","fortunate","lucky","humbled","touched","moved","honored","relieved","satisfied","overjoyed","enriched","fulfilled","at peace","deeply grateful","warmly appreciative","full of gratitude","sincerely grateful","truly glad","heartfelt","genuinely glad","humbly blessed","deeply moved","warmly touched","sincerely honored"],
+  "blessed":     ["grateful","thankful","fortunate","lucky","favored","enriched","graced","gifted","privileged","cherished","loved","protected","guided","watched over","uplifted","fulfilled","content","at peace","joyful","thriving","divinely touched","surrounded by goodness","wrapped in love","held","cared for","safe","covered","carried","lifted","shielded"],
+  "passionate":  ["warm","enthusiastic","spirited","vibrant","cheerful","lively","fervent","ardent","intense","energetic","motivated","driven","dedicated","committed","devoted","zealous","inspired","fired up","eager","animated","wholehearted","absorbed","burning","deeply moved","stirred","alive","lit up","charged","electrified","burning bright","consumed","all-in","immersed","heart-first"],
+  "enthusiastic":["passionate","spirited","vibrant","lively","eager","excited","animated","energized","motivated","driven","fired up","keen","devoted","fervent","exuberant","bubbly","zestful","expressive","dynamic","engaged","thrilled","pumped","bright-eyed","full of energy","alive","lit","charged","on fire","all-in","wide-eyed","bouncing","spinning up","electrified","revved","amped"],
+  "cheerful":    ["happy","upbeat","joyful","positive","bright","merry","radiant","lively","buoyant","light-hearted","gleeful","jolly","sunny","breezy","pleasant","spirited","animated","smiling","glowing","warm","beaming","sparkling","perky","bouncy","full of life","singing inside","lit from within","glittery","fizzy","effervescent","bubbling","light","free","fresh"],
+  "lively":      ["vibrant","spirited","energetic","enthusiastic","active","animated","dynamic","bubbly","vivacious","sprightly","peppy","bright","zestful","bold","expressive","exuberant","lush","rich","full of life","sparkling","buzzing","crackling","electric","alive","thriving","pulsing","teeming","fizzing","surging","rippling","rushing","flowing","dancing","singing","ringing"],
+  "loving":      ["caring","warm","affectionate","devoted","tender","gentle","kind","nurturing","supportive","sweet","heartfelt","cherishing","adoring","doting","generous","open-hearted","wholehearted","big-hearted","soft","embracing","protective","constant","steadfast","loyal","attentive","present","giving","pouring","overflowing","tender-hearted"],
+  "strong":      ["resilient","tough","powerful","solid","determined","steadfast","bold","unbreakable","firm","sturdy","capable","unwavering","robust","enduring","grounded","stable","secure","sure","mighty","fearless","ironclad","fortified","indestructible","durable","long-lasting","battle-tested","deep-rooted","oak-like","mountain-steady","titanium-strong"],
+  "peaceful":    ["calm","quiet","serene","tranquil","still","gentle","relaxed","undisturbed","harmonious","soothing","balanced","composed","settled","easy","mild","restful","soft","hushed","smooth","unhurried","at rest","untroubled","placid","at ease","windless","waveless","mirror-still","glassy","centered","whole"],
+  "beautiful":   ["lovely","stunning","gorgeous","wonderful","pretty","breathtaking","magnificent","exquisite","radiant","glowing","dazzling","striking","charming","elegant","graceful","splendid","alluring","enchanting","captivating","mesmerizing","divine","heavenly","luminous","ethereal","sublime","otherworldly","angelic","glittering","jaw-dropping","soul-touching","heart-stopping","transcendent"],
+  "amazing":     ["wonderful","fantastic","incredible","great","superb","astonishing","astounding","mind-blowing","breathtaking","extraordinary","exceptional","remarkable","spectacular","magnificent","phenomenal","outstanding","impressive","awe-inspiring","jaw-dropping","unbelievable","staggering","stunning","dazzling","electrifying","sensational","mind-boggling","eye-opening","world-stopping","reality-bending","unearthly"],
+  "wonderful":   ["amazing","fantastic","great","splendid","marvelous","magnificent","superb","glorious","exceptional","extraordinary","remarkable","phenomenal","brilliant","terrific","outstanding","delightful","divine","heavenly","sublime","exquisite","radiant","breathtaking","stunning","blissful","charming","enchanting","captivating","sparkling","luminous","transcendent"],
+  "interesting": ["intriguing","fascinating","captivating","engaging","compelling","thought-provoking","absorbing","riveting","stimulating","enthralling","curious","remarkable","notable","unique","distinctive","eye-catching","attention-grabbing","magnetic","alluring","appealing","enchanting","mesmerizing","gripping","thought-stirring","moving","curious","singular","rare","unconventional","out of the ordinary"],
   // ── KATA MASALAH ──
-  "problem":     ["issue","concern","barrier","hindrance","obstacle","difficulty","challenge","complication","matter","setback","stumbling block","drawback","impediment","worry","hurdle","friction","inconvenience","bother","point of concern","factor","consideration","element","question","topic","subject"],
-  "issue":       ["problem","concern","barrier","hindrance","challenge","matter","complication","difficulty","obstacle","point","factor","aspect","consideration","worry","question","topic","thing","subject","detail","element","note","item","area","field","dimension"],
-  "concern":     ["problem","issue","worry","barrier","consideration","matter","thought","point","question","factor","aspect","reservation","hesitation","uncertainty","doubt","apprehension","fear","unease","qualm","misgiving","pause","note","wonder","reflection","thought"],
+  "problem":     ["issue","concern","barrier","hindrance","obstacle","difficulty","challenge","complication","matter","setback","stumbling block","drawback","impediment","worry","hurdle","friction","inconvenience","bother","point of concern","factor","consideration","element","question","topic","subject","sticking point","sore spot","tension","conflict","gap","disconnect","misalignment"],
+  "issue":       ["problem","concern","barrier","hindrance","challenge","matter","complication","difficulty","obstacle","point","factor","aspect","consideration","worry","question","topic","thing","subject","detail","element","note","item","area","field","dimension","sensitive point","delicate area","friction point","tension","sticking point"],
+  "concern":     ["problem","issue","worry","barrier","consideration","matter","thought","point","question","factor","aspect","reservation","hesitation","uncertainty","doubt","apprehension","fear","unease","qualm","misgiving","pause","note","wonder","reflection","thought","second thought","hesitation","disquiet","reservation","scruple"],
   // ── PERASAAN ──
-  "ache":        ["weight","pain","loneliness","burden","sadness","sorrow","heaviness","tenderness","hollow","emptiness","yearning","longing","melancholy","wistfulness","grief","heartache","pang","twinge","bruise","rawness","echo","pull","undertow","depth","shadow"],
-  "weight":      ["ache","burden","heaviness","pain","pressure","gravity","load","mass","intensity","depth","density","force","toll","strain","tension","sorrow","shadow","darkness","pull","sense","echo","core","center","quiet","still"],
-  "pain":        ["ache","weight","loneliness","burden","sorrow","sadness","hurt","wound","bruise","grief","heartache","suffering","discomfort","rawness","tenderness","pang","sting","heaviness","hollow","twinge","echo","shadow","pull","absence","void"],
-  "loneliness":  ["ache","weight","solitude","emptiness","isolation","seclusion","quietness","stillness","silence","void","hollow","absence","yearning","longing","wistfulness","melancholy","sadness","sorrow","desolation","apartness","distance","echo","hush","undercurrent","drift"],
-  "burden":      ["weight","ache","heaviness","load","pressure","strain","gravity","toll","pull","demand","obligation","responsibility","challenge","difficulty","hardship","struggle","sorrow","shadow","darkness","encumbrance","task","duty","debt","hold","grip"],
-  "quiet":       ["silent","gentle","soft","still","calm","hushed","muted","subdued","peaceful","serene","tranquil","undisturbed","noiseless","soundless","mild","easy","low","restful","unassuming","understated","thoughtful","reflective","private","inner","deep"],
-  "silent":      ["quiet","still","calm","soft","gentle","hushed","muted","subdued","peaceful","serene","noiseless","soundless","voiceless","wordless","motionless","undisturbed","restful","tranquil","unspoken","latent","inner","private","deep","raw","honest"],
-  "sad":         ["heavy","melancholy","sorrowful","somber","down","quiet","low","tender","soft","wistful","lonesome","blue","subdued","pensive","reflective","mournful","forlorn","heartbroken","touched","moved"],
-  "alone":       ["solo","on my own","by myself","independently","unaccompanied","solitary","just me","without company","in solitude","on my own terms","single","apart","separate","detached","self-reliant","autonomous","free","uncoupled","unattached","by myself","in my own space","quietly","privately","in stillness","peacefully"],
-  "enjoying":    ["loving","embracing","savoring","celebrating","living","relishing","cherishing","appreciating","treasuring","welcoming","delighting in","reveling in","basking in","taking joy in","feeling good about","experiencing","exploring","discovering","flourishing in","thriving in","sitting with","holding onto","making the most of","fully living","breathing in"],
+  "ache":        ["weight","pain","loneliness","burden","sadness","sorrow","heaviness","tenderness","hollow","emptiness","yearning","longing","melancholy","wistfulness","grief","heartache","pang","twinge","bruise","rawness","echo","pull","undertow","depth","shadow","quiet hurt","lingering feeling","silent wound","slow burn","tender spot"],
+  "weight":      ["ache","burden","heaviness","pain","pressure","gravity","load","mass","intensity","depth","density","force","toll","strain","tension","sorrow","shadow","darkness","pull","sense","echo","core","center","quiet","still","anchor","rootedness","groundedness","presence","heft"],
+  "pain":        ["ache","weight","loneliness","burden","sorrow","sadness","hurt","wound","bruise","grief","heartache","suffering","discomfort","rawness","tenderness","pang","sting","heaviness","hollow","twinge","echo","shadow","pull","absence","void","wound","bruise","scar","mark","trace"],
+  "loneliness":  ["ache","weight","solitude","emptiness","isolation","seclusion","quietness","stillness","silence","void","hollow","absence","yearning","longing","wistfulness","melancholy","sadness","sorrow","desolation","apartness","distance","echo","hush","undercurrent","drift","separateness","aloneness","quiet","hush","stillness","absence of company"],
+  "burden":      ["weight","ache","heaviness","load","pressure","strain","gravity","toll","pull","demand","obligation","responsibility","challenge","difficulty","hardship","struggle","sorrow","shadow","darkness","encumbrance","task","duty","debt","hold","grip","anchor","tie","bond","pull","force"],
+  "quiet":       ["silent","gentle","soft","still","calm","hushed","muted","subdued","peaceful","serene","tranquil","undisturbed","noiseless","soundless","mild","easy","low","restful","unassuming","understated","thoughtful","reflective","private","inner","deep","contemplative","interior","inward","personal","reserved"],
+  "silent":      ["quiet","still","calm","soft","gentle","hushed","muted","subdued","peaceful","serene","noiseless","soundless","voiceless","wordless","motionless","undisturbed","restful","tranquil","unspoken","latent","inner","private","deep","raw","honest","unvoiced","inward","contained","held inside","kept close"],
+  "sad":         ["heavy","melancholy","sorrowful","somber","down","quiet","low","tender","soft","wistful","lonesome","blue","subdued","pensive","reflective","mournful","forlorn","heartbroken","touched","moved","heavy-hearted","tender-hearted","aching","bruised","raw","worn","weary","bone-tired","soul-tired","quietly broken"],
+  "alone":       ["solo","on my own","by myself","independently","unaccompanied","solitary","just me","without company","in solitude","on my own terms","single","apart","separate","detached","self-reliant","autonomous","free","uncoupled","unattached","in my own space","quietly","privately","in stillness","peacefully","independently","self-sufficient","one","solo","just myself","in my own world"],
+  "enjoying":    ["loving","embracing","savoring","celebrating","living","relishing","cherishing","appreciating","treasuring","welcoming","delighting in","reveling in","basking in","taking joy in","feeling good about","experiencing","exploring","discovering","flourishing in","thriving in","sitting with","holding onto","making the most of","fully living","breathing in","feasting on","swimming in","soaking up","absorbing","drinking in"],
   // ── MELIHAT / MEMBAYANGKAN ──
-  "picture":     ["imagine","envision","see","think of","visualize","perceive","view","conceive","form","hold","carry","keep","cherish","create","build","construct","paint","sketch","draft","design","see in your mind","form an image of","bring to mind","conjure","dream"],
-  "imagine":     ["picture","envision","think","see","visualize","conceive","dream","suppose","consider","wonder","contemplate","ponder","guess","assume","presume","project","foresee","fantasize","daydream","muse","suppose","believe","think up","create","dream up"],
-  "envision":    ["picture","imagine","see","visualize","conceive","perceive","foresee","dream","project","predict","anticipate","expect","plan","hope","aspire","aim","think of","hold in mind","carry","paint","dream up","build in mind","hold dear","carry forward","believe in"],
+  "picture":     ["imagine","envision","see","think of","visualize","perceive","view","conceive","form","hold","carry","keep","cherish","create","build","construct","paint","sketch","draft","design","see in your mind","form an image of","bring to mind","conjure","dream","see clearly","hold in mind","carry in thought","keep in heart","project"],
+  "imagine":     ["picture","envision","think","see","visualize","conceive","dream","suppose","consider","wonder","contemplate","ponder","guess","assume","presume","project","foresee","fantasize","daydream","muse","believe","think up","create","dream up","conjure","paint a picture","form a vision","construct","map out","sketch out"],
+  "envision":    ["picture","imagine","see","visualize","conceive","perceive","foresee","dream","project","predict","anticipate","expect","plan","hope","aspire","aim","think of","hold in mind","carry","paint","dream up","build in mind","hold dear","carry forward","believe in","construct a vision","hold a vision","see ahead","forecast","picture the future"],
   // ── BERBAGI ──
-  "share":       ["tell","mention","say","reveal","let me know","disclose","divulge","show","express","communicate","convey","relay","pass along","open up","speak","voice","confide","admit","declare","announce","let out","offer","give","say out loud","speak freely"],
-  "tell":        ["share","let me know","inform","say","mention","reveal","show","describe","explain","report","disclose","confide","divulge","communicate","convey","relay","pass along","open up","voice","express","admit","say","put into words","bring up","discuss"],
+  "share":       ["tell","mention","say","reveal","let me know","disclose","divulge","show","express","communicate","convey","relay","pass along","open up","speak","voice","confide","admit","declare","announce","let out","offer","give","say out loud","speak freely","bring up","lay out","put out there","come out with","lay bare","come clean about"],
+  "tell":        ["share","let me know","inform","say","mention","reveal","show","describe","explain","report","disclose","confide","divulge","communicate","convey","relay","pass along","open up","voice","express","admit","put into words","bring up","discuss","speak to","lay out","walk me through","fill me in","clue me in","bring me up to speed"],
   // ── JARAK ──
-  "far":         ["distant","apart","away","remote","separated","removed","spread out","detached","divided","estranged","far-off","faraway","out of reach","beyond","across","elsewhere","afar","worlds away","miles away","oceans apart","removed","out there","over the horizon","in another world","out of sight"],
-  "distant":     ["far","apart","away","remote","separated","removed","detached","divided","estranged","far-off","faraway","out of reach","beyond","across","elsewhere","afar","worlds away","miles away","disconnected","isolated","removed","spread apart","stretched away","far beyond","in the distance"],
+  "far":         ["distant","apart","away","remote","separated","removed","spread out","detached","divided","estranged","far-off","faraway","out of reach","beyond","across","elsewhere","afar","worlds away","miles away","oceans apart","out there","over the horizon","in another world","out of sight","at a distance","spread wide","set apart","long away","stretching away","reaching out"],
+  "distant":     ["far","apart","away","remote","separated","removed","detached","divided","estranged","far-off","faraway","out of reach","beyond","across","elsewhere","afar","worlds away","miles away","disconnected","isolated","spread apart","stretched away","far beyond","in the distance","removed from","held back","kept apart","standing off","held at a distance","out of reach"],
   // ── UMUM LAINNYA ──
-  "old":         ["aged","senior","mature","seasoned","experienced","established","veteran","longtime","older","advanced in age","well-along","grown","elder","time-tested","weathered","distinguished","refined","wise","cultivated","long-standing","lived-in","rich with years","full of life","deeply lived","seasoned by time"],
-  "hope":        ["wish","dream","believe","look forward","aspire","trust","expect","await","count on","long for","desire","seek","want","hold onto","carry","cherish","reach for","yearn for","aim for","see ahead"],
-  "love":        ["care","adore","cherish","treasure","embrace","appreciate","hold dear","feel deeply","admire","devote","be moved by","be touched by","warmly regard","deeply value","hold close","find beautiful","take joy in","be drawn to","resonate with","connect with"],
-  "life":        ["world","days","journey","path","story","chapter","way","existence","experience","adventure","time","living","breath","course","flow","unfolding","walk","passage","current","moment"],
-  "feel":        ["sense","experience","know","carry","hold","find","notice","discover","touch","reach","connect with","sit with","breathe through","live through","move through","embrace","accept","recognize","acknowledge","witness"],
-  "think":       ["believe","feel","sense","consider","wonder","imagine","suppose","reckon","figure","assume","reflect","muse","ponder","contemplate","hold","carry","suspect","gather","guess","dare say"],
-  "know":        ["realize","understand","see","feel","sense","notice","recognize","find","discover","learn","gather","get","grasp","hold","carry","remember","recall","be aware","take in","see clearly"],
-  "see":         ["notice","find","feel","sense","know","recognize","observe","spot","catch","perceive","witness","discover","understand","realize","learn","take in","be aware of","come to see","make out","look at"],
-  "day":         ["time","moment","hour","morning","evening","stretch","period","chapter","phase","season","passage","breath","space","window","span"],
-  "way":         ["path","road","route","direction","course","approach","means","method","manner","style","mode","form","kind","sort","type"],
-  "mind":        ["heart","soul","spirit","self","thoughts","head","inner world","feelings","sense","understanding","awareness","core","depth","center","essence"],
-  "heart":       ["soul","spirit","self","core","center","depth","essence","being","warmth","feeling","love","care","truth","light","meaning"],
-  "place":       ["spot","location","space","home","world","corner","part","area","region","land","ground","point","position","setting","scene"],
-  "time":        ["moment","day","hour","season","period","chapter","phase","stretch","span","while","age","era","stage","passage","breath"],
+  "old":         ["aged","senior","mature","seasoned","experienced","established","veteran","longtime","older","advanced in age","well-along","grown","elder","time-tested","weathered","distinguished","refined","wise","cultivated","long-standing","lived-in","rich with years","full of life","deeply lived","seasoned by time","full of stories","deep-rooted","well-worn","beautifully aged","richly experienced"],
+  "hope":        ["wish","dream","believe","look forward","aspire","trust","expect","await","count on","long for","desire","seek","want","hold onto","carry","cherish","reach for","yearn for","aim for","see ahead","lean toward","build toward","look ahead to","cling to","hold fast to","keep alive","fan the flame","nurture","protect","light the way"],
+  "love":        ["care","adore","cherish","treasure","embrace","appreciate","hold dear","feel deeply","admire","devote","be moved by","be touched by","warmly regard","deeply value","hold close","find beautiful","take joy in","be drawn to","resonate with","connect with","be captivated by","be enchanted by","be devoted to","pour into","give fully to","offer","extend","pour out","radiate","overflow with"],
+  "life":        ["world","days","journey","path","story","chapter","way","existence","experience","adventure","time","living","breath","course","flow","unfolding","walk","passage","current","moment","thread","tapestry","canvas","landscape","horizon","field","garden","river","flame","spark"],
+  "feel":        ["sense","experience","know","carry","hold","find","notice","discover","touch","reach","connect with","sit with","breathe through","live through","move through","embrace","accept","recognize","acknowledge","witness","hold onto","carry forward","process","move through","navigate","weather","endure","absorb"],
+  "think":       ["believe","feel","sense","consider","wonder","imagine","suppose","reckon","figure","assume","reflect","muse","ponder","contemplate","hold","carry","suspect","gather","guess","dare say","speculate","reason","conclude","surmise","infer","deduce","intuit","perceive","pick up on","read","gather"],
+  "know":        ["realize","understand","see","feel","sense","notice","recognize","find","discover","learn","gather","get","grasp","hold","carry","remember","recall","be aware","take in","see clearly","comprehend","absorb","internalize","register","acknowledge","accept","process","come to terms with","make peace with"],
+  "see":         ["notice","find","feel","sense","know","recognize","observe","spot","catch","perceive","witness","discover","understand","realize","learn","take in","be aware of","come to see","make out","look at","catch sight of","lay eyes on","pick out","identify","register","detect","discern","distinguish","take note of"],
+  "day":         ["time","moment","hour","morning","evening","stretch","period","chapter","phase","season","passage","breath","space","window","span","instance","point","beat","heartbeat","tick","flash","fragment","sliver","glimpse","heartbeat","interval","duration"],
+  "way":         ["path","road","route","direction","course","approach","means","method","manner","style","mode","form","kind","sort","type","process","channel","lane","track","trail","avenue","street","corridor","passage","flow","current","stream","thread"],
+  "mind":        ["heart","soul","spirit","self","thoughts","head","inner world","feelings","sense","understanding","awareness","core","depth","center","essence","consciousness","inner life","inner voice","inner knowing","deep self","true self","interior","being","inner space","psyche","mental world"],
+  "heart":       ["soul","spirit","self","core","center","depth","essence","being","warmth","feeling","love","care","truth","light","meaning","pulse","beat","lifeforce","tender center","true north","compass","anchor","source","root","home","inner fire","sacred space","emotional truth"],
+  "place":       ["spot","location","space","home","world","corner","part","area","region","land","ground","point","position","setting","scene","territory","zone","pocket","nook","haven","refuge","sanctuary","dwelling","coordinate","address","where","here","there","somewhere"],
+  "time":        ["moment","day","hour","season","period","chapter","phase","stretch","span","while","age","era","stage","passage","breath","instant","second","heartbeat","tick","cycle","turn","wave","rhythm","pulse","cadence","beat","interval","window","slot","occasion"],
   // ── KATA KERJA ──
-  "wonder":      ["ask","think","consider","reflect","ponder","question","explore","seek","imagine","dream","suppose","guess","muse","contemplate","hope"],
-  "carry":       ["hold","bear","keep","take","bring","have","contain","embrace","support","shoulder","manage","handle","feel","sense","carry forward"],
-  "hope":        ["wish","dream","believe","look forward","aspire","trust","expect","await","count on","long for","desire","seek","want","reach for","yearn"],
-  "live":        ["exist","breathe","be","thrive","grow","flourish","move","journey","walk","experience","feel","embrace","engage","inhabit","remain"],
-  "miss":        ["long for","yearn for","wish for","ache for","want","desire","hunger for","reach for","search for","look for","seek","carry","feel the absence of","hold in memory","think of"],
+  "wonder":      ["ask","think","consider","reflect","ponder","question","explore","seek","imagine","dream","suppose","guess","muse","contemplate","hope","inquire","speculate","puzzle over","turn over in my mind","sit with","wrestle with","grapple with","chew on","dwell on","return to"],
+  "carry":       ["hold","bear","keep","take","bring","have","contain","embrace","support","shoulder","manage","handle","feel","sense","carry forward","lug","haul","transport","ferry","deliver","bring along","hold up","prop up","sustain","maintain","keep going"],
+  "live":        ["exist","breathe","be","thrive","grow","flourish","move","journey","walk","experience","feel","embrace","engage","inhabit","remain","persist","endure","continue","carry on","press on","keep going","hold on","reach","stretch","extend","flow","unfold","evolve"],
+  "miss":        ["long for","yearn for","wish for","ache for","want","desire","hunger for","reach for","search for","look for","seek","carry","feel the absence of","hold in memory","think of","pine for","grieve for","mourn","feel the lack of","notice the absence of","feel the gap of","carry the memory of","hold dear","keep close"],
+  // ── TAMBAHAN KATA BARU ──
+  "real":        ["true","genuine","authentic","sincere","honest","actual","raw","unfiltered","pure","natural","organic","heartfelt","soul-deep","from the heart","no pretense","straightforward","plainspoken","candid","transparent","open","clear","direct","undisguised","frank","bare"],
+  "true":        ["real","genuine","authentic","sincere","honest","actual","faithful","loyal","devoted","steadfast","unwavering","solid","pure","clear","undeniable","self-evident","unmistakable","certain","sure","definite","absolute","total","complete","whole","full"],
+  "long":        ["extended","stretching","reaching","enduring","lasting","prolonged","extended","deep","great","significant","considerable","substantial","meaningful","notable","notable","extensive","wide","broad","large","grand","sweeping"],
+  "young":       ["youthful","fresh","new","early","vibrant","energetic","spirited","alive","bright","light","growing","blooming","blossoming","unfolding","becoming","rising","emerging","budding","nascent","promising","potential-filled","at the beginning","early-stage","new to this","just starting"],
+  "born":        ["brought into this world","entered this life","came into being","arrived","began","started","originated","emerged","came to be","entered the scene","first drew breath","came forth","was welcomed into the world","made my appearance","came into existence"],
+  "from":        ["originally from","based in","coming from","raised in","hailing from","a native of","living in","rooted in","established in","settled in","out of","belonging to","tied to","connected to","anchored in","grounded in","springing from","originating in"],
+  "here":        ["in this space","at this moment","in this place","right now","present","in the now","currently","at this point","in this spot","where I stand","where I am","in this moment","at this juncture","at this stage","at this time"],
+  "please":      ["kindly","if you don't mind","if it's okay","gently","softly","with care","graciously","warmly","thoughtfully","considerately","respectfully","humbly","with grace","with warmth","with openness"],
+  "ask":         ["wonder","question","inquire","ponder","seek","explore","reach out","bring up","check","probe","request","invite","appeal","entreat","urge"],
+  "help":        ["support","assist","guide","accompany","walk with","be there","offer a hand","reach out","step in","show up","contribute","add to","give to","serve","care for","tend to"],
+  "start":       ["begin","open","initiate","launch","kick off","set out","embark","commence","take the first step","get going","get underway","move forward","step into","open up","step out"],
+  "stop":        ["pause","rest","take a breath","slow down","ease up","let go","release","put down","set aside","take stock","reflect","reconsider","pull back","step back","draw back"],
+  "reach":       ["connect","touch","extend","stretch out","arrive at","come to","get to","find","access","attain","achieve","land on","arrive","come into contact","make contact"],
+  "give":        ["offer","provide","extend","grant","bestow","hand","contribute","donate","supply","deliver","pass on","share","impart","offer up","bring"],
+  "take":        ["accept","receive","hold","grab","embrace","pick up","collect","gather","bring along","carry","secure","claim","adopt","assume","welcome"],
+  "move":        ["shift","go","travel","journey","progress","advance","flow","transition","change","evolve","grow","develop","transform","unfold","proceed"],
+  "stay":        ["remain","linger","hold on","persist","endure","continue","be present","keep going","hold steady","maintain","abide","dwell","settle","rest","anchor"],
+  "return":      ["come back","revisit","go back","circle back","come home","restore","renew","revive","rekindle","re-engage","reconnect","revisit","pick back up","start again","begin anew"],
+  "smile":       ["grin","beam","light up","brighten","glow","radiate","shine","express joy","show warmth","open up","soften","lighten","lift","brighten up","turn up the corners"],
+  "speak":       ["say","voice","express","communicate","articulate","put into words","share","convey","relay","describe","explain","talk","open up","offer","declare"],
+  "listen":      ["hear","attend to","pay attention","tune in","be present","focus","absorb","receive","take in","hold space for","be with","sit with","welcome","embrace","honor"],
+  "walk":        ["travel","journey","move","go","step forward","proceed","advance","progress","make your way","head out","set forth","venture","roam","explore","wander"],
+  "sleep":       ["rest","doze","slumber","drift off","close your eyes","settle","quiet down","ease into stillness","sink into rest","find repose","recharge","recover","renew","restore","heal"],
+  "dream":       ["hope","wish","aspire","imagine","envision","picture","think of","reach for","long for","desire","yearn for","aim for","look toward","believe in","build toward"],
+  "write":       ["compose","draft","craft","pen","put into words","set down","record","inscribe","document","express","create","articulate","shape","form","construct"],
+  "read":        ["take in","absorb","engage with","explore","go through","process","consider","examine","review","look over","experience","interact with","study","sit with","spend time with"],
+  "remember":    ["recall","hold in memory","carry with you","keep close","revisit","think back to","return to","cherish","treasure","honor","hold dear","keep alive","preserve","maintain","never forget"],
+  "forget":      ["let go of","release","move past","move beyond","leave behind","put away","set aside","ease out of","fade from","step away from","distance from","soften around","loosen from","free yourself from","unwind from"],
+  "wait":        ["hold on","be patient","take your time","pause","rest","sit tight","stay the course","trust the timing","allow","let things unfold","breathe","ease","let it come","hold steady","stand by"],
+  "find":        ["discover","uncover","come across","stumble upon","land on","arrive at","reach","encounter","meet","connect with","recognize","identify","locate","track down","zero in on"],
+  "create":      ["make","build","craft","form","design","develop","produce","generate","bring into being","construct","shape","model","fashion","compose","invent"],
+  "change":      ["transform","shift","evolve","grow","develop","transition","move","alter","adapt","adjust","update","renew","reform","reshape","reimagine"],
+  "begin":       ["start","open","initiate","launch","set out","embark","commence","take the first step","get going","get underway","move forward","step into","open up","step out","set forth"],
+  "end":         ["close","finish","conclude","wrap up","complete","finalize","bring to a close","round off","seal","resolve","arrive at","land","come to rest","settle","find closure"],
 };
 
 function rtRandomizeNewTemplate(text){
-  // Pertama random tahun/angka
-  text = rtRandomizeNumbers(text);
+  // Random umur: I am XX / I'm XX / enjoying XX / aged XX → geser ±3, sinkronkan tahun
+  let newAge = null;
+  text = text.replace(/\b(I(?:'m| am) |enjoying |aged )(\d{2})\b/gi, (match, prefix, age)=>{
+    const base = parseInt(age);
+    const shift = Math.floor(Math.random()*7)-3;
+    newAge = Math.max(35, Math.min(85, base + shift));
+    return prefix + newAge;
+  });
+  // Random tanggal: pola DD/MM/YYYY atau MM/DD/YYYY atau DD-MM-YYYY
+  text = text.replace(/\b(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})\b/g, (match, d, m, y)=>{
+    const day = Math.max(1, Math.min(28, parseInt(d) + Math.floor(Math.random()*5)-2));
+    const mon = Math.max(1, Math.min(12, parseInt(m) + Math.floor(Math.random()*3)-1));
+    const sep = match.includes('/') ? '/' : '-';
+    const yr = newAge !== null ? new Date().getFullYear() - newAge : parseInt(y);
+    return String(day).padStart(2,'0')+sep+String(mon).padStart(2,'0')+sep+yr;
+  });
+  // Sinkronkan tahun 4 digit (tahun lahir)
+  text = text.replace(/\b(19[4-9]\d|20[0-2]\d)\b/g, (match)=>{
+    const base = parseInt(match);
+    if(newAge !== null){
+      return String(new Date().getFullYear() - newAge);
+    }
+    const shift = Math.floor(Math.random()*5)-2;
+    const result = base + shift;
+    if(result >= 1940 && result <= 2010) return String(result);
+    return match;
+  });
+  // Random kata dengan sinonim
   const lines = text.split('\n');
   return lines.map(line=>{
     if(line.trim()==='') return line;
