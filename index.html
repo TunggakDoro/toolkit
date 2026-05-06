@@ -265,11 +265,75 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   #tab-name .ng-grid{grid-template-columns:1fr}
   #tab-rtext .rt-templates-grid{grid-template-columns:1fr}
   .tab-btn{font-size:.59rem;padding:6px 10px}
+  .country-bar{flex-wrap:wrap;gap:6px}
+  .country-flag-btn{font-size:.7rem;padding:3px 7px}
 }
+
+/* ═══ COUNTRY SELECTOR BAR ═══ */
+.country-bar{
+  display:flex;align-items:center;gap:8px;
+  padding:7px 20px;
+  background:rgba(0,0,0,.3);
+  border-bottom:1px solid rgba(0,212,255,.1);
+  overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.country-bar::-webkit-scrollbar{height:2px}
+.country-bar::-webkit-scrollbar-thumb{background:rgba(0,212,255,.3);border-radius:2px}
+.country-bar-label{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;
+  white-space:nowrap;flex-shrink:0;
+}
+.country-flag-btn{
+  font-size:.75rem;padding:4px 9px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.08);background:transparent;
+  cursor:pointer;transition:all .18s;color:var(--muted2);
+  font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0;
+}
+.country-flag-btn:hover{
+  border-color:rgba(0,212,255,.4);color:var(--cyan);
+  background:rgba(0,212,255,.07);
+}
+.country-flag-btn.active{
+  border-color:var(--cyan);color:var(--cyan);
+  background:rgba(0,212,255,.12);
+  box-shadow:0 0 10px rgba(0,212,255,.15);
+}
+
+/* ═══ TRANSLATE LOADING OVERLAY ═══ */
+#translate-overlay{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(5,5,8,.7);backdrop-filter:blur(6px);
+  display:none;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  pointer-events:all;
+}
+#translate-overlay.show{display:flex}
+.tl-spinner{
+  width:40px;height:40px;border-radius:50%;
+  border:3px solid rgba(0,212,255,.15);
+  border-top-color:var(--cyan);
+  animation:spin .75s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.tl-text{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  color:var(--cyan);letter-spacing:.08em;
+  animation:pulse2 1.2s ease-in-out infinite alternate;
+}
+@keyframes pulse2{from{opacity:.5}to{opacity:1}}
+.tl-flag{font-size:1.8rem;margin-bottom:4px}
 </style>
 </head>
 <body>
 <div class="scan-line"></div>
+
+<!-- TRANSLATE LOADING OVERLAY -->
+<div id="translate-overlay">
+  <div class="tl-flag" id="tl-flag">🌍</div>
+  <div class="tl-spinner"></div>
+  <div class="tl-text" id="tl-text">Translating...</div>
+</div>
 
 <div class="topbar">
   <div class="topbar-inner">
@@ -284,6 +348,20 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
     <button class="tab-btn" data-tab="rtext" onclick="switchTab('rtext')">✍️ Random Text ( Threads )</button>
     <button class="tab-btn" data-tab="ig" onclick="switchTab('ig')">📸 IG System</button>
   </div>
+</div>
+
+<!-- COUNTRY SELECTOR BAR -->
+<div class="country-bar">
+  <span class="country-bar-label">🌍 Lang ( Hanya Untuk Word System fb dan Ig System )</span>
+  <button class="country-flag-btn active" data-lang="en" data-flag="🇺🇸" onclick="setCountry(this)">🇺🇸 EN</button>
+  <button class="country-flag-btn" data-lang="en" data-flag="🇬🇧" onclick="setCountry(this)">🇬🇧 UK</button>
+  <button class="country-flag-btn" data-lang="fr" data-flag="🇫🇷" onclick="setCountry(this)">🇫🇷 FR</button>
+  <button class="country-flag-btn" data-lang="de" data-flag="🇩🇪" onclick="setCountry(this)">🇩🇪 DE</button>
+  <button class="country-flag-btn" data-lang="it" data-flag="🇮🇹" onclick="setCountry(this)">🇮🇹 IT</button>
+  <button class="country-flag-btn" data-lang="es" data-flag="🇪🇸" onclick="setCountry(this)">🇪🇸 ES</button>
+  <button class="country-flag-btn" data-lang="en" data-flag="🇦🇺" onclick="setCountry(this)">🇦🇺 AU</button>
+  <button class="country-flag-btn" data-lang="en" data-flag="🇨🇦" onclick="setCountry(this)">🇨🇦 CA</button>
+  <button class="country-flag-btn" data-lang="nl" data-flag="🇳🇱" onclick="setCountry(this)">🇳🇱 NL</button>
 </div>
 
 <div class="main">
@@ -515,6 +593,76 @@ function switchTab(name){
   document.querySelector('[data-tab="'+name+'"]').classList.add('active');
 }
 
+/* ══ COUNTRY / TRANSLATE SYSTEM ══ */
+let currentLang = 'en';  // default English
+let currentFlag = '🇺🇸';
+
+function setCountry(btn){
+  document.querySelectorAll('.country-flag-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  currentLang = btn.dataset.lang;
+  currentFlag = btn.dataset.flag;
+}
+
+/* Google Translate gratis — tanpa API key */
+async function gtranslate(text, targetLang){
+  if(targetLang === 'en') return text; // English = no translate needed
+  try {
+    // Pisahkan link dari teks (baris yang dimulai dengan http)
+    const lines = text.split('\n');
+    const textLines = [];
+    const linkLines = {};
+    lines.forEach((line, i) => {
+      if(/^https?:\/\//i.test(line.trim())){
+        linkLines[i] = line;
+      } else {
+        textLines.push({idx: i, text: line});
+      }
+    });
+
+    // Gabungkan teks non-link untuk translate sekaligus
+    const toTranslate = textLines.map(l => l.text).join('\n');
+    if(!toTranslate.trim()) return text;
+
+    const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=${targetLang}&dt=t&q=${encodeURIComponent(toTranslate)}`;
+    const res = await fetch(url);
+    const data = await res.json();
+
+    // Ambil semua hasil terjemahan
+    let translated = '';
+    if(data && data[0]){
+      data[0].forEach(item => { if(item && item[0]) translated += item[0]; });
+    }
+
+    // Rekonstruksi: gabungkan baris terjemahan + baris link di posisi aslinya
+    const translatedLines = translated.split('\n');
+    const result = [];
+    let tIdx = 0;
+    lines.forEach((line, i) => {
+      if(linkLines[i] !== undefined){
+        result.push(linkLines[i]);
+      } else {
+        result.push(translatedLines[tIdx] || line);
+        tIdx++;
+      }
+    });
+    return result.join('\n');
+  } catch(e) {
+    console.warn('Translate error:', e);
+    return text; // fallback ke bahasa asli
+  }
+}
+
+function showTranslateOverlay(flag){
+  const ov = document.getElementById('translate-overlay');
+  document.getElementById('tl-flag').textContent = flag;
+  document.getElementById('tl-text').textContent = 'Translating...';
+  ov.classList.add('show');
+}
+function hideTranslateOverlay(){
+  document.getElementById('translate-overlay').classList.remove('show');
+}
+
 /* ══ TOTP ══ */
 function totpBase32Decode(s){const alpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';s=s.toUpperCase().replace(/[\s=\-]/g,'');let bits=0,val=0,out=[];for(let i=0;i<s.length;i++){const idx=alpha.indexOf(s[i]);if(idx<0)throw new Error('Bad char: '+s[i]);val=(val<<5)|idx;bits+=5;if(bits>=8){out.push((val>>>(bits-8))&0xff);bits-=8;}}return new Uint8Array(out);}
 let totpTimeOffset=0;
@@ -743,27 +891,47 @@ function wordBuild(mode){
   return text;
 }
 
-function wordGenerate(){
+function wordCopyText(){navigator.clipboard.writeText(document.getElementById("word-output").innerText);}
+
+async function wordGenerate(){
   const raw=document.getElementById("word-links").value.trim();
   const mode=document.getElementById("word-mode").value;
   if(!raw)return;
   if(wordLinkList.length===0) wordLinkList=raw.split("\n").filter(x=>x.trim());
   if(!wordLinkList.length){document.getElementById("word-output").innerText="⚠️ Link habis!";return;}
   const link=wordLinkList.shift();
-  document.getElementById("word-output").innerText=wordBuild(mode)+"\n"+link;
+  const rawText=wordBuild(mode)+"\n"+link;
   document.getElementById("word-links").value=wordLinkList.join("\n");
-}
-function wordCopyText(){navigator.clipboard.writeText(document.getElementById("word-output").innerText);}
 
-function wordGenerateMsg(){
+  if(currentLang !== 'en'){
+    showTranslateOverlay(currentFlag);
+    try{
+      const translated = await gtranslate(rawText, currentLang);
+      document.getElementById("word-output").innerText=translated;
+    } finally { hideTranslateOverlay(); }
+  } else {
+    document.getElementById("word-output").innerText=rawText;
+  }
+}
+
+async function wordGenerateMsg(){
   const raw=document.getElementById("word-msgLinks").value.trim();
   if(!raw){document.getElementById("word-msgOutput").innerText="𝗜𝘀𝗶 𝘁𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗱𝗮𝗵𝘂𝗹𝘂 𝗹𝗶𝗻𝗸 𝗻𝘆𝗮 !";return;}
   if(wordMsgLinkList.length===0) wordMsgLinkList=raw.split("\n").filter(x=>x.trim());
   if(!wordMsgLinkList.length){document.getElementById("word-msgOutput").innerText="⚠️ Link habis!";return;}
   const link=wordMsgLinkList.shift();
-  const text=wPick(wMsg1)+" "+wPick(wMsg2)+", "+wPick(wMsg3)+" — "+wPick(wMsg4)+" "+wPick(wMsgE);
-  document.getElementById("word-msgOutput").innerText=text+"\n"+link;
+  const rawText=wPick(wMsg1)+" "+wPick(wMsg2)+", "+wPick(wMsg3)+" — "+wPick(wMsg4)+" "+wPick(wMsgE)+"\n"+link;
   document.getElementById("word-msgLinks").value=wordMsgLinkList.join("\n");
+
+  if(currentLang !== 'en'){
+    showTranslateOverlay(currentFlag);
+    try{
+      const translated = await gtranslate(rawText, currentLang);
+      document.getElementById("word-msgOutput").innerText=translated;
+    } finally { hideTranslateOverlay(); }
+  } else {
+    document.getElementById("word-msgOutput").innerText=rawText;
+  }
 }
 function wordCopyMsg(){navigator.clipboard.writeText(document.getElementById("word-msgOutput").innerText);}
 
@@ -1391,24 +1559,40 @@ const igStoryConfidence=[
 
 function igPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-function igGenBio(){
+async function igGenBio(){
   const mode=document.getElementById('ig-bio-mode').value;
   const map={mystery:igBioMystery,flirty:igBioFlirty,bold:igBioBold,soft:igBioSoft,premium:igBioPremium};
-  const result=igPick(map[mode]||igBioMystery);
+  const rawResult=igPick(map[mode]||igBioMystery);
   const el=document.getElementById('ig-bio-result');
+  const count=document.getElementById('ig-bio-count');
+
+  let result=rawResult;
+  if(currentLang !== 'en'){
+    showTranslateOverlay(currentFlag);
+    try{ result = await gtranslate(rawResult, currentLang); }
+    finally{ hideTranslateOverlay(); }
+  }
+
   el.innerText=result;
   el.classList.add('has-content');
-  const count=document.getElementById('ig-bio-count');
   const len=result.length;
   count.innerText=len+' / 150 karakter';
   count.className='ig-char-count'+(len>150?' warn':'');
 }
 
-function igGenStory(){
+async function igGenStory(){
   const mode=document.getElementById('ig-story-mode').value;
   const map={tease:igStoryTease,hot:igStoryHot,mystery:igStoryMystery,personal:igStoryPersonal,confidence:igStoryConfidence};
-  const result=igPick(map[mode]||igStoryTease);
+  const rawResult=igPick(map[mode]||igStoryTease);
   const el=document.getElementById('ig-story-result');
+
+  let result=rawResult;
+  if(currentLang !== 'en'){
+    showTranslateOverlay(currentFlag);
+    try{ result = await gtranslate(rawResult, currentLang); }
+    finally{ hideTranslateOverlay(); }
+  }
+
   el.innerText=result;
   el.classList.add('has-content');
 }
