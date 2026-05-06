@@ -401,18 +401,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   <div id="tab-word" class="tab-panel">
     <div class="w-grid">
       <div class="w-card">
-        <label>🌍 𝗧𝗮𝗿𝗴𝗲𝘁 𝗡𝗲𝗴𝗮𝗿𝗮 (𝗪𝗼𝗿𝗱 𝗦𝘆𝘀𝘁𝗲𝗺)</label>
-        <select id="word-country">
-          <option value="us">🇺🇸 United States</option>
-          <option value="uk">🇬🇧 United Kingdom</option>
-          <option value="fr">🇫🇷 France</option>
-          <option value="de">🇩🇪 Germany</option>
-          <option value="it">🇮🇹 Italy</option>
-          <option value="es">🇪🇸 Spain</option>
-          <option value="au">🇦🇺 Australia</option>
-          <option value="ca">🇨🇦 Canada</option>
-          <option value="nl">🇳🇱 Netherlands</option>
-        </select>
         <label>🔥 𝗠𝗼𝗱𝗲 𝗦𝘁𝗮𝘁𝘂𝘀</label>
         <select id="word-mode">
           <option value="premium">✨ Premium Mix</option>
@@ -428,24 +416,11 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
       </div>
       <div class="w-card">
         <label>💬 𝗛𝗮𝘀𝗶𝗹 𝗦𝘁𝗮𝘁𝘂𝘀 𝗙𝗕</label>
-        <div id="word-country-badge" style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);padding:4px 12px;border-radius:20px;display:inline-block;margin-bottom:8px">🇺🇸 US Style</div>
         <div id="word-output" class="w-result" style="min-height:90px;font-size:.85rem;line-height:1.9"></div>
         <button class="w-btn-copy" onclick="wordCopyText()">📋 Copy Status</button>
       </div>
       <div class="w-card">
         <label>💌 𝗣𝗲𝘀𝗮𝗻 𝗣𝗿𝗶𝗯𝗮𝗱𝗶 ( 𝗗𝗠 / 𝗜𝗻𝗯𝗼𝘅 )</label>
-        <label>🌍 𝗧𝗮𝗿𝗴𝗲𝘁 𝗡𝗲𝗴𝗮𝗿𝗮 (𝗣𝗲𝘀𝗮𝗻)</label>
-        <select id="word-msg-country">
-          <option value="us">🇺🇸 United States</option>
-          <option value="uk">🇬🇧 United Kingdom</option>
-          <option value="fr">🇫🇷 France</option>
-          <option value="de">🇩🇪 Germany</option>
-          <option value="it">🇮🇹 Italy</option>
-          <option value="es">🇪🇸 Spain</option>
-          <option value="au">🇦🇺 Australia</option>
-          <option value="ca">🇨🇦 Canada</option>
-          <option value="nl">🇳🇱 Netherlands</option>
-        </select>
         <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
         <textarea id="word-msgLinks" placeholder="Tempel link di sini&#10;Satu link per baris&#10;https://link1.com&#10;https://link2.com"></textarea>
         <button onclick="wordGenerateMsg()">💬 Generate Pesan</button>
@@ -462,24 +437,6 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
       <div class="ig-header-title">📸 IG System — Bio &amp; Story Generator</div>
       <div class="ig-header-sub">Flirty · Mysterious · Creator Style</div>
     </div>
-
-    <!-- COUNTRY SELECTOR IG -->
-    <div style="background:var(--surface);border:1px solid var(--border2);border-radius:14px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap">
-      <span style="font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted2);white-space:nowrap">🌍 Target Negara IG</span>
-      <select id="ig-country" style="flex:1;min-width:160px;padding:9px 12px;border-radius:9px;border:1px solid var(--border2);background:#020617;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.83rem;outline:none">
-        <option value="us">🇺🇸 United States</option>
-        <option value="uk">🇬🇧 United Kingdom</option>
-        <option value="fr">🇫🇷 France</option>
-        <option value="de">🇩🇪 Germany</option>
-        <option value="it">🇮🇹 Italy</option>
-        <option value="es">🇪🇸 Spain</option>
-        <option value="au">🇦🇺 Australia</option>
-        <option value="ca">🇨🇦 Canada</option>
-        <option value="nl">🇳🇱 Netherlands</option>
-      </select>
-      <span id="ig-country-tag" style="font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--cyan);background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);padding:4px 12px;border-radius:20px;white-space:nowrap">🇺🇸 US Style</span>
-    </div>
-
     <div class="ig-grid">
 
       <!-- BIO GENERATOR -->
@@ -728,7 +685,7 @@ function ngClear(){
 /* ══ WORD SYSTEM v2 — HOT & FLIRTY EDITION ══ */
 let wordLinkList=[],wordMsgLinkList=[];
 
-/* ── STATUS arrays (fallback English) ── */
+/* ── STATUS arrays ── */
 const wOpeners=[
   "Don't tell anyone I posted this…","This isn't for everyone…","I almost deleted this before posting…","I wasn't planning to share this…","Before you scroll past…","Not everyone gets to see this side of me…","This one's for the brave ones only…","I almost didn't post this…","Something I've been keeping to myself…","I don't usually do this…","They say don't open this alone at night…","If you think you can handle it…","Not for the faint-hearted…","Only a few people get to see this…","There's something I never show here…","I was bored and this happened…","If you're up late tonight…","Anyone else curious or just me…","I don't usually post like this but…","Click it or don't, up to you…"
 ];
@@ -749,83 +706,7 @@ const wHot=[
 ];
 const wEmojis=["👀","😏","🔥","💋","✨","🖤","⚡","💎","😉","🌙","🫣","🌟","💫","🤭","💄","🍷","🌹","💃","🎭","🪞","💌","🔮","🌸","💅","🫦"];
 
-/* ── FULL COUNTRY STATUS CONTENT (complete per-language sets) ── */
-const wCountryFullStatus = {
-  us: {
-    openers:["Y'all I almost didn't post this but…","No cap, this isn't for everyone but…","Lowkey didn't plan to share this but here goes…","Bestie I almost kept this to myself but…","Deadass wasn't gonna post this but…","Fr fr I almost held back on this one but…","Ngl this is a little out there for me but…","Not gonna lie, this is a bold move but…"],
-    intrigue:["but no cap it felt wrong to keep this to myself","but fr this is too good to hide","and lowkey I'm curious what y'all think","but deadass this deserves to be seen","and ngl it's not what you're imagining","but bestie I decided to share it anyway","and for real something tells me you'll like it","but I'm done holding back tbh"],
-    curiosity:["Y'all won't be disappointed if you open this fr","Something behind this link keeps pulling people back no cap","It's not what you think… it's more than that lowkey","One click and you'll get it immediately deadass","The kind of content that makes you come back for more ngl","Once you open it, it's hard to stop tbh","Everyone who's seen it says it hits different bestie","This is for people who appreciate something real fr fr"],
-    personal:["I don't share this with everyone, only the special ones fr","Something about you made me want to share this ngl","I feel like this was made for you lowkey","For the ones who've been curious about me for a while tbh","If you've been watching my stories… this is for you bestie","I noticed you… and this is a little something for you deadass"],
-    urgency:["but this won't be here forever no cap","but I might take it down tonight fr","but the link is limited, won't last long deadass","but not everyone gets access ngl","but this is only temporary lowkey","but I'm making it private soon tbh"],
-    hot:["Can't sleep tonight… anyone want to keep me company? 😏 no cap","They say my eyes say more than my words… see for yourself 👀 fr","Some people say I'm too bold… they haven't seen this yet 🔥 deadass","I'm in a different kind of mood tonight ✨ ngl","People call me mysterious… I'm just selective 😉 lowkey","There's a side of me only a few people know about fr fr","I wonder who's brave enough to actually click 🔥 bestie"]
-  },
-  uk: {
-    openers:["Bit of a bold move posting this, but here we go…","Proper didn't plan to share this, but…","Honestly mate, I almost didn't post this but…","Right, not for everyone but here we are…","Blimey, this is a little out there for me but…","I'm usually not this cheeky but…","Not gonna lie, this is a bit much even for me but…","Sorted this and thought I'd share it but…"],
-    intrigue:["but it felt proper wrong to keep it quiet","but thought you lot might like it","and I'm cheeky enough to share it","brilliant enough to share, innit","and couldn't keep it to myself, cheers","but decided to be bold about it","proper worth seeing, take my word","sorted it out and here it is"],
-    curiosity:["You won't be disappointed, proper good stuff in here","Something behind this link keeps pulling people back, innit","It's not what you think mate… it's more than that","One click and you'll get it immediately, cheers","The kind of content that makes you come back for more brilliant","Once you open it, it's hard to stop blimey","Everyone who's seen it says it's proper different","This is for people who appreciate something real, sorted"],
-    personal:["I don't share this with everyone, only the decent ones mate","Something about you caught my eye and made me want to share this","I reckon this was made for you tbh","For the ones who've been quietly curious about me for a while","If you've been watching my stories… this is for you, cheers","I noticed you… and this is a little something for you, innit"],
-    urgency:["but this won't be here forever, proper","but I might take it down tonight mate","but the link is limited, won't last long blimey","but not everyone gets access, sorted","but this is only temporary, cheers","but I'm making it private soon innit"],
-    hot:["Can't sleep tonight… anyone want to keep me company? 😏 proper","They say my eyes say more than words… see for yourself 👀 mate","Some say I'm too bold… they haven't seen this yet 🔥 blimey","I'm in a different kind of mood tonight ✨ innit","People call me mysterious… I'm just selective 😉 cheers","There's a side of me only a few people know about, sorted","I wonder who's brave enough to actually click 🔥 mate"]
-  },
-  fr: {
-    openers:["Bon, je me lance, presque pas posté ça mais…","Franchement j'allais pas partager ça mais…","Carrément hésité avant de poster ça mais…","Grave, j'aurais pu garder ça pour moi mais…","Ouf, je me décide enfin à partager mais…","Trop chelou de poster ça mais voilà…","Wesh j'allais pas le mettre mais…","Honnêtement j'ai failli supprimer ça mais…"],
-    intrigue:["mais c'était trop dommage de le garder pour moi","mais franchement vous devez voir ça","et carrément curieuse de ce que vous en pensez","mais grave c'est trop bien pour le cacher","et ouf c'est pas ce que vous imaginez","mais j'ai décidé de le partager quand même","et vachement quelque chose me dit que vous allez aimer","mais relou de garder ça secret"],
-    curiosity:["Franchement vous serez pas déçus si vous ouvrez ça","Quelque chose derrière ce lien attire les gens grave","C'est pas ce que vous croyez… c'est vachement plus que ça","Un clic et vous comprendrez immédiatement ouf","Le genre de contenu qui vous fait revenir carrément","Une fois que vous l'ouvrez, difficile de s'arrêter wesh","Tout le monde qui a vu dit que c'est chelou différent","C'est pour les gens qui apprécient quelque chose de vrai franchement"],
-    personal:["Je partage pas ça avec tout le monde, seulement les spéciaux franchement","Quelque chose chez toi m'a donné envie de partager ça","J'ai l'impression que c'était fait pour toi carrément","Pour ceux qui sont curieux de moi depuis un moment grave","Si tu regardais mes stories… c'est pour toi wesh","J'ai remarqué toi… et c'est un petit quelque chose pour toi ouf"],
-    urgency:["mais ça sera pas là pour toujours franchement","mais je pourrais le retirer ce soir carrément","mais le lien est limité, pas pour longtemps grave","mais tout le monde n'y a pas accès ouf","mais c'est seulement temporaire wesh","mais je le rends privé bientôt chelou"],
-    hot:["Impossible de dormir ce soir… quelqu'un veut me tenir compagnie? 😏 franchement","On dit que mes yeux parlent plus que mes mots… voyez par vous-mêmes 👀 grave","Certains disent que je suis trop bold… ils ont pas vu ça encore 🔥 ouf","Je suis dans une humeur différente ce soir ✨ carrément","On m'appelle mystérieuse… je suis juste sélective 😉 wesh","Il y a un côté de moi que peu de gens connaissent franchement","Je me demande qui est assez courageux pour cliquer 🔥 grave"]
-  },
-  de: {
-    openers:["Krass, ich hätte das fast nicht gepostet aber…","Ehrlich gesagt wollte ich das nicht teilen aber…","Heftig, ich hatte mich fast dagegen entschieden aber…","Geil, endlich teile ich das hier aber…","Wunderbar aber fast hätte ich das gelöscht…","Auf jeden Fall war ich unsicher ob ich das poste aber…","Echt nicht geplant, aber hier sind wir…","Prima Sache, die ich lange für mich behalten hab aber…"],
-    intrigue:["aber es fühlte sich falsch an, es zu behalten","aber ich denke, du musst das sehen","und ich bin gespannt auf deine Meinung","aber das ist zu gut zum Verstecken","und ehrlich gesagt ist es nicht was du dir vorstellst","aber ich habe mich entschieden es zu teilen","und irgendwas sagt mir du wirst es lieben","aber genug des Zögerns"],
-    curiosity:["Ehrlich gesagt werdet ihr nicht enttäuscht sein wenn ihr das öffnet","Irgendwas hinter diesem Link zieht die Leute immer wieder an krass","Es ist nicht was ihr denkt… es ist viel mehr als das heftig","Ein Klick und ihr versteht es sofort wunderbar","Die Art von Inhalt die euch immer wieder zurückbringt geil","Einmal geöffnet ist es schwer aufzuhören ehrlich gesagt","Alle die es gesehen haben sagen es ist krass anders","Das ist für Leute die echte Inhalte zu schätzen wissen natürlich"],
-    personal:["Ich teile das nicht mit jedem, nur mit den Besonderen ehrlich gesagt","Irgendwas an dir hat mich dazu gebracht das zu teilen krass","Ich hab das Gefühl das war für dich gemacht heftig","Für die die schon eine Weile neugierig auf mich waren geil","Wenn du meine Stories verfolgt hast… das ist für dich wunderbar","Ich hab dich bemerkt… und das ist ein kleines Dankeschön für dich"],
-    urgency:["aber das wird nicht für immer da sein ehrlich gesagt","aber ich könnte es heute Nacht löschen krass","aber der Link ist begrenzt, nicht für lange heftig","aber nicht jeder hat Zugang geil","aber das ist nur vorübergehend natürlich","aber ich mach es bald privat wunderbar"],
-    hot:["Kann heute Nacht nicht schlafen… jemand möchte mir Gesellschaft leisten? 😏 krass","Meine Augen sagen mehr als meine Worte… seht selbst 👀 heftig","Manche sagen ich bin zu bold… die haben das noch nicht gesehen 🔥 geil","Ich bin heute Nacht in einer anderen Stimmung ✨ wunderbar","Man nennt mich mysteriös… ich bin einfach wählerisch 😉 ehrlich gesagt","Es gibt eine Seite von mir die nur wenige kennen krass","Ich frage mich wer mutig genug ist um zu klicken 🔥 natürlich"]
-  },
-  it: {
-    openers:["Dai, quasi non ho postato questa cosa ma…","Bello, finalmente mi decido a condividerlo ma…","Mamma mia, quasi non lo condividevo ma…","Figurati, non avrei mai pensato di postarlo ma…","Comunque avevo quasi cancellato questo ma…","Praticamente non era nei miei piani condividerlo ma…","Assolutamente non per tutti, ma eccolo…","Tipo quasi me lo tenevo per me ma…"],
-    intrigue:["ma sarebbe stato sbagliato tenerlo per me","ma penso che tu debba vedere questo","e sono curiosa di cosa ne pensi","ma è troppo bello per nasconderlo","e non è quello che stai immaginando","ma ho deciso di condividerlo comunque","e qualcosa mi dice che ti piacerà","ma basta tenerselo dentro"],
-    curiosity:["Dai non resterete delusi se aprite questo mamma mia","Qualcosa dietro questo link continua ad attirare la gente figurati","Non è quello che pensate… è molto di più bello","Un clic e lo capirete subito praticamente","Il tipo di contenuto che vi fa tornare comunque","Una volta aperto è difficile fermarsi dai","Tutti quelli che l'hanno visto dicono che è diverso assolutamente","Questo è per le persone che apprezzano qualcosa di vero tipo"],
-    personal:["Non condivido questo con tutti, solo con quelli speciali dai","Qualcosa di te mi ha fatto venire voglia di condividere questo bello","Ho la sensazione che fosse fatto per te mamma mia","Per quelli che sono curiosi di me da un po' figurati","Se hai guardato le mie stories… questo è per te praticamente","Ho notato te… e questo è un piccolo qualcosa per te dai"],
-    urgency:["ma questo non sarà qui per sempre mamma mia","ma potrei toglierlo stanotte dai","ma il link è limitato, non durerà a lungo bello","ma non tutti possono accedervi figurati","ma è solo temporaneo praticamente","ma lo rendo privato presto comunque"],
-    hot:["Non riesco a dormire stanotte… qualcuno vuole tenermi compagnia? 😏 dai","Dicono che i miei occhi parlano più delle mie parole… vedete voi 👀 bello","Alcuni dicono che sono troppo bold… non hanno ancora visto questo 🔥 mamma mia","Sono in un umore diverso stanotte ✨ figurati","Mi chiamano misteriosa… sono solo selettiva 😉 praticamente","C'è un lato di me che pochi conoscono dai","Mi chiedo chi è abbastanza coraggioso da cliccare 🔥 bello"]
-  },
-  es: {
-    openers:["Tío, casi no posteo esto pero aquí va…","Guay, finalmente me decido a compartirlo pero…","Flipar, casi lo borro antes de publicarlo pero…","Macho casi no lo comparto pero venga…","Ostia, esto es un poco atrevido pero…","Cojonudo, casi me lo guardo para mí pero…","Joder, estaba dudando si postear esto pero…","Brutal, me decidí por fin a compartirlo pero…"],
-    intrigue:["pero sería un error guardarlo para mí","pero creo que necesitas ver esto tío","y tengo curiosidad por saber qué piensas guay","pero es demasiado bueno para ocultarlo flipar","y no es lo que te imaginas macho","pero decidí compartirlo de todas formas venga","y algo me dice que te va a gustar cojonudo","pero ya basta de guardarlo joder"],
-    curiosity:["Tío no os decepcionaréis si abrís esto flipar","Algo detrás de este link sigue atrayendo a la gente cojonudo","No es lo que creéis… es mucho más que eso brutal","Un clic y lo entenderéis inmediatamente guay","El tipo de contenido que os hace volver macho","Una vez que lo abres es difícil parar joder","Todos los que lo han visto dicen que es diferente tío","Esto es para la gente que aprecia algo real de verdad"],
-    personal:["No comparto esto con todos, solo con los especiales tío","Algo en ti me hizo querer compartir esto guay","Tengo la sensación de que estaba hecho para ti flipar","Para los que llevan tiempo siendo curiosos sobre mí brutal","Si has estado viendo mis stories… esto es para ti macho","Me fijé en ti… y esto es algo especial para ti venga"],
-    urgency:["pero esto no estará aquí para siempre tío","pero podría quitarlo esta noche guay","pero el link es limitado, no durará mucho flipar","pero no todos tienen acceso brutal","pero es solo temporal macho","pero lo hago privado pronto joder"],
-    hot:["No puedo dormir esta noche… ¿alguien quiere hacerme compañía? 😏 tío","Dicen que mis ojos dicen más que mis palabras… ved vosotros 👀 guay","Algunos dicen que soy demasiado atrevida… todavía no han visto esto 🔥 flipar","Estoy en un estado de ánimo diferente esta noche ✨ brutal","Me llaman misteriosa… simplemente soy selectiva 😉 macho","Hay un lado de mí que pocos conocen cojonudo","Me pregunto quién es lo suficientemente valiente para hacer clic 🔥 joder"]
-  },
-  au: {
-    openers:["Crikey, almost didn't post this arvo but…","No worries if you scroll past, but fair dinkum…","Deadset almost kept this to myself but…","Heaps of people asked so here it is but…","Ripper thing I've been sitting on but…","Reckon you'll love this one but…","Strewth, this one's a bit different but…","Not every arvo I share something like this but…"],
-    intrigue:["but she'll be right if you check it out","and reckon you'll love it mate","but heaps worth a look deadset","and fair dinkum couldn't keep it to myself","crikey thought you'd like it","and no worries if it's not your thing","but ripper content doesn't stay hidden","and strewth it's good"],
-    curiosity:["You won't be disappointed if you open this, deadset","Something behind this link keeps pulling people back ripper","It's not what you think mate… it's heaps more than that","One click and you'll get it immediately fair dinkum","The kind of content that makes you come back for more strewth","Once you open it, it's hard to stop crikey","Everyone who's seen it says it hits different reckon","This is for people who appreciate something real, no worries"],
-    personal:["I don't share this with everyone, only the ripper ones mate","Something about you made me want to share this deadset","Reckon this was made for you fair dinkum","For the ones who've been curious about me for a while strewth","If you've been watching my stories… this is for you crikey","I noticed you… and this is a little something for you mate"],
-    urgency:["but this won't be here forever deadset","but I might take it down tonight crikey","but the link is limited, won't last long strewth","but not everyone gets access ripper","but this is only temporary fair dinkum","but I'm making it private soon mate"],
-    hot:["Can't sleep tonight… anyone want to keep me company? 😏 crikey","They say my eyes say more than words… see for yourself 👀 deadset","Some say I'm too bold… they haven't seen this yet 🔥 ripper","I'm in a different kind of mood tonight ✨ strewth","People call me mysterious… I'm just selective 😉 fair dinkum","There's a side of me only a few people know about mate","I wonder who's brave enough to actually click 🔥 reckon"]
-  },
-  ca: {
-    openers:["Eh, almost didn't post this, hey but…","Honestly not sure about this one but here goes eh…","Didn't plan to share this but beauty of it is…","Something I've been holding onto eh but…","Double-double energy in this post but…","Not everyone gets it but here we go hey…","Kind of a keener move sharing this but…","Sorted something worth sharing eh but…"],
-    intrigue:["but thought I'd share it eh","and beauty of it is it's worth it hey","no worries if it's not your thing","and figured you'd appreciate it hey","so here we go I guess eh","and it's a good one for sure","double-double worthy, take my word","sorted this for you lot eh"],
-    curiosity:["You won't be disappointed if you open this eh","Something behind this link keeps pulling people back hey","It's not what you think… it's more than that for sure","One click and you'll get it immediately beauty","The kind of content that makes you come back for more eh","Once you open it, it's hard to stop no worries","Everyone who's seen it says it hits different hey","This is for people who appreciate something real eh"],
-    personal:["I don't share this with everyone, only the real ones eh","Something about you made me want to share this hey","I feel like this was made for you for sure","For the ones who've been curious about me for a while beauty","If you've been watching my stories… this is for you eh","I noticed you… and this is a little something for you hey"],
-    urgency:["but this won't be here forever eh","but I might take it down tonight hey","but the link is limited, won't last long for sure","but not everyone gets access beauty","but this is only temporary no worries","but I'm making it private soon eh"],
-    hot:["Can't sleep tonight… anyone want to keep me company? 😏 eh","They say my eyes say more than words… see for yourself 👀 hey","Some say I'm too bold… they haven't seen this yet 🔥 for sure","I'm in a different kind of mood tonight ✨ beauty","People call me mysterious… I'm just selective 😉 eh","There's a side of me only a few people know about hey","I wonder who's brave enough to actually click 🔥 no worries"]
-  },
-  nl: {
-    openers:["Gaaf, ik had dit bijna niet gepost maar…","Vet, eindelijk besloten dit te delen maar…","Bro ik twijfelde maar hier is het toch…","Chill, niet gepland maar toch gedeeld…","Tof ding dat ik lang voor mezelf hield maar…","Super onverwacht maar ik deel het toch…","Joh, ik had dit bijna voor mezelf gehouden maar…","Wow, bijna niet gepost maar toch…"],
-    intrigue:["maar het voelde verkeerd om het te houden","maar ik denk dat je dit moet zien gaaf","en ik ben benieuwd wat je ervan vindt vet","maar dit is te goed om te verbergen bro","en het is niet wat je denkt joh","maar ik besloot het toch te delen chill","en iets zegt me dat je het leuk zult vinden tof","maar genoeg is genoeg wow"],
-    curiosity:["Gaaf, je zult niet teleurgesteld zijn als je dit opent","Iets achter deze link blijft mensen trekken vet","Het is niet wat je denkt bro… het is veel meer dan dat","Één klik en je begrijpt het meteen joh","Het soort inhoud dat je steeds terugbrengt chill","Eenmaal geopend is het moeilijk om te stoppen tof","Iedereen die het heeft gezien zegt dat het anders raakt gaaf","Dit is voor mensen die iets echts waarderen wow"],
-    personal:["Ik deel dit niet met iedereen, alleen de speciale mensen gaaf","Iets aan jou gaf me het gevoel dit te willen delen vet","Ik heb het gevoel dat dit voor jou gemaakt was bro","Voor degenen die al een tijdje nieuwsgierig naar me zijn joh","Als je mijn stories hebt gevolgd… dit is voor jou chill","Ik heb je opgemerkt… en dit is iets speciaals voor jou tof"],
-    urgency:["maar dit zal niet voor altijd hier zijn gaaf","maar ik kan het vanavond verwijderen vet","maar de link is beperkt, duurt niet lang bro","maar niet iedereen heeft toegang joh","maar dit is alleen tijdelijk chill","maar ik maak het binnenkort privé tof"],
-    hot:["Kan vannacht niet slapen… wil iemand me gezelschap houden? 😏 gaaf","Ze zeggen dat mijn ogen meer zeggen dan woorden… zie zelf 👀 vet","Sommigen zeggen dat ik te bold ben… ze hebben dit nog niet gezien 🔥 bro","Ik ben vanavond in een andere stemming ✨ joh","Men noemt me mysterieus… ik ben gewoon selectief 😉 chill","Er is een kant van mij die maar weinigen kennen tof","Ik vraag me af wie dapper genoeg is om te klikken 🔥 gaaf"]
-  }
-};
-
-/* ── MESSAGE arrays (fallback English) ── */
+/* ── MESSAGE arrays ── */
 const wMsg1=[
   "Hey…","Psst…","Hey you…","Wait a second…","Hold on…","Don't ignore this…","Quick thing…","I almost didn't message you but…","I came across your profile and…","This might sound random but…","Okay this is a little unexpected…","I almost didn't send this…","Before you scroll away…","Just one second…","I don't usually do this but…"
 ];
@@ -842,193 +723,47 @@ const wMsgE=["😏","😉","👀","🔥","💋","✨","🖤","🤭","💫","🫣
 
 function wPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-/* ── COUNTRY LOCALE DATA ── */
-const wCountryLocale = {
-  us:  {label:"🇺🇸 US Style",     tone:"casual",   slang:["y'all","for real","no cap","lowkey","vibe","ngl","tbh","bestie","slay","omg","fam","crush","catch you later","deadass","fr fr"]},
-  uk:  {label:"🇬🇧 UK Style",     tone:"british",  slang:["mate","proper","bloke","cheeky","brilliant","cheers","fancy","gobsmacked","gutted","innit","sorted","dodgy","banter","quid","ace"]},
-  au:  {label:"🇦🇺 AU Style",     tone:"aussie",   slang:["arvo","mates","reckon","heaps","no worries","crikey","brekkie","strewth","arvo","deadset","chuck","fair dinkum","sicko","ripper","legend"]},
-  ca:  {label:"🇨🇦 CA Style",     tone:"canadian", slang:["eh","toque","double-double","tuque","poutine vibes","loonie","hoser","oot and aboot","serviette","kerfuffle","beauty","keener","parkade","mickey","two-four"]},
-  ie:  {label:"🇮🇪 IE Style",     tone:"irish",    slang:["grand","craic","fella","gas","class","deadly","lads","slagging","sound","gobshite","deadly craic","knackered","shifting","banjaxed","dosser"]},
-  nz:  {label:"🇳🇿 NZ Style",     tone:"kiwi",     slang:["sweet as","chur","bro","mint","choice","munted","hard out","yeah nah","mean","aye","staunch","jandals","dairy","bach","togs"]},
-  za:  {label:"🇿🇦 ZA Style",     tone:"saffa",    slang:["lekker","braai","now now","eish","ja","boet","howzit","sharp","kiff","bakkie","tsotsi vibes","jol","voetsek","sommer","ag"]},
-  de:  {label:"🇩🇪 DE Style",     tone:"german",   slang:["freunde","wunderbar","echt","genial","krass","heftig","geil","ehrlich gesagt","auf jeden Fall","bestimmt","natürlich","prima","spitze","klasse","cool"]},
-  fr:  {label:"🇫🇷 FR Style",     tone:"french",   slang:["sympa","franchement","carrément","grave","trop bien","ouf","chelou","kiffer","zarbi","wesh","relou","boloss","hyper","vachement","boulot"]},
-  it:  {label:"🇮🇹 IT Style",     tone:"italian",  slang:["dai","certo","ecco","bello","magnifico","fantastico","forza","comunque","praticamente","assolutamente","mica","mamma mia","tipo","vabbè","figurati"]},
-  es:  {label:"🇪🇸 ES Style",     tone:"spanish",  slang:["tío","guay","mola","flipar","macho","venga","ostia","cojonudo","de puta madre","chulo","pisha","colega","de lujo","brutal","joder"]},
-  nl:  {label:"🇳🇱 NL Style",     tone:"dutch",    slang:["gaaf","vet","bro","chill","lekker","tof","super","goed bezig","dankjewel","joh","gossiep","gozers","prima","netjes","wow"]},
-  se:  {label:"🇸🇪 SE Style",     tone:"swedish",  slang:["grymt","schysst","läget","coolt","asarna","snacka","hänga","grymma","brorsan","faktiskt","typ","alltså","lugna ner","balla","keff"]},
-  no:  {label:"🇳🇴 NO Style",     tone:"norwegian",slang:["kult","bra","digg","sjukt bra","asså","seriøst","gutter","jenter","ting","folk","definitivt","herlig","topp","prima","skikkelig"]},
-  dk:  {label:"🇩🇰 DK Style",     tone:"danish",   slang:["fedt","sejt","kraftigt","rigtig god","super","skide god","vildt","sgu","nemlig","bare rolig","jo da","halløj","cool","top","hej"]},
-  mx:  {label:"🇲🇽 MX Style",     tone:"mexican",  slang:["cuate","chido","güey","madre","qué onda","órale","chale","no manches","híjole","mero mero","padrísimo","gacho","chamba","feria","jicarazo"]},
-  br:  {label:"🇧🇷 BR Style",     tone:"brazilian",slang:["cara","maneiro","show","baita","saudade","legal","massa","valeu","boa","irado","demais","gato","gata","trampo","zueiro"]},
-  ar:  {label:"🇦🇷 AR Style",     tone:"argentinian",slang:["boludo","che","re","copado","posta","piola","zarpado","laburo","bicho","chabón","flaco","mina","joda","quilombo","trucho"]},
-  jp:  {label:"🇯🇵 JP Style",     tone:"japanese", slang:["sugoi","kawaii","yabai","nani","sou desu","ii ne","maji de","nanka","ato","demo","hontou ni","mechakucha","chotto","umai","tondemonai"]},
-  kr:  {label:"🇰🇷 KR Style",     tone:"korean",   slang:["daebak","heol","jinjja","aigo","oppa","unnie","kiyowo","gomawo","omo","aigoo","babo","gwenchana","hwaiting","saranghae","nado"]},
-  ph:  {label:"🇵🇭 PH Style",     tone:"filipino", slang:["grabe","naman","talaga","kaya","sige","bes","mare","syota","lodi","petmalu","charot","jowa","pre","bro","nako"]},
-  sg:  {label:"🇸🇬 SG Style",     tone:"singlish", slang:["lah","leh","lor","meh","sia","hor","can","alamak","paiseh","shiok","sabo","steady","chope","kiasu","bojio"]},
-  my:  {label:"🇲🇾 MY Style",     tone:"malaysian",slang:["lah","boleh","mana tau","wei","aiyoh","kau","aku","giler","lepak","tumpang","walaupun","terima kasih","best giler","bro","meh"]},
-  in:  {label:"🇮🇳 IN Style",     tone:"indian",   slang:["yaar","achcha","bas","bilkul","kya scene hai","bindaas","sahi hai","arey","bhai","dost","ekdum","jaldi","mast","sach mein","chalo"]},
-  ae:  {label:"🇦🇪 AE Style",     tone:"gulf",     slang:["habibi","inshallah","mashallah","yalla","khalas","zain","wallah","ana","shukran","mafi mushkila","tamam","sahih","lazim","mumtaz","la"]},
-  sa:  {label:"🇸🇦 SA Style",     tone:"arabic",   slang:["habibi","wallah","mashallah","yalla","khalas","zain","tamam","sahih","inshallah","tfoo","ana","ya akhi","la","mumtaz","sah"]},
-  tr:  {label:"🇹🇷 TR Style",     tone:"turkish",  slang:["be","abi","kanka","gardaş","harika","süper","şahane","müthiş","kesinlikle","tabii ki","tamam","nereden","anlıyorum","güzel","iyi"]},
-  ng:  {label:"🇳🇬 NG Style",     tone:"nigerian", slang:["nawa o","wahala","omo","abeg","chukwu","sha","jare","kukuma","dey","wetin","no wahala","e don do","sabi","ginger","carry go"]},
-  gh:  {label:"🇬🇭 GH Style",     tone:"ghanaian", slang:["ei","masa","chale","akwaaba","wahala","borla","hwɛ","me daase","yoo","kobi","abeg","chaley","paɛ","afi","nti"]},
-  ke:  {label:"🇰🇪 KE Style",     tone:"kenyan",   slang:["sawa","poa","mambo","niaje","si unajua","hii ndio","unajua","bana","ngori","hizi","sasa","lakini","kweli","noma","dunia"]},
-};
-
-/* Country-flavored openers and closers */
-const wCountryOpeners = {
-  default: ["Don't tell anyone I posted this…","This isn't for everyone…","I almost deleted this before posting…","I wasn't planning to share this…","Before you scroll past…","Not everyone gets to see this side of me…","This one's for the brave ones only…","I almost didn't post this…","Something I've been keeping to myself…","I don't usually do this…","They say don't open this alone at night…","If you think you can handle it…","Not for the faint-hearted…","Only a few people get to see this…","There's something I never show here…"],
-  us:  ["Okay I can't believe I'm posting this but…","Not gonna lie, I almost didn't share this…","Y'all I almost deleted this before posting…","Lowkey didn't plan to share this but here goes…","No cap, this is a bold move but…","Bestie I almost kept this to myself…","Deadass wasn't gonna post this but…","Fr fr I almost held back on this one…","Ngl this is a little out there for me…","For real though I almost didn't do this…"],
-  uk:  ["Bit of a bold move posting this, but here we go…","Proper didn't plan to share this, but…","Honestly mate, I almost didn't post this…","Right, not for everyone but here we are…","Blimey, this is a little out there for me…","I'm usually not this cheeky but…","Sorted this and thought I'd share it…","Bit dodgy sharing this but…","Brilliant thing I've been keeping quiet…","Not gonna lie, this is a bit much even for me…"],
-  fr:  ["Bon, je me lance, presque pas posté ça…","Franchement j'allais pas partager ça mais…","Carrément hésité avant de poster ça…","Grave, j'aurais pu garder ça pour moi…","Ouf, je me décide enfin à partager…","Trop chelou de poster ça mais voilà…","Wesh j'allais pas le mettre mais…","Vachement indécis avant de poster ça…","Je kiffe pas trop partager ce genre de truc mais…","Honnêtement j'ai failli supprimer ça…"],
-  de:  ["Krass, ich hätte das fast nicht gepostet…","Ehrlich gesagt wollte ich das nicht teilen aber…","Heftig, ich hatte mich fast dagegen entschieden…","Geil, endlich teile ich das hier…","Wunderbar und ich musste das einfach teilen…","Auf jeden Fall war ich unsicher ob ich das poste…","Echt nicht geplant, aber hier sind wir…","Prima Sache, die ich lange für mich behalten hab…","Natürlich hab ich gezögert, aber…","Spitze, fast hätte ich das gelöscht…"],
-  it:  ["Dai, quasi non ho postato questa cosa…","Bello, finalmente mi decido a condividerlo…","Mamma mia, quasi non lo condividevo…","Figurati, non avrei mai pensato di postarlo…","Comunque avevo quasi cancellato questo…","Praticamente non era nei miei piani condividerlo…","Assolutamente non per tutti, ma eccolo…","Tipo quasi me lo tenevo per me…","Vabbè, alla fine mi decido a condividerlo…","Ecco, quasi tenevo questo solo per me…"],
-  es:  ["Tío, casi no posteo esto pero aquí va…","Guay, finalmente me decido a compartirlo…","Flipar, casi lo borro antes de publicarlo…","Macho casi no lo comparto pero venga…","Ostia, esto es un poco atrevido pero…","Cojonudo, casi me lo guardo para mí…","De puta madre, no tenía planeado compartirlo…","Chulo pero casi lo borro antes…","Joder, estaba dudando si postear esto…","Brutal, me decidí por fin a compartirlo…"],
-  au:  ["Crikey, almost didn't post this arvo…","No worries if you scroll past, but…","Fair dinkum didn't plan to share this…","Deadset almost kept this to myself…","Heaps of people asked so here it is…","Ripper thing I've been sitting on…","Reckon you'll love this one…","Legend move sharing this, I know…","Not every arvo I share something like this…","Strewth, this one's a bit different…"],
-  ca:  ["Eh, almost didn't post this, hey…","No worries if it's not your thing…","Honestly not sure about this one but here goes eh…","Didn't plan to share this but beauty of it is…","Toque weather kinda post, this one…","Something I've been holding onto, eh…","Double-double energy in this post…","Not everyone gets it but here we go…","Kind of a keener move sharing this but…","Sorted something worth sharing eh…"],
-  nl:  ["Gaaf, ik had dit bijna niet gepost…","Vet, eindelijk besloten dit te delen…","Bro ik twijfelde maar hier is het toch…","Chill, niet gepland maar toch gedeeld…","Lekker moeilijk beslissing maar hier gaat ie…","Tof ding dat ik lang voor mezelf hield…","Super onverwacht maar ik deel het toch…","Joh, ik had dit bijna voor mezelf gehouden…","Goed bezig of niet, hier is het dan…","Wow, bijna niet gepost maar toch…"],
-};
-
-const wCountryClosers = {
-  default: ["but it felt wrong to keep it to myself","but I think you need to see this","and I'm curious what you'll think","but this is too good to hide","and now I can't stop thinking about it","but something tells me you'll like it","and it's not what you're imagining","but I decided to share it anyway"],
-  us:  ["but no cap it felt wrong to keep this to myself","but fr this is too good to hide","and lowkey I'm curious what y'all think","but deadass this deserves to be seen","and ngl it's not what you're imagining","but bestie I decided to share it anyway","and for real something tells me you'll like it","but I'm done holding back tbh"],
-  uk:  ["but it felt proper wrong to keep it quiet","but thought you lot might like it","and I'm cheeky enough to share it","brilliant enough to share, innit","and couldn't keep it to myself, cheers","but decided to be bold about it","proper worth seeing, take my word","sorted it out and here it is"],
-  fr:  ["mais c'était trop dommage de le garder pour moi","mais franchement vous devez voir ça","et carrément curieuse de ce que vous en pensez","mais grave c'est trop bien pour le cacher","et ouf c'est pas ce que vous imaginez","mais j'ai décidé de le partager quand même","et vachement quelque chose me dit que vous allez aimer","mais relou de garder ça secret"],
-  de:  ["aber es fühlte sich falsch an, es zu behalten","aber ich denke, du musst das sehen","und ich bin gespannt auf deine Meinung","aber das ist zu gut zum Verstecken","und ehrlich gesagt ist es nicht was du dir vorstellst","aber ich habe mich entschieden es zu teilen","und irgendwas sagt mir du wirst es lieben","aber genug des Zögerns"],
-  it:  ["ma sarebbe stato sbagliato tenerlo per me","ma penso che tu debba vedere questo","e sono curiosa di cosa ne pensi","ma è troppo bello per nasconderlo","e non è quello che stai immaginando","ma ho deciso di condividerlo comunque","e qualcosa mi dice che ti piacerà","ma basta tenerselo dentro"],
-  es:  ["pero sería un error guardarlo para mí","pero creo que necesitas ver esto","y tengo curiosidad por saber qué piensas","pero es demasiado bueno para ocultarlo","y no es lo que te imaginas","pero decidí compartirlo de todas formas","y algo me dice que te va a gustar","pero ya basta de guardarlo"],
-  au:  ["but she'll be right if you check it out","and reckon you'll love it mate","but heaps worth a look","and deadset couldn't keep it to myself","fair dinkum thought you'd like it","and no worries if it's not your thing","but ripper content doesn't stay hidden","and crikey it's good"],
-  ca:  ["but thought I'd share it eh","and beauty of it is it's worth it","no worries if it's not your thing","and figured you'd appreciate it hey","so here we go I guess","and it's a good one eh","double-double worthy, take my word","sorted this for you lot"],
-  nl:  ["maar het voelde verkeerd om het te houden","maar ik denk dat je dit moet zien","en ik ben benieuwd wat je ervan vindt","maar dit is te goed om te verbergen","en het is niet wat je denkt","maar ik besloot het toch te delen","en iets zegt me dat je het leuk zult vinden","maar genoeg is genoeg"],
-};
-
-function wGetCountryText(country, pool_default, pool_country) {
-  // Return country-specific if available, fallback to default
-  const countryPool = pool_country[country];
-  const pool = countryPool ? countryPool : (pool_country['default'] || pool_default);
-  return pool[Math.floor(Math.random()*pool.length)];
-}
-
-function wGetCountrySlang(country) {
-  const locale = wCountryLocale[country] || wCountryLocale['us'];
-  const slang = locale.slang;
-  // Return 1-2 slang words as casual flavor
-  return slang[Math.floor(Math.random()*slang.length)];
-}
-
-function wordBuild(mode, country) {
-  country = country || 'us';
-  const e = wPick(wEmojis);
-  const cc = wCountryFullStatus[country];
-  const o  = cc ? wPick(cc.openers)   : wGetCountryText(country, wOpeners, wCountryOpeners);
-  const i  = cc ? wPick(cc.intrigue)  : wPick(wIntrigue);
-  const c  = cc ? wPick(cc.curiosity) : wPick(wCuriosity);
-  const p  = cc ? wPick(cc.personal)  : wPick(wPersonal);
-  const u  = cc ? wPick(cc.urgency)   : wPick(wUrgency);
-  const h  = cc ? wPick(cc.hot)       : wPick(wHot);
+function wordBuild(mode){
+  const o=wPick(wOpeners),i=wPick(wIntrigue),c=wPick(wCuriosity),p=wPick(wPersonal),u=wPick(wUrgency),h=wPick(wHot),e=wPick(wEmojis);
   const pats=[
-    o+" "+i+", "+c+" "+u+". "+e,
-    h+", "+c+" "+u+". "+e,
-    p+", "+c+" "+u+". "+e,
-    o+" "+i+", "+p+". "+e,
-    c+" "+u+", "+p+". "+e,
-    h+" "+p+", "+u+". "+e,
-    o+" "+u+", "+c+". "+e
+    o+" "+i+", "+c.toLowerCase()+" "+u+". "+e,
+    h+" "+c.toLowerCase()+", "+u+". "+e,
+    p+", "+c.toLowerCase()+" "+u+". "+e,
+    o+" "+i+", "+p.toLowerCase()+". "+e,
+    c+" "+u+", "+p.toLowerCase()+". "+e,
+    h+" "+p.toLowerCase()+", "+u+". "+e,
+    o+" "+u+", "+c.toLowerCase()+". "+e
   ];
   let text=pats[Math.floor(Math.random()*pats.length)];
   if(mode==="click")    text=c+" "+u+". "+e;
-  if(mode==="mind")     text=h+", "+c+" "+u+". "+e;
-  if(mode==="personal") text=p+", "+i+" "+u+". "+e;
-  if(mode==="hot")      text=h+" "+p+", "+u+". "+e;
-  if(mode==="tease")    text=o+" "+i+", "+c+" "+u+". "+e;
+  if(mode==="mind")     text=h+" "+c.toLowerCase()+", "+u+". "+e;
+  if(mode==="personal") text=p+", "+i.toLowerCase()+" "+u+". "+e;
+  if(mode==="hot")      text=h+" "+p.toLowerCase()+", "+u+". "+e;
+  if(mode==="tease")    text=o+" "+i+", "+c.toLowerCase()+" "+u+". "+e;
   return text;
 }
 
 function wordGenerate(){
   const raw=document.getElementById("word-links").value.trim();
   const mode=document.getElementById("word-mode").value;
-  const country=document.getElementById("word-country").value;
   if(!raw)return;
   if(wordLinkList.length===0) wordLinkList=raw.split("\n").filter(x=>x.trim());
   if(!wordLinkList.length){document.getElementById("word-output").innerText="⚠️ Link habis!";return;}
   const link=wordLinkList.shift();
-  document.getElementById("word-output").innerText=wordBuild(mode,country)+"\n"+link;
+  document.getElementById("word-output").innerText=wordBuild(mode)+"\n"+link;
   document.getElementById("word-links").value=wordLinkList.join("\n");
-  // Update badge
-  const locale = wCountryLocale[country] || wCountryLocale['us'];
-  document.getElementById("word-country-badge").textContent = locale.label;
 }
 function wordCopyText(){navigator.clipboard.writeText(document.getElementById("word-output").innerText);}
 
-/* Country-flavored DM message arrays */
-const wMsgCountry = {
-  us: {
-    m1:["Hey…","Okay so this is random but…","No cap I almost didn't message but…","Lowkey didn't plan this but…","Ngl this is bold but…","Fr fr I almost didn't send this…","Bestie I had to reach out…","Deadass didn't plan to message but…"],
-    m2:["you seem different from everyone else","something about your profile caught my eye fr","I really vibe with your energy","you seem like someone who isn't afraid of new things","your profile made me lowkey curious","you seem like the brave type no cap","my gut says you'd enjoy this tbh","you seem open-minded for real"],
-    m4:["just open the link, don't just wonder 😏","tap it first, judge later bestie","it's free for anyone brave enough to click","don't overthink it, just go fr","you won't regret it I promise","see it for yourself, words aren't enough","one click is all it takes ngl","open it if you're brave enough 🔥"]
-  },
-  uk: {
-    m1:["Alright…","Right so…","Cheers for being here…","Bit forward this but…","Proper random I know but…","Not usually this bold mate but…","Blimey almost didn't message but…","Honestly…"],
-    m2:["you seem like a proper decent sort","something about your profile caught my eye","your vibe is brilliant honestly","you seem like you'd appreciate something different","reckon you'd be up for something a bit different","you seem like good craic actually"],
-    m4:["just have a cheeky look 😏","go on then, give it a look","worth a proper look I promise","don't be shy, just have a peek","cheers for clicking it 🔥","give it a go, you won't regret it"]
-  },
-  fr: {
-    m1:["Salut…","Franchement hésité mais voilà…","Bon carrément random mais…","Grave j'allais pas écrire mais…","Ouf je me lance…","Trop chelou de message mais…","Wesh j'aurais pas dû mais…","Honnêtement…"],
-    m2:["t'as l'air vraiment sympa","quelque chose dans ton profil m'a accroché","ta vibe est carrément bien","t'as l'air d'apprécier les trucs différents","j'avoue ton profil m'a rendu curieux","t'as l'air d'être du genre courageux"],
-    m4:["vas-y jette un œil 😏","allez clique, juge après","c'est gratuit pour les gens courageux","overthink pas, fonce","tu regretteras pas promis","vois par toi-même 🔥"]
-  },
-  de: {
-    m1:["Hey…","Ehrlich gesagt fast nicht geschrieben aber…","Krass zufällig aber…","Wunderbar, ich musste es versuchen…","Heftig eigentlich wollte ich nicht aber…","Geil, fast nicht gesendet aber…","Spitze, spontane Entscheidung aber…","Ehrlich…"],
-    m2:["du wirkst wirklich anders als der Rest","irgendetwas an deinem Profil hat mich neugierig gemacht","deine Energie ist echt prima","du scheinst offen für neue Sachen zu sein","dein Profil hat mich ehrlich gesagt fasziniert","du wirkst wie jemand der Mut hat"],
-    m4:["schau einfach mal rein 😏","klick erstmal, urteile danach","ist gratis für alle die mutig genug sind","überleg nicht lang, einfach machen","du wirst es nicht bereuen versprochen","überzeug dich selbst 🔥"]
-  },
-  it: {
-    m1:["Ciao…","Figurati quasi non scrivevo ma…","Dai assurdo ma eccomi…","Bello, dovevo provarci…","Mamma mia quasi non mandavo ma…","Vabbè mi butto…","Comunque non era nei piani ma…","Onestamente…"],
-    m2:["sembri davvero diverso dagli altri","qualcosa nel tuo profilo mi ha incuriosito","la tua energia è fantastica","sembri aperto alle cose nuove","il tuo profilo mi ha praticamente colpito","sembri una persona coraggiosa"],
-    m4:["dai dai un'occhiata 😏","clicca prima, giudica dopo","è gratis per chi ha coraggio","non pensarci troppo, vai","non te ne pentirai promesso","convinciti da solo 🔥"]
-  },
-  es: {
-    m1:["Hola…","Tío casi no escribo pero…","Guay muy random pero…","Flipar, tenía que intentarlo…","Macho casi no lo mando pero…","Ostia me lanzo…","Cojonudo no era mi plan pero…","Honestamente…"],
-    m2:["pareces diferente de verdad","algo en tu perfil me llamó la atención","tu vibra es genial de verdad","pareces abierto a cosas nuevas","tu perfil me dejó con curiosidad","pareces del tipo valiente"],
-    m4:["dale échale un vistazo 😏","toca primero, juzga después","es gratis para los valientes","no te lo pienses, ve","no te vas a arrepentir te lo juro","compruébalo tú mismo 🔥"]
-  },
-  au: {
-    m1:["Hey mate…","No worries if this is random but…","G'day…","Fair dinkum didn't plan this but…","Crikey almost didn't message but…","Reckon I'd reach out…","Deadset random but…","Heaps random but…"],
-    m2:["you seem like a legend","something about your profile is ripper","you've got a proper good vibe","you seem like you'd be a great time","you're coming across as a fair dinkum good person","you seem like solid gold"],
-    m4:["just have a squiz 😏","go on then, have a look mate","worth checking out no worries","deadset worth a look 🔥","she'll be right just click it","ripper content waiting for ya"]
-  },
-  ca: {
-    m1:["Hey eh…","Not sure how to say this but…","Pretty random hey but…","Honestly didn't plan to message but…","Kind of a keener move but…","Here goes nothing eh…","Sorry to bother but…","No worries if this is weird but…"],
-    m2:["you seem like a genuinely good person","something about your profile is beauty","your vibe is pretty solid honestly","you seem like you'd appreciate something different","you seem like you'd be great to know eh","you come across as a real one"],
-    m4:["just check it out eh 😏","beauty thing waiting, take my word","worth a look no worries","go on, give it a click 🔥","no pressure but it's pretty good","definitely worth a peek hey"]
-  },
-  nl: {
-    m1:["Hey…","Gaaf, bijna niet geschreven maar…","Vet random maar…","Bro spontaan maar…","Chill bijna niet verzonden maar…","Tof, moest het proberen…","Lekker onverwacht maar…","Eerlijk gezegd…"],
-    m2:["je lijkt echt anders dan de rest","iets aan je profiel maakte me nieuwsgierig","jouw vibe is super gaaf","je lijkt open te staan voor nieuwe dingen","je profiel heeft me echt getroffen","je lijkt het type dat durfde"],
-    m4:["ga gewoon even kijken 😏","klik eerst, oordeel later","gratis voor wie durft","niet te lang nadenken, gewoon doen","je gaat er geen spijt van krijgen beloofd","zie het zelf 🔥"]
-  },
-};
-
 function wordGenerateMsg(){
   const raw=document.getElementById("word-msgLinks").value.trim();
-  const country=document.getElementById("word-msg-country").value;
   if(!raw){document.getElementById("word-msgOutput").innerText="𝗜𝘀𝗶 𝘁𝗲𝗿𝗹𝗲𝗯𝗶𝗵 𝗱𝗮𝗵𝘂𝗹𝘂 𝗹𝗶𝗻𝗸 𝗻𝘆𝗮 !";return;}
   if(wordMsgLinkList.length===0) wordMsgLinkList=raw.split("\n").filter(x=>x.trim());
   if(!wordMsgLinkList.length){document.getElementById("word-msgOutput").innerText="⚠️ Link habis!";return;}
   const link=wordMsgLinkList.shift();
-  const cc = wMsgCountry[country] || wMsgCountry['us'];
-  const m1 = wPick(cc.m1);
-  const m2 = wPick(cc.m2);
-  const m3 = wPick(wMsg3);
-  const m4 = wPick(cc.m4);
-  const me = wPick(wMsgE);
-  const text=m1+" "+m2+", "+m3+" — "+m4+" "+me;
+  const text=wPick(wMsg1)+" "+wPick(wMsg2)+", "+wPick(wMsg3)+" — "+wPick(wMsg4)+" "+wPick(wMsgE);
   document.getElementById("word-msgOutput").innerText=text+"\n"+link;
   document.getElementById("word-msgLinks").value=wordMsgLinkList.join("\n");
-  // Update badge
-  const locale = wCountryLocale[country] || wCountryLocale['us'];
-  document.getElementById("word-country-badge")&&(document.getElementById("word-country-badge").textContent=locale.label);
 }
 function wordCopyMsg(){navigator.clipboard.writeText(document.getElementById("word-msgOutput").innerText);}
 
@@ -1656,125 +1391,10 @@ const igStoryConfidence=[
 
 function igPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
-function igUpdateCountryTag(){
-  const country = document.getElementById('ig-country').value;
-  const locale = wCountryLocale[country] || wCountryLocale['us'];
-  const tag = document.getElementById('ig-country-tag');
-  tag.textContent = locale.label;
-}
-
-/* Country-flavored IG Bio endings */
-const igCountryBioSuffix = {
-  us:  ["Link in bio 🔗","Check the link 🔥","Tap the link ✨","See the link 🖤","Link below 💎","One tap away 👀","It's in the link 🔗","Go check the link 🔥"],
-  uk:  ["Link in bio, cheers 🔗","Have a proper look 🔥","Go on, tap the link ✨","Sorted in the link 🖤","Link's right there mate 💎","Give it a cheeky tap 👀","Proper good stuff in the link 🔗","Go on then, have a look 🔥"],
-  fr:  ["Lien en bio 🔗","Clique voir 🔥","T'as qu'à regarder ✨","Le lien dit tout 🖤","C'est dans le lien 💎","Vas-y clique 👀","Franchement check le lien 🔗","Carrément dans le lien 🔥"],
-  de:  ["Link in der Bio 🔗","Schau mal rein 🔥","Im Link findest du mehr ✨","Einfach anklicken 🖤","Link ist da 💎","Klick den Link 👀","Geil, schau im Link nach 🔗","Krass, einfach anklicken 🔥"],
-  it:  ["Link in bio 🔗","Dai, guarda il link 🔥","Trovi tutto nel link ✨","Clicca il link 🖤","Eccolo nel link 💎","Vai a vedere 👀","Figurati, clicca il link 🔗","Bello, tutto nel link 🔥"],
-  es:  ["Link en bio 🔗","Dale, mira el link 🔥","Todo en el link ✨","El link lo dice todo 🖤","Ahí está el link 💎","Venga, échale un ojo 👀","Tío, mira el link 🔗","Guay, está todo en el link 🔥"],
-  au:  ["Link in bio mate 🔗","Give it a squiz 🔥","No worries, tap the link ✨","Deadset good stuff in the link 🖤","Link's there cobber 💎","Ripper stuff in the link 👀","Fair dinkum check the link 🔗","Go on, have a squiz 🔥"],
-  ca:  ["Link in bio eh 🔗","Take a look hey 🔥","Tap the link no worries ✨","Beauty waiting in the link 🖤","Link right there eh 💎","Go on then hey 👀","Check it out eh 🔗","Beauty stuff in the link 🔥"],
-  nl:  ["Link in bio 🔗","Gaaf, kijk maar 🔥","Alles in de link ✨","De link zegt het allemaal 🖤","Link staat er bro 💎","Vet, ga even kijken 👀","Tof, check de link 🔗","Gewoon klikken joh 🔥"],
-};
-
-function igGetBioSuffix(country) {
-  const pool = igCountryBioSuffix[country] || igCountryBioSuffix['us'];
-  return pool[Math.floor(Math.random()*pool.length)];
-}
-
-/* PER-COUNTRY IG BIO CONTENT */
-const igCountryBioContent = {
-  fr: {
-    mystery:["Pas facile a cerner... mais le lien en bio dit tout 🔮","Mysterieuse et selective 🌙 Le lien en bio revele plus 🔗","On me comprend rarement du premier coup... le lien en bio aide 🖤","Je dis peu mais le lien en bio dit tout 🔗","Certaines choses ne s'expliquent pas... elles se vivent dans le lien 🔮"],
-    flirty:["Douce en surface, dangereuse dans le lien 💋 Clique voir","Tu n'es pas pret(e) pour ce que le lien contient 🔥 Vas-y","Je souriais deja avant que tu arrives 😏 Lien en bio","Je choisis avec soin a qui je partage ca 💌 Lien en bio","Trop pour une seule page 💋 Tout dans le lien"],
-    bold:["3 crans d'avance et je ralentis pour personne 🔥 Lien en bio","Pas de permission necessaire pour etre moi-meme 💎 Lien en bio","Sous-estimez-moi... le lien en bio corrigera ca 😏","Audacieuse n'est pas mon humeur c'est ma base 🔥 Lien en bio","Pas pour les timides 💎 Le lien en bio le prouve"],
-    soft:["Douce dehors, tout un monde interieur 🌸 Lien en bio","Plus chaleureuse qu'il n'y parait au premier coup d'oeil 🌸 Lien en bio","Coeur doux, contenu vrai 🌸 Dans le lien","Delicate mais surprenante 🌹 Lien en bio","De la douceur qui marque 🌸 Lien en bio"],
-    premium:["Qualite uniquement. Sans exception 💎 Lien en bio","Pas pour tout le monde c'est voulu 💎 Lien en bio","Rare. Vrai. Ca vaut chaque seconde 💎 Lien en bio","Je connais ma valeur 💎 Le lien en bio le montre","Exclusif. Soigne. Pour ceux qui reconnaissent la qualite 💎 Lien en bio"]
-  },
-  de: {
-    mystery:["Schwer zu durchschauen... aber der Link in der Bio sagt alles 🔮","Geheimnisvoll und waehlerisch 🌙 Link in der Bio verraet mehr 🔗","Mich versteht man selten auf Anhieb... der Link hilft 🖤","Ich sage wenig aber der Link in der Bio sagt alles 🔗","Manche Dinge erklart man nicht... sie werden im Link erlebt 🔮"],
-    flirty:["Sanft an der Oberflache, gefahrlich im Link 💋 Klick rein","Du bist noch nicht bereit fuer was der Link enthaelt 🔥 Los","Ich laechelte schon bevor du ankamst 😏 Link in der Bio","Ich waehle sorgfaltig mit wem ich das teile 💌 Link in Bio","Zu viel fuer eine Seite 💋 Alles im Link"],
-    bold:["3 Schritte voraus und verlangsame fuer niemanden 🔥 Link in Bio","Keine Erlaubnis noetig um ich selbst zu sein 💎 Link in Bio","Unterschaetze mich... der Link wird das korrigieren 😏","Mutig ist nicht meine Stimmung es ist meine Basis 🔥 Link in Bio","Nicht fuer Feiglinge 💎 Der Link beweist es"],
-    soft:["Sanft aussen, ganze Welt innen 🌸 Link in Bio","Waermer als man auf den ersten Blick denkt 🌸 Link in Bio","Weiches Herz, echter Inhalt 🌸 Im Link","Zart aber ueberraschend 🌹 Link in Bio","Sanftheit die Spuren hinterlaesst 🌸 Link in Bio"],
-    premium:["Nur Qualitaet. Keine Ausnahmen 💎 Link in Bio","Nicht fuer jeden das ist Absicht 💎 Link in Bio","Selten. Echt. Jeden Moment wert 💎 Link in Bio","Ich kenne meinen Wert 💎 Der Link zeigt es","Exklusiv. Durchdacht. Fuer die die Qualitaet erkennen 💎 Link in Bio"]
-  },
-  it: {
-    mystery:["Difficile da capire... ma il link in bio dice tutto 🔮","Misteriosa e selettiva 🌙 Il link in bio rivela di piu 🔗","Mi capiscono raramente al primo colpo... il link aiuta 🖤","Dico poco ma il link in bio dice tutto 🔗","Alcune cose non si spiegano... si vivono nel link 🔮"],
-    flirty:["Dolce in superficie, pericolosa nel link 💋 Dai clicca","Non sei pronto/a per quello che il link contiene 🔥 Vai","Sorridevo gia prima che arrivassi 😏 Link in bio","Scelgo con cura con chi condivido questo 💌 Link in bio","Troppo per una sola pagina 💋 Tutto nel link"],
-    bold:["3 passi avanti e non rallento per nessuno 🔥 Link in bio","Non chiedo permesso per essere me stessa 💎 Link in bio","Sottovalutami... il link in bio corregera quello 😏","Audace non e il mio umore e la mia base 🔥 Link in bio","Non per i codardi 💎 Il link lo dimostra"],
-    soft:["Dolce fuori, tutto un mondo dentro 🌸 Link in bio","Piu calorosa di quanto sembri a prima vista 🌸 Link in bio","Cuore morbido, contenuto vero 🌸 Nel link","Delicata ma sorprendente 🌹 Link in bio","Dolcezza che lascia il segno 🌸 Link in bio"],
-    premium:["Solo qualita. Nessuna eccezione 💎 Link in bio","Non per tutti e voluto 💎 Link in bio","Raro. Vero. Vale ogni secondo 💎 Link in bio","Conosco il mio valore 💎 Il link lo mostra","Esclusivo. Curato. Per chi riconosce la qualita 💎 Link in bio"]
-  },
-  es: {
-    mystery:["Dificil de descifrar... pero el link en bio lo dice todo 🔮","Misteriosa y selectiva 🌙 El link en bio revela mas 🔗","Rara vez me entienden a la primera... el link ayuda 🖤","Digo poco pero el link en bio lo dice todo 🔗","Algunas cosas no se explican... se viven en el link 🔮"],
-    flirty:["Suave en la superficie, peligrosa en el link 💋 Dale mira","No estas listo/a para lo que contiene el link 🔥 Venga","Ya sonreia antes de que llegaras 😏 Link en bio","Elijo cuidadosamente con quien comparto esto 💌 Link en bio","Demasiado para una sola pagina 💋 Todo en el link"],
-    bold:["3 pasos adelante y no freno por nadie 🔥 Link en bio","No pido permiso para ser yo misma 💎 Link en bio","Subestimame... el link en bio lo corregira 😏","Audaz no es mi estado de animo es mi base 🔥 Link en bio","No es para cobardes 💎 El link lo demuestra"],
-    soft:["Suave por fuera, todo un mundo por dentro 🌸 Link en bio","Mas calida de lo que parece a primera vista 🌸 Link en bio","Corazon tierno, contenido real 🌸 En el link","Delicada pero sorprendente 🌹 Link en bio","Suavidad que deja huella 🌸 Link en bio"],
-    premium:["Solo calidad. Sin excepciones 💎 Link en bio","No es para todos es intencional 💎 Link en bio","Raro. Real. Vale cada segundo 💎 Link en bio","Conozco mi valor 💎 El link lo muestra","Exclusivo. Cuidado. Para los que reconocen la calidad 💎 Link en bio"]
-  },
-  nl: {
-    mystery:["Moeilijk te doorgronden... maar de link in bio zegt alles 🔮","Mysterieus en selectief 🌙 Link in bio onthult meer 🔗","Ze begrijpen me zelden meteen... de link helpt 🖤","Ik zeg weinig maar de link in bio zegt alles 🔗","Sommige dingen leg je niet uit... die beleef je in de link 🔮"],
-    flirty:["Zacht aan de oppervlakte, gevaarlijk in de link 💋 Kijk maar","Je bent er nog niet klaar voor wat de link bevat 🔥 Doe het","Ik lachte al voor je aankwam 😏 Link in bio","Ik kies zorgvuldig met wie ik dit deel 💌 Link in bio","Te veel voor een pagina 💋 Alles in de link"],
-    bold:["3 stappen voor en vertraag voor niemand 🔥 Link in bio","Geen toestemming nodig om mezelf te zijn 💎 Link in bio","Onderschat me... de link in bio corrigeert dat 😏","Gedurfd is niet mijn stemming het is mijn basis 🔥 Link in bio","Niet voor bangeriken 💎 De link bewijst het"],
-    soft:["Zacht buiten, heel een wereld binnen 🌸 Link in bio","Warmer dan het op het eerste gezicht lijkt 🌸 Link in bio","Zacht hart, echte inhoud 🌸 In de link","Delicaat maar verrassend 🌹 Link in bio","Zachtheid die sporen nalaat 🌸 Link in bio"],
-    premium:["Alleen kwaliteit. Geen uitzonderingen 💎 Link in bio","Niet voor iedereen dat is de bedoeling 💎 Link in bio","Zeldzaam. Echt. Elke seconde waard 💎 Link in bio","Ik ken mijn waarde 💎 De link laat het zien","Exclusief. Doordacht. Voor wie kwaliteit herkent 💎 Link in bio"]
-  }
-};
-
-/* PER-COUNTRY IG STORY CONTENT */
-const igCountryStoryContent = {
-  fr: {
-    tease:["Tu ne m'as pas trouve par hasard... viens voir pourquoi 😏🔗","C'est juste un apercu... le reste t'attend 😈\u2728","Tu es deja curieux... laisse-moi aggraver ca 😏🔥","J'ai laisse quelque chose pour toi... ne me fais pas attendre 🖤🔐","Clique... si tu oses 😈","Je gardais ca depuis un moment... maintenant c'est a toi 🖤🔥"],
-    hot:["Hey toi... je sens que tu regardes 😏🖤🔥","Ne fais pas que regarder... viens plus pres 🪶\u2728","Je sais que tu veux ca... ne mens pas 😈🍷","Fais attention... je pourrais etre ta faiblesse 🪶🔥","Je t'attendais... 🖤👀"],
-    mystery:["Je n'ai pas besoin d'expliquer... le lien le fait pour moi 🔐\u2728","La plupart pensent me connaitre... ils ne me connaissent pas 😏🔥","Ce que vous voyez ici n'est pas toute l'histoire 🖤🔗","Certaines choses ne s'expliquent pas... elles se vivent 👀\u2728","Plus tu regardes moins tu comprends... et plus tu veux 😈🔥"],
-    personal:["Hey... j'attendais quelqu'un comme toi 👀💋","Sois pas timide... je sens ta curiosite 😏🔥","Je pense que tu es exactement pour qui c'est... 👀🖤","J'ai garde la meilleure partie pour toi... rate pas ca 💋🔐","Reste avec moi... ca s'ameliore a partir d'ici 👀🔥"],
-    confidence:["Ne fais pas que me regarder... viens voir le vrai moi 🔥👀","Je sais ce que je vaux... et toi? 💮","Sans excuses. Sans filtres. Sans limites 🔥","Je ne rapetisse pour personne... et le lien le prouve 🔥🔗","La confiance est belle sur moi... vois par toi-meme 😏\u2728"]
-  },
-  de: {
-    tease:["Du hast mich nicht zufaellig gefunden... komm sehen warum 😏🔗","Das ist nur ein Vorgeschmack... der Rest wartet auf dich 😈\u2728","Du bist schon neugierig... lass mich es schlimmer machen 😏🔥","Ich hab was fuer dich hinterlassen... lass mich nicht warten 🖤🔐","Klick... wenn du dich traust 😈","Ich hab das eine Weile aufgehoben... jetzt gehoert es dir 🖤🔥"],
-    hot:["Hey du... ich spuere dass du guckst 😏🖤🔥","Nur nicht gaffen... komm naeher 🪶\u2728","Ich weiss dass du das willst... lueg nicht 😈🍷","Vorsicht... ich koennte deine Schwaeche sein 🪶🔥","Ich habe auf dich gewartet... 🖤👀"],
-    mystery:["Ich muss nichts erklaeren... der Link tut es fuer mich 🔐\u2728","Die meisten denken sie kennen mich... tun sie nicht 😏🔥","Was ihr hier seht ist nicht die ganze Geschichte 🖤🔗","Manche Dinge erklaert man nicht... man erlebt sie 👀\u2728","Je mehr du schaust desto weniger verstehst du... und desto mehr willst du 😈🔥"],
-    personal:["Hey... ich habe auf jemanden wie dich gewartet 👀💋","Sei nicht schuchtern... ich spuere deine Neugier 😏🔥","Ich glaube du bist genau fuer wen das ist... 👀🖤","Ich hab das Beste fuer dich aufgespart... verpasse es nicht 💋🔐","Bleib bei mir... es wird besser von hier 👀🔥"],
-    confidence:["Schau mich hier nicht nur an... komm den echten mich sehen 🔥👀","Ich kenne meinen Wert... und du? 💮","Unangebrochen. Unaufhaltsam. Ungefiltert 🔥","Ich schrumpfe fuer niemanden... und der Link beweist es 🔥🔗","Selbstvertrauen sieht gut aus an mir... sieh selbst 😏\u2728"]
-  },
-  it: {
-    tease:["Non mi hai trovata per caso... vieni a vedere perche 😏🔗","Questo e solo un assaggio... il resto ti aspetta 😈\u2728","Sei gia curioso... lasciami peggiorare la cosa 😏🔥","Ho lasciato qualcosa per te... non farmi aspettare 🖤🔐","Clicca... se hai coraggio 😈","Tenevo questo da un po'... ora e tuo 🖤🔥"],
-    hot:["Ehi tu... sento che stai guardando 😏🖤🔥","Non guardare soltanto... vieni piu vicino/a 🪶\u2728","So che lo vuoi... non mentire 😈🍷","Attenzione... potrei essere la tua debolezza 🪶🔥","Ti aspettavo... 🖤👀"],
-    mystery:["Non ho bisogno di spiegare... il link lo fa per me 🔐\u2728","La maggior parte pensa di conoscermi... non e cosi 😏🔥","Quello che vedi qui non e tutta la storia 🖤🔗","Alcune cose non si spiegano... si vivono 👀\u2728","Piu guardi meno capisci... e piu vuoi 😈🔥"],
-    personal:["Ehi... aspettavo qualcuno come te 👀💋","Non essere timida/o... sento la tua curiosita 😏🔥","Penso che tu sia esattamente la persona per cui e fatto questo... 👀🖤","Ho tenuto la parte migliore per te... non perderla 💋🔐","Resta con me... migliora da qui 👀🔥"],
-    confidence:["Non guardarmi solo qui... vieni a vedere la vera me 🔥👀","Conosco il mio valore... e tu? 💮","Senza scuse. Senza filtri. Senza limiti 🔥","Non mi rimpicciolisco per nessuno... e il link lo dimostra 🔥🔗","La fiducia mi sta bene... guarda di persona 😏\u2728"]
-  },
-  es: {
-    tease:["No me encontraste por accidente... ven a ver por que 😏🔗","Esto es solo un vistazo... el resto te espera 😈\u2728","Ya tienes curiosidad... dejame empeorarla 😏🔥","Deje algo para ti... no me hagas esperar 🖤🔐","Toca... si te atreves 😈","Guarde esto un tiempo... ahora es tuyo 🖤🔥"],
-    hot:["Ey tu... siento que estas mirando 😏🖤🔥","No solo mires... acercate mas 🪶\u2728","Se que lo quieres... no mientas 😈🍷","Cuidado... podria ser tu debilidad 🪶🔥","Te estaba esperando... 🖤👀"],
-    mystery:["No necesito explicar... el link lo hace por mi 🔐\u2728","La mayoria cree que me conoce... no es asi 😏🔥","Lo que ves aqui no es toda la historia 🖤🔗","Algunas cosas no se explican... se viven 👀\u2728","Cuanto mas miras menos entiendes... y mas quieres 😈🔥"],
-    personal:["Ey... estaba esperando a alguien como tu 👀💋","No seas timido/a... siento tu curiosidad 😏🔥","Creo que eres exactamente para quien es esto... 👀🖤","Guarde lo mejor para ti... no te lo pierdas 💋🔐","Quedate conmigo... mejora desde aqui 👀🔥"],
-    confidence:["No solo me mires aqui... ven a ver la version real de mi 🔥👀","Se mi valor... y tu? 💮","Sin excusas. Sin filtros. Sin limites 🔥","No me encojo para nadie... y el link lo demuestra 🔥🔗","La confianza me queda bien... compruebalo tu mismo/a 😏\u2728"]
-  },
-  nl: {
-    tease:["Je vond me niet toevallig... kom zien waarom 😏🔗","Dit is slechts een voorproefje... de rest wacht op je 😈\u2728","Je bent al nieuwsgierig... laat me het erger maken 😏🔥","Ik liet iets voor jou achter... laat me niet wachten 🖤🔐","Klik... als je durft 😈","Ik bewaarde dit een tijdje... nu is het van jou 🖤🔥"],
-    hot:["Hey jij... ik voel dat je kijkt 😏🖤🔥","Niet alleen staren... kom dichterbij 🪶\u2728","Ik weet dat je dit wilt... lieg niet 😈🍷","Opgelet... ik kan jouw zwakte zijn 🪶🔥","Ik wachtte op je... 🖤👀"],
-    mystery:["Ik hoef niets uit te leggen... de link doet het voor mij 🔐\u2728","De meesten denken me te kennen... dat doen ze niet 😏🔥","Wat je hier ziet is niet het hele verhaal 🖤🔗","Sommige dingen leg je niet uit... die beleef je 👀\u2728","Hoe meer je kijkt hoe minder je begrijpt... en hoe meer je wilt 😈🔥"],
-    personal:["Hey... ik wachtte op iemand zoals jij 👀💋","Wees niet verlegen... ik voel je nieuwsgierigheid 😏🔥","Ik denk dat jij precies degene bent voor wie dit is... 👀🖤","Ik bewaarde het beste voor jou... mis het niet 💋🔐","Blijf bij me... het wordt beter vanaf hier 👀🔥"],
-    confidence:["Kijk me hier niet alleen aan... kom de echte mij zien 🔥👀","Ik ken mijn waarde... en jij? 💮","Ongebroken. Onstopbaar. Ongefilterd 🔥","Ik krimp voor niemand... en de link bewijst het 🔥🔗","Zelfvertrouwen staat me goed... zie zelf 😏\u2728"]
-  }
-};
-
 function igGenBio(){
   const mode=document.getElementById('ig-bio-mode').value;
-  const country=document.getElementById('ig-country').value;
-  let result;
-  const cc = igCountryBioContent[country];
-  if(cc && cc[mode]) {
-    result = igPick(cc[mode]);
-  } else {
-    const map={mystery:igBioMystery,flirty:igBioFlirty,bold:igBioBold,soft:igBioSoft,premium:igBioPremium};
-    result = igPick(map[mode]||igBioMystery);
-    const suffix = igGetBioSuffix(country);
-    result = result.replace(/(?:Link in bio|link in bio|Check the link|Tap the link|See the link|Link below)[^\n]*/gi, suffix);
-    if(!result.includes(suffix) && country !== 'us') {
-      result = result + ' ' + suffix;
-    }
-  }
+  const map={mystery:igBioMystery,flirty:igBioFlirty,bold:igBioBold,soft:igBioSoft,premium:igBioPremium};
+  const result=igPick(map[mode]||igBioMystery);
   const el=document.getElementById('ig-bio-result');
   el.innerText=result;
   el.classList.add('has-content');
@@ -1783,37 +1403,11 @@ function igGenBio(){
   count.innerText=len+' / 150 karakter';
   count.className='ig-char-count'+(len>150?' warn':'');
 }
-/* Country-flavored IG Story closers */
-const igCountryStoryClosers = {
-  us:  ["Tap the link 🔥","Link in bio ✨","Go see 👀","It's right there 📎","One tap 🖤","Y'all go check it 🔗","Deadass tap it 🔥","No cap go look 👀"],
-  uk:  ["Go on then, tap it 🔥","Have a proper look ✨","Give it a cheeky tap 👀","Link's right there mate 📎","Go on, be bold 🖤","Sorted, just tap it 🔗","Cheers for clicking 🔥","Brilliant, go have a look 👀"],
-  au:  ["Go on, have a squiz 🔥","Ripper stuff in the link ✨","No worries, just tap 👀","Deadset click it 📎","Fair dinkum good stuff 🖤","Go on mate, click it 🔗","Crikey good stuff in there 🔥","She'll be right, just click 👀"],
-  ca:  ["Take a look eh 🔥","Go on then hey ✨","Link's right there eh 👀","Beauty waiting, go check 📎","Tap it no worries 🖤","Go on, check it hey 🔗","Beauty stuff, just tap 🔥","Worth a look for sure eh 👀"],
-  fr:  ["Vas-y, clique 🔥","Regarde le lien ✨","Touche le lien 👀","C'est dans le lien 📎","Clique voir 🖤","Franchement clique 🔗","Carrement clique 🔥","Grave, vas voir 👀"],
-  de:  ["Schau mal rein 🔥","Klick den Link ✨","Im Link ist mehr 👀","Einfach klicken 📎","Jetzt anklicken 🖤","Krass, einfach klicken 🔗","Geil, schau rein 🔥","Wunderbar, jetzt klicken 👀"],
-  it:  ["Dai, clicca 🔥","Guarda il link ✨","Vai a vedere 👀","Tutto nel link 📎","Clicca subito 🖤","Figurati, clicca 🔗","Bello, vai a vedere 🔥","Mamma mia, clicca 👀"],
-  es:  ["Dale, clica 🔥","Mira el link ✨","Vealo 👀","Todo ahi 📎","Venga, toca 🖤","Tio, mira ya 🔗","Guay, dale click 🔥","Flipar, va a verlo 👀"],
-  nl:  ["Ga even kijken 🔥","Check de link ✨","Link staat er joh 👀","Gewoon klikken 📎","Tof, ga kijken 🖤","Gaaf, even klikken 🔗","Vet, check het 🔥","Bro, ga even kijken 👀"],
-};
-
-function igGetStoryCloser(country) {
-  const pool = igCountryStoryClosers[country] || igCountryStoryClosers['us'];
-  return pool[Math.floor(Math.random()*pool.length)];
-}
 
 function igGenStory(){
   const mode=document.getElementById('ig-story-mode').value;
-  const country=document.getElementById('ig-country').value;
-  let result;
-  const cc = igCountryStoryContent[country];
-  if(cc && cc[mode]) {
-    result = igPick(cc[mode]);
-  } else {
-    const map={tease:igStoryTease,hot:igStoryHot,mystery:igStoryMystery,personal:igStoryPersonal,confidence:igStoryConfidence};
-    result = igPick(map[mode]||igStoryTease);
-    const closer = igGetStoryCloser(country);
-    result = result + ' ' + closer;
-  }
+  const map={tease:igStoryTease,hot:igStoryHot,mystery:igStoryMystery,personal:igStoryPersonal,confidence:igStoryConfidence};
+  const result=igPick(map[mode]||igStoryTease);
   const el=document.getElementById('ig-story-result');
   el.innerText=result;
   el.classList.add('has-content');
@@ -1823,12 +1417,6 @@ function igCopy(id){
   const text=document.getElementById(id).innerText;
   navigator.clipboard.writeText(text);
 }
-
-// Initialize country tag
-document.addEventListener('DOMContentLoaded', function(){
-  igUpdateCountryTag();
-  document.getElementById('ig-country').addEventListener('change', igUpdateCountryTag);
-});
 
 /* ══ RANDOM TEXT GENERATOR ══ */
 function rtPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
