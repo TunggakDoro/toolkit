@@ -12,15 +12,79 @@
   --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
   --green:#00ff87;--green-dim:rgba(0,255,135,.08);--green-glow:0 0 30px rgba(0,255,135,.25);
   --cyan:#00d4ff;--red:#ff4560;--red-dim:rgba(255,69,96,.1);
-  --blue:#3b82f6;--violet:#7c3aed;
+  --blue:#3b82f6;--violet:#00d4ff;
   --text:#e8eaf6;--muted:#4a5568;--muted2:#718096;
   --accent:#22c55e;--accent2:#3b82f6;
   --rt-surface:#0d0f17;--rt-surface2:#12151f;--rt-border:rgba(255,255,255,.08);
-  --rt-accent:#7c6cfa;--rt-accent2:#c084fc;--rt-muted:#8882aa;--rt-faint:#2a2a3a;
+  --rt-accent:#00d4ff;--rt-accent2:#3b82f6;--rt-muted:#718096;--rt-faint:#1a2030;
   --rt-success:#4ade80;--rt-radius:12px;--rt-radius-sm:8px;
 }
+body.light-mode{
+  --bg:#f0f4f8;--surface:#ffffff;--surface2:#e8edf5;--surface3:#dde4ef;
+  --border:rgba(0,0,0,.1);--border2:rgba(0,0,0,.15);
+  --green:#009952;--green-dim:rgba(0,153,82,.1);--green-glow:0 0 30px rgba(0,153,82,.2);
+  --cyan:#0099bb;--red:#d63050;--red-dim:rgba(214,48,80,.1);
+  --blue:#2563eb;--violet:#0099bb;
+  --text:#1a202c;--muted:#9aa5b4;--muted2:#718096;
+  --accent:#16a34a;--accent2:#2563eb;
+  --rt-surface:#ffffff;--rt-surface2:#e8edf5;--rt-border:rgba(0,0,0,.12);
+  --rt-accent:#0099bb;--rt-accent2:#2563eb;--rt-muted:#4a5568;--rt-faint:#cbd5e1;
+  --rt-success:#16a34a;--rt-radius:12px;--rt-radius-sm:8px;
+}
+/* Light mode — topbar & country bar */
+body.light-mode .topbar{background:rgba(240,244,248,.95);border-bottom-color:rgba(0,0,0,.15)}
+body.light-mode .country-bar{background:rgba(255,255,255,.8);border-bottom-color:rgba(0,153,187,.15)}
+body.light-mode body::before,body.light-mode body::after{opacity:.3}
+/* Light mode — inputs & selects */
+body.light-mode #tab-name select,body.light-mode #tab-name input,
+body.light-mode #tab-word select,body.light-mode #tab-word textarea,
+body.light-mode #tab-ig select{background:#f8fafc;color:#1a202c;border-color:rgba(0,0,0,.2)}
+body.light-mode #tab-totp textarea{background:#f8fafc;color:#1a202c}
+body.light-mode #tab-name textarea{background:#f8fafc;color:#1a202c}
+body.light-mode .rt-textarea{background:#f8fafc;color:#1a202c}
+body.light-mode .rt-num-input{background:#f8fafc;color:#1a202c}
+/* Light mode — result text warna gelap agar terbaca */
+body.light-mode .w-result{color:#1a202c !important}
+body.light-mode #tab-rtext .rt-result-text{color:#1a202c !important}
+body.light-mode #tab-ig .ig-result{color:#1a202c !important;background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.12)}
+body.light-mode #tab-totp .t-code-block{color:#007a3d;text-shadow:none;background:rgba(0,153,82,.08);border-color:rgba(0,153,82,.2)}
+body.light-mode #tab-totp .t-timer-num{color:#007a3d;text-shadow:none}
+body.light-mode #tab-totp .t-bar-fill{background:linear-gradient(90deg,#009952,#0099bb)}
+body.light-mode #tab-totp .t-res-head{background:var(--surface2)}
+body.light-mode #tab-rtext .rt-tpl-card.active{background:#e0f2fe;border-color:#0099bb}
+body.light-mode #tab-rtext .rt-tpl-card.active .rt-tpl-text{color:#1e3a5f}
+body.light-mode #tab-rtext .rt-result-block{background:#ffffff;border-color:rgba(0,0,0,.12)}
+body.light-mode #tab-rtext .rt-result-tag{background:#e0f2fe;color:#0077a0}
+body.light-mode #tab-rtext .rt-btn-copy.copied{background:#dcfce7;border-color:#16a34a;color:#15803d}
+body.light-mode #tab-rtext .rt-empty-state{color:#9aa5b4}
+body.light-mode #tab-rtext .rt-add-section{background:#ffffff}
+body.light-mode #tab-rtext .rt-controls{background:#ffffff}
+body.light-mode #tab-name .ng-card{background:#ffffff}
+body.light-mode #tab-name .ng-result-area{background:#ffffff}
+body.light-mode #tab-name textarea{background:#f8fafc;color:#1a202c}
+body.light-mode #tab-word .w-card{background:#ffffff}
+body.light-mode #tab-ig .ig-card{background:#ffffff}
+body.light-mode #tab-totp .t-input-card,body.light-mode #tab-totp .t-timer,
+body.light-mode #tab-totp .t-results,body.light-mode #tab-totp .t-sync{background:#ffffff}
+body.light-mode #tab-totp .t-header{background:linear-gradient(135deg,#e8edf5,#dde4ef)}
+body.light-mode .scan-line{opacity:.2}
+body.light-mode #tab-totp .t-row-name{color:#1a202c}
+body.light-mode #tab-totp .t-otp-row:hover{background:rgba(0,0,0,.03)}
+/* Toggle button */
+.theme-toggle{
+  margin-left:auto;flex-shrink:0;
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  border-radius:30px;padding:5px 12px;cursor:pointer;
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted2);
+  transition:all .25s;white-space:nowrap;
+}
+.theme-toggle:hover{background:rgba(255,255,255,.1);color:var(--text)}
+body.light-mode .theme-toggle{background:rgba(0,0,0,.07);border-color:rgba(0,0,0,.15);color:#4a5568}
+body.light-mode .theme-toggle:hover{background:rgba(0,0,0,.12);color:#1a202c}
+.theme-toggle-icon{font-size:.9rem;line-height:1}
 body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(0,255,135,.05),transparent),radial-gradient(ellipse 50% 50% at 80% 80%,rgba(0,212,255,.04),transparent),radial-gradient(ellipse 40% 30% at 60% 40%,rgba(124,58,237,.04),transparent);animation:bgShift 8s ease-in-out infinite alternate}
+body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse 60% 40% at 20% 10%,rgba(0,255,135,.05),transparent),radial-gradient(ellipse 50% 50% at 80% 80%,rgba(0,212,255,.04),transparent),radial-gradient(ellipse 40% 30% at 60% 40%,rgba(0,212,255,.04),transparent);animation:bgShift 8s ease-in-out infinite alternate}
 @keyframes bgShift{0%{opacity:.6}100%{opacity:1}}
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:40px 40px}
 .scan-line{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,135,.15),transparent);animation:scan 5s linear infinite;pointer-events:none;z-index:999}
@@ -40,7 +104,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 .tab-btn.active[data-tab="totp"]{color:var(--green)}
 .tab-btn.active[data-tab="name"]{color:var(--blue)}
 .tab-btn.active[data-tab="word"]{color:var(--cyan)}
-.tab-btn.active[data-tab="rtext"]{color:#c084fc}
+.tab-btn.active[data-tab="rtext"]{color:var(--cyan)}
 .main{position:relative;z-index:1;padding:20px 20px 60px;max-width:960px;margin:0 auto}
 .tab-panel{display:none;animation:fadeIn .3s ease}
 .tab-panel.active{display:block}
@@ -105,7 +169,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-totp .t-otp-row:hover::before{opacity:1}
 @keyframes rowSlide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
 #tab-totp .t-p-icon{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;box-shadow:0 2px 8px rgba(0,0,0,.3)}
-#tab-totp .pi-ig{background:linear-gradient(135deg,#f58529,#dd2a7b,#8134af)}
+#tab-totp .pi-ig{background:linear-gradient(135deg,#f58529,#e8423a,#3b82f6)}
 #tab-totp .pi-fb{background:#1877f2}
 #tab-totp .pi-wa{background:linear-gradient(135deg,#075e54,#128c7e)}
 #tab-totp .pi-th{background:#111;border:1px solid #333}
@@ -135,14 +199,14 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 /* NAME GENERATOR — VERSI BARU */
 #tab-name{padding-top:4px}
 #tab-name .ng-hero{text-align:center;margin-bottom:24px}
-#tab-name .ng-hero h2{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#3b82f6,#7c3aed,#c084fc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em}
+#tab-name .ng-hero h2{font-size:1.5rem;font-weight:700;background:linear-gradient(135deg,#3b82f6,#00d4ff,#00ff87);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:-.02em}
 #tab-name .ng-hero p{font-size:.8rem;color:var(--muted2);margin-top:4px;font-family:'JetBrains Mono',monospace}
 #tab-name .ng-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
 #tab-name .ng-card{background:var(--surface);border:1px solid var(--border2);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px}
 #tab-name .ng-card-title{font-size:.7rem;font-weight:600;text-transform:uppercase;letter-spacing:.12em;color:var(--muted2);font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:8px}
 #tab-name .ng-card-title::before{content:'';width:3px;height:10px;border-radius:2px}
 #tab-name .ng-card:nth-child(1) .ng-card-title::before{background:#3b82f6;box-shadow:0 0 6px #3b82f6}
-#tab-name .ng-card:nth-child(2) .ng-card-title::before{background:#7c3aed;box-shadow:0 0 6px #7c3aed}
+#tab-name .ng-card:nth-child(2) .ng-card-title::before{background:#00d4ff;box-shadow:0 0 6px #00d4ff}
 #tab-name select,#tab-name input[type=number],#tab-name input[type=text]{width:100%;padding:10px 14px;border-radius:10px;border:1px solid var(--border2);background:#020617;color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.85rem;outline:none;transition:border-color .2s}
 #tab-name select:focus,#tab-name input:focus{border-color:rgba(59,130,246,.5)}
 #tab-name .ng-row{display:flex;gap:8px}
@@ -157,7 +221,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-name .ng-btn{flex:1;min-width:100px;padding:12px 16px;border:none;border-radius:10px;cursor:pointer;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.85rem;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
 #tab-name .ng-btn:hover{filter:brightness(1.15);transform:translateY(-1px)}
 #tab-name .ng-btn-full{background:linear-gradient(135deg,#3b82f6,#1d4ed8);color:#fff}
-#tab-name .ng-btn-user{background:linear-gradient(135deg,#7c3aed,#5b21b6);color:#fff}
+#tab-name .ng-btn-user{background:linear-gradient(135deg,#0891b2,#0369a1);color:#fff}
 #tab-name .ng-btn-email{background:linear-gradient(135deg,#0891b2,#0e7490);color:#fff}
 #tab-name .ng-btn-copy{background:linear-gradient(135deg,#16a34a,#15803d);color:#fff}
 #tab-name .ng-btn-clear{background:rgba(255,69,96,.12);color:var(--red);border:1px solid rgba(255,69,96,.2)}
@@ -183,16 +247,16 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-rtext .rt-templates-section{margin-bottom:1.5rem}
 #tab-rtext .rt-templates-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px}
 #tab-rtext .rt-tpl-card{background:var(--rt-surface);border:1px solid var(--rt-border);border-radius:var(--rt-radius);padding:.9rem 1rem;transition:border-color .2s,background .2s;cursor:pointer;user-select:none}
-#tab-rtext .rt-tpl-card.active{border-color:var(--rt-accent);background:#1a1830}
+#tab-rtext .rt-tpl-card.active{border-color:var(--rt-accent);background:#0d1f35}
 #tab-rtext .rt-tpl-card:hover{border-color:var(--rt-faint)}
 #tab-rtext .rt-tpl-card.active:hover{border-color:var(--rt-accent2)}
 #tab-rtext .rt-tpl-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.6rem}
 #tab-rtext .rt-tpl-name{font-size:.75rem;font-weight:600;color:var(--rt-accent2);font-family:'JetBrains Mono',monospace}
 #tab-rtext .rt-tpl-badge{font-size:.6rem;padding:2px 7px;border-radius:20px;font-weight:500}
-#tab-rtext .rt-tpl-badge.on{background:#1f1a40;color:var(--rt-accent);border:1px solid var(--rt-accent)}
+#tab-rtext .rt-tpl-badge.on{background:#0d1f35;color:var(--rt-accent);border:1px solid var(--rt-accent)}
 #tab-rtext .rt-tpl-badge.off{background:var(--rt-surface2);color:var(--rt-muted);border:1px solid var(--rt-border)}
 #tab-rtext .rt-tpl-text{font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--rt-muted);white-space:pre-line;line-height:1.7}
-#tab-rtext .rt-tpl-card.active .rt-tpl-text{color:#c8c0f0}
+#tab-rtext .rt-tpl-card.active .rt-tpl-text{color:#c0d8f0}
 #tab-rtext .rt-btn-delete{background:none;border:none;color:var(--rt-faint);cursor:pointer;font-size:.9rem;padding:2px 4px;border-radius:4px;line-height:1;transition:color .2s}
 #tab-rtext .rt-btn-delete:hover{color:#f87171}
 #tab-rtext .rt-add-section{background:var(--rt-surface);border:1px dashed var(--rt-border);border-radius:var(--rt-radius);padding:1.2rem;margin-bottom:1.5rem}
@@ -201,7 +265,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-rtext .rt-textarea:focus{border-color:var(--rt-accent)}
 #tab-rtext .rt-textarea::placeholder{color:var(--rt-faint)}
 #tab-rtext .rt-btn-add{padding:.6rem 1.2rem;background:var(--rt-surface2);border:1px solid var(--rt-border);border-radius:var(--rt-radius-sm);color:var(--text);font-family:'Space Grotesk',sans-serif;font-size:.8rem;cursor:pointer;white-space:nowrap;transition:border-color .2s,background .2s}
-#tab-rtext .rt-btn-add:hover{border-color:var(--rt-accent);background:#1a1830;color:var(--rt-accent2)}
+#tab-rtext .rt-btn-add:hover{border-color:var(--rt-accent);background:#0d1f35;color:var(--rt-accent2)}
 #tab-rtext .rt-controls{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;background:var(--rt-surface);border:1px solid var(--rt-border);border-radius:var(--rt-radius);padding:1rem 1.2rem}
 #tab-rtext .rt-controls label{font-size:.82rem;color:var(--rt-muted)}
 #tab-rtext .rt-num-input{width:72px;background:var(--rt-surface2);border:1px solid var(--rt-border);border-radius:var(--rt-radius-sm);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.9rem;padding:.45rem .6rem;text-align:center;transition:border-color .2s;outline:none}
@@ -211,11 +275,11 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-rtext .rt-btn-generate:active{transform:scale(.97)}
 #tab-rtext .rt-result-block{background:var(--rt-surface);border:1px solid var(--rt-border);border-radius:var(--rt-radius);padding:1rem 1.2rem;margin-bottom:10px;animation:fadeIn .25s ease}
 #tab-rtext .rt-result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem}
-#tab-rtext .rt-result-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--rt-accent);background:#1a1830;border:1px solid var(--rt-accent);border-radius:20px;padding:2px 10px}
+#tab-rtext .rt-result-tag{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--rt-accent);background:#0d1f35;border:1px solid var(--rt-accent);border-radius:20px;padding:2px 10px}
 #tab-rtext .rt-btn-copy{font-family:'Space Grotesk',sans-serif;font-size:.72rem;padding:4px 12px;background:var(--rt-surface2);border:1px solid var(--rt-border);border-radius:var(--rt-radius-sm);color:var(--rt-muted);cursor:pointer;transition:all .2s}
 #tab-rtext .rt-btn-copy:hover{border-color:var(--rt-accent);color:var(--rt-accent2)}
 #tab-rtext .rt-btn-copy.copied{border-color:var(--rt-success);color:var(--rt-success);background:#0d2a1a}
-#tab-rtext .rt-result-text{font-family:'JetBrains Mono',monospace;font-size:.82rem;white-space:pre-line;line-height:1.85;color:#e0daf8}
+#tab-rtext .rt-result-text{font-family:'JetBrains Mono',monospace;font-size:.82rem;white-space:pre-line;line-height:1.85;color:#e0eaf8}
 #tab-rtext .rt-empty-state{text-align:center;padding:2.5rem;color:var(--rt-faint);font-size:.82rem;border:1px dashed var(--rt-border);border-radius:var(--rt-radius);font-family:'JetBrains Mono',monospace}
 #tab-rtext .rt-progress-bar{height:2px;background:var(--rt-surface2);border-radius:2px;margin-bottom:1rem;overflow:hidden}
 #tab-rtext .rt-progress-fill{height:100%;background:linear-gradient(90deg,var(--rt-accent),var(--rt-accent2));border-radius:2px;transition:width .2s ease}
@@ -225,32 +289,32 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 #tab-rtext .rt-info-note{font-size:.72rem;color:var(--rt-muted);margin-top:.5rem;font-family:'JetBrains Mono',monospace}
 
 /* IG SYSTEM */
-.tab-btn.active[data-tab="ig"]{color:#f472b6}
+.tab-btn.active[data-tab="ig"]{color:var(--cyan)}
 #tab-ig{font-family:'Space Grotesk',sans-serif}
-#tab-ig .ig-header{background:linear-gradient(135deg,#1a0a2e,#2d1b4e);border:1px solid rgba(244,114,182,.2);border-radius:20px;padding:22px 26px;margin-bottom:16px;position:relative;overflow:hidden}
-#tab-ig .ig-header::before{content:'';position:absolute;top:-1px;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,#f472b6,transparent)}
-#tab-ig .ig-header-title{font-size:1.1rem;font-weight:700;color:#f9a8d4;letter-spacing:-.01em}
-#tab-ig .ig-header-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:#9d6fa8;letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
+#tab-ig .ig-header{background:linear-gradient(135deg,#071520,#0d1f35);border:1px solid rgba(0,212,255,.2);border-radius:20px;padding:22px 26px;margin-bottom:16px;position:relative;overflow:hidden}
+#tab-ig .ig-header::before{content:'';position:absolute;top:-1px;left:20px;right:20px;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent)}
+#tab-ig .ig-header-title{font-size:1.1rem;font-weight:700;color:var(--cyan);letter-spacing:-.01em}
+#tab-ig .ig-header-sub{font-family:'JetBrains Mono',monospace;font-size:.65rem;color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;margin-top:4px}
 #tab-ig .ig-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-#tab-ig .ig-card{background:var(--surface);border:1px solid rgba(244,114,182,.15);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
+#tab-ig .ig-card{background:var(--surface);border:1px solid rgba(0,212,255,.15);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px}
 #tab-ig .ig-card-title{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
 #tab-ig .ig-card-title span{display:inline-block;width:3px;height:13px;border-radius:2px;box-shadow:0 0 8px currentColor}
-#tab-ig .ig-card-title.bio-title{color:#f472b6}
-#tab-ig .ig-card-title.bio-title span{background:#f472b6}
-#tab-ig .ig-card-title.story-title{color:#a78bfa}
-#tab-ig .ig-card-title.story-title span{background:#a78bfa}
+#tab-ig .ig-card-title.bio-title{color:var(--cyan)}
+#tab-ig .ig-card-title.bio-title span{background:var(--cyan)}
+#tab-ig .ig-card-title.story-title{color:var(--green)}
+#tab-ig .ig-card-title.story-title span{background:var(--green)}
 #tab-ig .ig-card-title.result-title{color:#34d399}
 #tab-ig .ig-card-title.result-title span{background:#34d399}
 #tab-ig label{font-size:.72rem;color:var(--muted2);display:block;margin-top:4px}
-#tab-ig select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(244,114,182,.2);background:#0a0612;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.76rem;outline:none;transition:.2s;cursor:pointer}
-#tab-ig select:focus{border-color:rgba(244,114,182,.5);box-shadow:0 0 0 3px rgba(244,114,182,.06)}
+#tab-ig select{width:100%;padding:11px 12px;border-radius:10px;border:1px solid rgba(0,212,255,.2);background:#0a0612;color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.76rem;outline:none;transition:.2s;cursor:pointer}
+#tab-ig select:focus{border-color:rgba(0,212,255,.5);box-shadow:0 0 0 3px rgba(0,212,255,.06)}
 #tab-ig .ig-btn{padding:12px;border-radius:10px;border:none;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.84rem;cursor:pointer;transition:all .2s}
 #tab-ig .ig-btn:hover{filter:brightness(1.1);transform:translateY(-1px)}
-#tab-ig .ig-btn-bio{background:linear-gradient(135deg,#ec4899,#8b5cf6);color:#fff}
-#tab-ig .ig-btn-story{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#fff}
+#tab-ig .ig-btn-bio{background:linear-gradient(135deg,#00d4ff,#3b82f6);color:#fff}
+#tab-ig .ig-btn-story{background:linear-gradient(135deg,#00ff87,#00d4ff);color:#fff}
 #tab-ig .ig-btn-copy{background:linear-gradient(135deg,#06b6d4,#22c55e);color:#fff}
 #tab-ig .ig-result{background:rgba(0,0,0,.4);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:14px 16px;font-family:'JetBrains Mono',monospace;font-size:.8rem;line-height:1.85;color:#f1f5f9;white-space:pre-wrap;min-height:80px}
-#tab-ig .ig-result.has-content{border-color:rgba(244,114,182,.2);background:rgba(244,114,182,.03)}
+#tab-ig .ig-result.has-content{border-color:rgba(0,212,255,.2);background:rgba(0,212,255,.03)}
 #tab-ig .ig-char-count{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted2);text-align:right}
 #tab-ig .ig-char-count.warn{color:#f59e0b}
 #tab-ig .ig-char-count.over{color:#f87171}
@@ -337,9 +401,62 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
 
 <div class="topbar">
   <div class="topbar-inner">
-    <div class="app-logo">🛠️</div>
+    <div class="app-logo" style="overflow:hidden;padding:0;">
+      <svg viewBox="0 0 34 34" xmlns="http://www.w3.org/2000/svg" width="34" height="34">
+        <!-- bg gradient -->
+        <defs>
+          <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00ff87"/>
+            <stop offset="100%" stop-color="#00d4ff"/>
+          </linearGradient>
+          <linearGradient id="smokeG" x1="0" y1="1" x2="0" y2="0">
+            <stop offset="0%" stop-color="#aaa" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#aaa" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <rect width="34" height="34" rx="10" fill="url(#lg1)"/>
+        <!-- desk -->
+        <rect x="3" y="22" width="28" height="2.5" rx="1" fill="#064e3b"/>
+        <!-- monitor stand -->
+        <rect x="15" y="18" width="4" height="4" rx="0.5" fill="#065f46"/>
+        <!-- monitor base -->
+        <rect x="12" y="21.5" width="10" height="1.2" rx="0.5" fill="#065f46"/>
+        <!-- monitor screen -->
+        <rect x="8" y="9" width="18" height="10" rx="1.5" fill="#064e3b"/>
+        <rect x="9" y="10" width="16" height="8" rx="1" fill="#0d0f17"/>
+        <!-- screen glow lines -->
+        <rect x="10" y="11.5" width="7" height="1" rx="0.4" fill="#00ff87" opacity="0.8"/>
+        <rect x="10" y="13.5" width="5" height="1" rx="0.4" fill="#00d4ff" opacity="0.6"/>
+        <rect x="10" y="15.5" width="9" height="1" rx="0.4" fill="#00ff87" opacity="0.4"/>
+        <!-- person body -->
+        <rect x="13" y="16" width="8" height="7" rx="2" fill="#1a3a2a"/>
+        <!-- person head -->
+        <circle cx="17" cy="13.5" r="3" fill="#f9c784"/>
+        <!-- hair -->
+        <path d="M14.2 12.5 Q17 10 19.8 12.5" fill="#3b2a1a" stroke="none"/>
+        <!-- eyes -->
+        <circle cx="15.8" cy="13.2" r="0.5" fill="#1a1a1a"/>
+        <circle cx="18.2" cy="13.2" r="0.5" fill="#1a1a1a"/>
+        <!-- coffee cup (right side of desk) -->
+        <rect x="25" y="19.5" width="4" height="3" rx="0.8" fill="#7c3f00"/>
+        <rect x="25.3" y="19" width="3.4" height="0.8" rx="0.3" fill="#5c2d00"/>
+        <!-- coffee steam -->
+        <path d="M26.5 18.8 Q26 17.5 26.5 16.5" stroke="#fff" stroke-width="0.5" fill="none" stroke-opacity="0.5"/>
+        <path d="M28 18.8 Q27.5 17.5 28 16.5" stroke="#fff" stroke-width="0.5" fill="none" stroke-opacity="0.5"/>
+        <!-- cigarette in mouth area -->
+        <rect x="19" y="14.3" width="4.5" height="0.7" rx="0.3" fill="#f0f0f0"/>
+        <rect x="22.8" y="14.1" width="1.5" height="1" rx="0.2" fill="#ff6b35"/>
+        <!-- cigarette smoke -->
+        <path d="M24 13.5 Q23.5 12 24.2 11" stroke="url(#smokeG)" stroke-width="0.6" fill="none"/>
+        <path d="M24.5 13.2 Q24.8 12 24 10.8" stroke="url(#smokeG)" stroke-width="0.5" fill="none"/>
+      </svg>
+    </div>
     <div class="app-title">𝐓𝐎𝐎𝐋𝐊𝐈𝐓 <em>𝐓𝐔𝐍𝐆𝐆𝐀𝐊 𝐃𝐎𝐑𝐎</em></div>
     <div class="marquee-wrap"><span>🚨 𝐌𝐁𝐎𝐇 𝐊𝐀𝐍𝐆𝐆𝐎 𝐌𝐁𝐎𝐇 𝐆𝐀𝐊 𝐍𝐆𝐄𝐍𝐄 𝐊𝐈, 𝐖𝐎𝐍𝐆 𝐌𝐈𝐍𝐀𝐍𝐆𝐊𝐀𝐍𝐄 𝐍𝐆𝐀𝐍𝐆𝐆𝐎𝐑</span></div>
+    <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">
+      <span class="theme-toggle-icon" id="themeIcon">☀️</span>
+      <span id="themeLabel">Light</span>
+    </button>
   </div>
   <div class="tab-nav">
     <button class="tab-btn active" data-tab="totp" onclick="switchTab('totp')">🔐 OTP Generator</button>
@@ -421,7 +538,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   <!-- NAME GENERATOR — VERSI BARU -->
   <div id="tab-name" class="tab-panel">
     <div class="ng-hero">
-      <h2>🌍 Name Generator Pro</h2>
+      <h2>Name Generator Pro</h2>
       <p>Full Name · Username</p>
     </div>
 
@@ -479,15 +596,8 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   <div id="tab-word" class="tab-panel">
     <div class="w-grid">
       <div class="w-card">
-        <label>🔥 𝗠𝗼𝗱𝗲 𝗦𝘁𝗮𝘁𝘂𝘀</label>
-        <select id="word-mode">
-          <option value="premium">✨ Premium Mix</option>
-          <option value="hot">🔥 Hot</option>
-          <option value="tease">😏 Tease</option>
-          <option value="click">💋 Click Bait</option>
-          <option value="mind">🧠 Mind Game</option>
-          <option value="personal">💌 Personal</option>
-        </select>
+        <input type="hidden" id="word-mode" value="premium"/>
+		<label>🔥 𝗦𝘁𝗮𝘁𝘂𝘀</label>
         <label>𝗟𝗶𝗻𝗸 ( 𝐩𝐞𝐫 𝟏 𝐭𝐚𝐮𝐭𝐚𝐧 𝐚𝐤𝐚𝐧 𝐝𝐢 𝐡𝐚𝐩𝐮𝐬 𝐨𝐭𝐨𝐦𝐚𝐭𝐢𝐬 )</label>
         <textarea id="word-links" placeholder="Tempel link di sini&#10;Satu link per baris&#10;https://link1.com&#10;https://link2.com"></textarea>
         <button onclick="wordGenerate()">⚡ Generate Status</button>
@@ -520,14 +630,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
       <!-- BIO GENERATOR -->
       <div class="ig-card">
         <div class="ig-card-title bio-title"><span></span>Bio Instagram</div>
-        <label>Gaya Bio</label>
-        <select id="ig-bio-mode">
-          <option value="mystery">🌙 Mysterious</option>
-          <option value="flirty">💋 Flirty</option>
-          <option value="bold">🔥 Bold</option>
-          <option value="soft">🌸 Soft Tease</option>
-          <option value="premium">✨ Premium</option>
-        </select>
+        <input type="hidden" id="ig-bio-mode" value="premium"/>
         <button class="ig-btn ig-btn-bio" onclick="igGenBio()">✨ Generate Bio</button>
         <div id="ig-bio-result" class="ig-result">Bio kamu akan muncul di sini...</div>
         <div id="ig-bio-count" class="ig-char-count">0 / 150</div>
@@ -537,14 +640,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
       <!-- STORY CAPTION GENERATOR -->
       <div class="ig-card">
         <div class="ig-card-title story-title"><span></span>Story Instagram</div>
-        <label>Gaya Story</label>
-        <select id="ig-story-mode">
-          <option value="tease">😏 Tease</option>
-          <option value="hot">🔥 Hot Night</option>
-          <option value="mystery">🌙 Mystery</option>
-          <option value="personal">💌 Personal</option>
-          <option value="confidence">💎 Confidence</option>
-        </select>
+        <input type="hidden" id="ig-story-mode" value="tease"/>
         <button class="ig-btn ig-btn-story" onclick="igGenStory()">🎬 Generate Story</button>
         <div id="ig-story-result" class="ig-result">Caption story kamu akan muncul di sini...</div>
         <button class="ig-btn ig-btn-copy" onclick="igCopy('ig-story-result')">📋 Copy Story</button>
@@ -1400,9 +1496,8 @@ const igStoryConfidence=[
 function igPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
 
 async function igGenBio(){
-  const mode=document.getElementById('ig-bio-mode').value;
-  const map={mystery:igBioMystery,flirty:igBioFlirty,bold:igBioBold,soft:igBioSoft,premium:igBioPremium};
-  const rawResult=igPick(map[mode]||igBioMystery);
+  const allBio=[...igBioMystery,...igBioFlirty,...igBioBold,...igBioSoft,...igBioPremium];
+  const rawResult=igPick(allBio);
   const el=document.getElementById('ig-bio-result');
   const count=document.getElementById('ig-bio-count');
 
@@ -1421,9 +1516,8 @@ async function igGenBio(){
 }
 
 async function igGenStory(){
-  const mode=document.getElementById('ig-story-mode').value;
-  const map={tease:igStoryTease,hot:igStoryHot,mystery:igStoryMystery,personal:igStoryPersonal,confidence:igStoryConfidence};
-  const rawResult=igPick(map[mode]||igStoryTease);
+  const allStory=[...igStoryTease,...igStoryHot,...igStoryMystery,...igStoryPersonal,...igStoryConfidence];
+  const rawResult=igPick(allStory);
   const el=document.getElementById('ig-story-result');
 
   let result=rawResult;
@@ -1783,6 +1877,23 @@ function rtCopyResult(btn){
 }
 
 rtRenderTemplates();
+
+// ── THEME TOGGLE ──────────────────────────────────────────
+function toggleTheme(){
+  const isLight=document.body.classList.toggle('light-mode');
+  document.getElementById('themeIcon').textContent=isLight?'🌙':'☀️';
+  document.getElementById('themeLabel').textContent=isLight?'Dark':'Light';
+  localStorage.setItem('toolkit_theme',isLight?'light':'dark');
+}
+(function initTheme(){
+  const saved=localStorage.getItem('toolkit_theme');
+  if(saved==='light'){
+    document.body.classList.add('light-mode');
+    document.getElementById('themeIcon').textContent='🌙';
+    document.getElementById('themeLabel').textContent='Dark';
+  }
+})();
+
 </script>
 </body>
 </html>
