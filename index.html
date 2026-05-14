@@ -89,23 +89,86 @@ body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;bac
 body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);background-size:40px 40px}
 .scan-line{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(0,255,135,.15),transparent);animation:scan 5s linear infinite;pointer-events:none;z-index:999}
 @keyframes scan{from{top:0}to{top:100vh}}
+/* ═══ TOPBAR (header only, no tabs) ═══ */
 .topbar{position:sticky;top:0;z-index:100;background:rgba(5,5,8,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border2);padding:0 20px}
-.topbar-inner{max-width:960px;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 0 0}
+.topbar-inner{max-width:100%;margin:0 auto;display:flex;align-items:center;gap:14px;padding:12px 0}
 .app-logo{width:34px;height:34px;border-radius:10px;flex-shrink:0;background:linear-gradient(135deg,#00ff87,#00d4ff);display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 0 14px rgba(0,255,135,.4)}
 .app-title{font-size:.9rem;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
 .app-title em{font-style:normal;color:var(--green)}
 .marquee-wrap{flex:1;overflow:hidden;height:16px;border-left:1px solid var(--border2);margin-left:6px;padding-left:12px}
 .marquee-wrap span{display:inline-block;padding-left:100%;white-space:nowrap;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--muted2);letter-spacing:.1em;animation:marquee 22s linear infinite}
 @keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-.tab-nav{display:flex;gap:4px;padding:10px 0 0;max-width:960px;margin:0 auto;overflow-x:auto}
-.tab-btn{font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:8px 16px;border-radius:10px 10px 0 0;border:1px solid transparent;border-bottom:none;background:transparent;color:var(--muted);cursor:pointer;transition:all .2s;letter-spacing:.05em;white-space:nowrap;position:relative;bottom:-1px}
-.tab-btn:hover{color:var(--text);background:var(--surface)}
-.tab-btn.active{color:var(--text);background:var(--surface);border-color:var(--border2);border-bottom-color:var(--surface)}
-.tab-btn.active[data-tab="totp"]{color:var(--green)}
-.tab-btn.active[data-tab="name"]{color:var(--blue)}
-.tab-btn.active[data-tab="word"]{color:var(--cyan)}
-.tab-btn.active[data-tab="rtext"]{color:var(--cyan)}
-.main{position:relative;z-index:1;padding:20px 20px 60px;max-width:960px;margin:0 auto}
+
+/* ═══ SIDEBAR LAYOUT ═══ */
+.app-body{display:flex;min-height:calc(100vh - 57px);position:relative;z-index:1}
+
+/* SIDEBAR */
+.sidebar{
+  width:200px;flex-shrink:0;
+  background:rgba(5,5,8,.85);
+  backdrop-filter:blur(20px);
+  border-right:1px solid var(--border2);
+  position:sticky;top:57px;
+  height:calc(100vh - 57px);
+  overflow-y:auto;
+  display:flex;flex-direction:column;
+  padding:16px 10px;
+  gap:6px;
+  z-index:50;
+}
+.sidebar::-webkit-scrollbar{width:3px}
+.sidebar::-webkit-scrollbar-thumb{background:rgba(0,212,255,.2);border-radius:2px}
+
+/* SIDEBAR — country bar label */
+.sidebar-section-label{
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  color:var(--muted);letter-spacing:.12em;text-transform:uppercase;
+  padding:4px 8px;margin-top:8px;white-space:nowrap;
+}
+.sidebar-divider{height:1px;background:var(--border);margin:6px 0}
+
+/* TAB BUTTONS — vertical */
+.tab-nav{display:flex;flex-direction:column;gap:4px;width:100%}
+.tab-btn{
+  font-family:'JetBrains Mono',monospace;font-size:.63rem;font-weight:600;
+  padding:10px 12px;border-radius:10px;
+  border:1px solid transparent;
+  background:transparent;color:var(--muted);
+  cursor:pointer;transition:all .2s;
+  letter-spacing:.03em;white-space:normal;
+  text-align:left;width:100%;
+  display:flex;align-items:center;gap:8px;
+  line-height:1.3;
+}
+.tab-btn:hover{color:var(--text);background:var(--surface2);border-color:var(--border)}
+.tab-btn.active{color:var(--text);background:var(--surface2);border-color:var(--border2)}
+.tab-btn.active[data-tab="totp"]{color:var(--green);border-color:rgba(0,255,135,.25);background:rgba(0,255,135,.06)}
+.tab-btn.active[data-tab="name"]{color:var(--blue);border-color:rgba(59,130,246,.25);background:rgba(59,130,246,.06)}
+.tab-btn.active[data-tab="word"]{color:var(--cyan);border-color:rgba(0,212,255,.25);background:rgba(0,212,255,.06)}
+.tab-btn.active[data-tab="rtext"]{color:var(--cyan);border-color:rgba(0,212,255,.25);background:rgba(0,212,255,.06)}
+.tab-btn.active[data-tab="ig"]{color:#f58529;border-color:rgba(245,133,41,.25);background:rgba(245,133,41,.06)}
+
+/* SIDEBAR — country flags */
+.sidebar-lang-label{
+  font-family:'JetBrains Mono',monospace;font-size:.55rem;
+  color:var(--muted);letter-spacing:.1em;text-transform:uppercase;
+  padding:4px 8px;margin-top:4px;
+}
+.country-flag-btn{
+  font-size:.72rem;padding:7px 10px;border-radius:8px;
+  border:1px solid rgba(255,255,255,.08);background:transparent;
+  cursor:pointer;transition:all .18s;color:var(--muted2);
+  font-family:'JetBrains Mono',monospace;white-space:nowrap;
+  width:100%;text-align:left;display:block;
+}
+.country-flag-btn:hover{border-color:rgba(0,212,255,.4);color:var(--cyan);background:rgba(0,212,255,.07)}
+.country-flag-btn.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,212,255,.12);box-shadow:0 0 10px rgba(0,212,255,.15)}
+
+/* MAIN CONTENT */
+.main{position:relative;z-index:1;padding:20px 24px 60px;flex:1;min-width:0}
+
+/* Light mode sidebar */
+body.light-mode .sidebar{background:rgba(240,244,248,.95);border-right-color:rgba(0,0,0,.12)}
 .tab-panel{display:none;animation:fadeIn .3s ease}
 .tab-panel.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -328,41 +391,13 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   #tab-word .w-grid{grid-template-columns:1fr}
   #tab-name .ng-grid{grid-template-columns:1fr}
   #tab-rtext .rt-templates-grid{grid-template-columns:1fr}
-  .tab-btn{font-size:.59rem;padding:6px 10px}
-  .country-bar{flex-wrap:wrap;gap:6px}
-  .country-flag-btn{font-size:.7rem;padding:3px 7px}
-}
-
-/* ═══ COUNTRY SELECTOR BAR ═══ */
-.country-bar{
-  display:flex;align-items:center;gap:8px;
-  padding:7px 20px;
-  background:rgba(0,0,0,.3);
-  border-bottom:1px solid rgba(0,212,255,.1);
-  overflow-x:auto;
-  -webkit-overflow-scrolling:touch;
-}
-.country-bar::-webkit-scrollbar{height:2px}
-.country-bar::-webkit-scrollbar-thumb{background:rgba(0,212,255,.3);border-radius:2px}
-.country-bar-label{
-  font-family:'JetBrains Mono',monospace;font-size:.6rem;
-  color:var(--muted2);letter-spacing:.1em;text-transform:uppercase;
-  white-space:nowrap;flex-shrink:0;
-}
-.country-flag-btn{
-  font-size:.75rem;padding:4px 9px;border-radius:8px;
-  border:1px solid rgba(255,255,255,.08);background:transparent;
-  cursor:pointer;transition:all .18s;color:var(--muted2);
-  font-family:'JetBrains Mono',monospace;white-space:nowrap;flex-shrink:0;
-}
-.country-flag-btn:hover{
-  border-color:rgba(0,212,255,.4);color:var(--cyan);
-  background:rgba(0,212,255,.07);
-}
-.country-flag-btn.active{
-  border-color:var(--cyan);color:var(--cyan);
-  background:rgba(0,212,255,.12);
-  box-shadow:0 0 10px rgba(0,212,255,.15);
+  /* Mobile: sidebar collapses to top strip */
+  .app-body{flex-direction:column}
+  .sidebar{width:100%;height:auto;position:relative;top:0;flex-direction:row;flex-wrap:wrap;padding:8px;border-right:none;border-bottom:1px solid var(--border2)}
+  .tab-nav{flex-direction:row;flex-wrap:wrap;gap:4px;width:100%}
+  .tab-btn{width:auto;font-size:.58rem;padding:7px 10px;border-radius:8px}
+  .sidebar-divider,.sidebar-lang-label{display:none}
+  .country-flag-btn{width:auto;display:inline-block;font-size:.68rem;padding:5px 8px}
 }
 
 /* ═══ TRANSLATE LOADING OVERLAY ═══ */
@@ -458,18 +493,25 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
       <span id="themeLabel">Light</span>
     </button>
   </div>
+</div>
+
+<!-- SIDEBAR + MAIN LAYOUT -->
+<div class="app-body">
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
   <div class="tab-nav">
     <button class="tab-btn active" data-tab="totp" onclick="switchTab('totp')">🔐 OTP Generator</button>
     <button class="tab-btn" data-tab="name" onclick="switchTab('name')">👤 Name Generator</button>
-    <button class="tab-btn" data-tab="word" onclick="switchTab('word')">📝 Word System ( FB )</button>
-    <button class="tab-btn" data-tab="rtext" onclick="switchTab('rtext')">✍️ Random Text ( Threads )</button>
+    <button class="tab-btn" data-tab="word" onclick="switchTab('word')">📝 Word System <span style="opacity:.6;font-size:.55rem">(FB)</span></button>
+    <button class="tab-btn" data-tab="rtext" onclick="switchTab('rtext')">✍️ Random Text <span style="opacity:.6;font-size:.55rem">(Threads)</span></button>
     <button class="tab-btn" data-tab="ig" onclick="switchTab('ig')">📸 IG System</button>
   </div>
-</div>
 
-<!-- COUNTRY SELECTOR BAR -->
-<div class="country-bar">
-  <span class="country-bar-label">🌍 Lang ( Hanya Untuk Word System fb dan Ig System )</span>
+  <div class="sidebar-divider"></div>
+  <div class="sidebar-lang-label">🌍 Lang</div>
+  <div style="font-family:'JetBrains Mono',monospace;font-size:.5rem;color:var(--muted);padding:0 8px 6px;line-height:1.5">Hanya untuk Word & IG System</div>
+
   <button class="country-flag-btn active" data-lang="en" data-flag="🇺🇸" onclick="setCountry(this)">🇺🇸 EN</button>
   <button class="country-flag-btn" data-lang="en" data-flag="🇬🇧" onclick="setCountry(this)">🇬🇧 UK</button>
   <button class="country-flag-btn" data-lang="fr" data-flag="🇫🇷" onclick="setCountry(this)">🇫🇷 FR</button>
@@ -479,7 +521,7 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
   <button class="country-flag-btn" data-lang="en" data-flag="🇦🇺" onclick="setCountry(this)">🇦🇺 AU</button>
   <button class="country-flag-btn" data-lang="en" data-flag="🇨🇦" onclick="setCountry(this)">🇨🇦 CA</button>
   <button class="country-flag-btn" data-lang="nl" data-flag="🇳🇱" onclick="setCountry(this)">🇳🇱 NL</button>
-</div>
+</aside>
 
 <div class="main">
 
@@ -678,7 +720,8 @@ body::after{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;back
     <div id="rt-results-area"><div class="rt-empty-state">Klik Generate untuk mulai...</div></div>
   </div>
 
-</div>
+</div><!-- end .main -->
+</div><!-- end .app-body -->
 
 <script>
 /* ══ TAB NAV ══ */
@@ -1183,314 +1226,243 @@ const igBioPremium=[
 ];
 
 const igStoryTease=[
-  "You came this far… now tap and see the rest 😈🔥",
-  "Careful… one click and you’ll want more 💋",
-  "This story gets hotter after midnight 👀💦",
-  "Don’t tease yourself… open it already 😏🔥",
-  "A little temptation never hurt anyone 💋",
-  "You’re staring for a reason… 👀😈",
-  "One tap away from your new obsession 🔥",
-  "You know you’re curious 😏💦",
-  "Come closer… I won’t bite (maybe) 💋",
-  "The fun starts after the click 😈",
-  "You weren’t supposed to see this 👀🔥",
-  "Late night energy hits different 💦",
-  "Try not to get addicted 😏",
-  "Some things are too tempting to ignore 💋",
-  "You’ll replay this in your mind later 😈",
-  "Click slowly… it gets dangerous 🔥",
-  "I know exactly why you stopped here 👀",
-  "One look is never enough 💦",
-  "The hotter the vibe, the harder to leave 😏",
-  "You can scroll… or you can enjoy 💋",
-  "Midnight temptation starts here 😈",
-  "You deserve a better view 👀🔥",
-  "This vibe was made for you 💦",
-  "Your guilty pleasure is calling 😏",
-  "Warning: extremely addictive content 💋",
-  "This is where curiosity wins 😈",
-  "You’re already thinking about tapping 🔥",
-  "A dangerous amount of temptation 👀",
-  "Not everyone can handle this 💦",
-  "Your favorite distraction is here 😏",
-  "One tap changes the mood instantly 💋",
-  "Keep watching… it only gets hotter 😈",
-  "You won’t forget this tonight 🔥",
-  "The best part is waiting 👀",
-  "I saved the hottest vibe for you 💦",
-  "Come play for a while 😏",
-  "Too tempting to skip 💋",
-  "The night just got interesting 😈",
-  "Tap now before I disappear 🔥",
-  "Your attention looks good on me 👀",
-  "I can feel your curiosity 💦",
-  "This is your sign to click 😏",
-  "You’ll stay longer than planned 💋",
-  "Nothing innocent happens after this 😈",
-  "The view gets hotter inside 🔥",
-  "You’ll thank yourself later 👀",
-  "Come see why everyone stays 💦",
-  "One click closer to temptation 😏",
-  "Things are getting risky tonight 💋",
-  "Don’t act like you’re not interested 😈",
-  "You can look… I won’t tell 🔥",
-  "This story has bad intentions 👀",
-  "Tap carefully… it’s too hot 💦",
-  "The vibe tonight is dangerous 😏",
-  "This isn’t for shy people 💋",
-  "Once you start, you won’t stop 😈",
-  "The link knows your weakness 🔥",
-  "Come get obsessed 👀",
-  "This energy should be illegal 💦",
-  "Curiosity looks good on you 😏"
-];
+      "I’m Live… Come Peek 😈✨",
+      "A Very Naughty Secret Inside 🔐💋",
+      "Dare To Watch? 👀🔥",
+      "Come Play A Little 🎲😉",
+      "Something Tempting Is Live 🍒🔥",
+      "My Camera Is On… Don’t Miss It 🎥😏",
+      "Enter If You’re Curious 🚪👀",
+      "A Little Trouble Is Live 😈💫",
+      "Come Watch My Secret Show 🎭🔥",
+      "Tap… If You’re Brave Enough ⚡👀",
+      "I Think You’ll Enjoy This 😏🍷",
+      "A Private Show Is Waiting 🔑💋",
+      "Only For Curious Eyes 👁️🔥",
+      "Don’t Be Shy… Come Closer 😈✨",
+      "Something Fun Is Happening 🎥🍒",
+      "My Little Secret Is Live 🤫🔥",
+      "Come See What I’m Doing 👀🎬",
+      "Enter My Private World 🌙💋",
+      "Watch Before It Disappears ⏳🔥",
+      "A Naughty Surprise Inside 🎁😈",
+      "A Very Naughty Show Tonight 🍷😈",
+      "Enter My Private Room 🔐💋",
+      "Come See What I’m Doing… 👀✨",
+      "A Little Sinful Fun Live Now 😈🍒",
+      "Curious? Come Take A Look 👁️🔥",
+      "My Camera Is On… Don’t Be Late 🎥😉",
+      "Something Very Tempting Inside 🍷💫",
+      "Dare To Enter? 🚪😏",
+      "A Private Show Just Started 🎭🔥",
+      "Don’t Just Look… Come Watch 😈",
+      "My Secret Live Room Is Open 🔑🔥",
+      "Watch Before It Gets Too Wild 😏⚡",
+      "A Naughty Little Show Tonight 🍒💋",
+      "Step Into My Private World 🌙🔥",
+      "Something Dangerous Is Live 😈✨",
+      "Only For Curious Eyes 👁️💫",
+      "A Temptation Waiting Inside 🍷🔥",
+      "Come Closer… Don’t Be Shy 😏💋",
+      "The Night Just Got Interesting 🌙🔥",
+      "I’m Live… Come Watch Me Play 😈🔥",
+      "A Naughty Little Show Is Waiting 💋✨",
+      "Don’t Just Stare… Come Inside 😏🚪",
+      "My Camera Is On… Are You Watching? 🎥👀",
+      "Something Very Tempting Is Live 🍒🔥",
+      "Enter My Private Room… If You Dare 🔐😈",
+      "Come Closer… I Won’t Bite 😉💋",
+      "A Little Trouble Is Live Tonight 😈🌙",
+      "Watch Me Before It Gets Too Late ⏳🔥",
+      "I Think You’ll Enjoy This… 😏✨",
+      "Come Play With Me 😈",
+      "Naughty Show Tonight 🔥",
+      "My Cam Is On 🎥💋",
+      "Dare To Watch? 👀😏",
+      "Come Closer… 🔥",
+      "A Little Temptation 😈",
+      "Don’t Be Shy… 💋",
+      "Secret Show Inside 🔐",
+      "Watch Me Now 👀🔥",
+      "Enter If You’re Curious 🚪😏",
+      "I Shouldn’t Show This… But I’m Live 😈",
+      "Something Very Naughty Is Happening… 👀🔥",
+      "Don’t Watch This Alone… 😏💋",
+      "I Think You’ll Like What I’m Doing… 👀🔥",
+      "This Live Show Is A Little Dangerous 😈⚡",
+      "I Turned My Camera On… Just Now 🎥💋",
+      "Careful… This Might Tempt You 😏🔥",
+      "I’m Doing Something Naughty Live 😈🍒",
+      "Watch Before I Turn It Off… ⏳🔥",
+      "This Is Getting A Little Wild… 👀😈",
+      "Don’t Skip This… 👀",
+      "Watch Me… If You Dare 😈",
+      "Something Naughty Live 🔥",
+      "Come Watch Quietly… 😏",
+      "This Is Getting Hot… 🔥",
+      "I’m Live Right Now… 👀",
+      "Don’t Be Shy… Come See 😈",
+      "My Camera Is Still On… 🎥",
+      "A Little Trouble Live 😏🔥",
+      "Only Curious People Click 👀",
+      "Hey you… I know you’re curious 😏🔥",
+      "Don’t just look… come see what I’m doing 😈",
+      "I’ve been waiting for someone like you… 👀💋",
+      "Bet you can’t resist this… 😏🔥",
+      "You looked for a reason… now come closer 😈",
+      "I’m live… just for the right man 👀💋",
+      "Careful… you might get addicted 😏🔥",
+      "I know you want to watch… 😈",
+      "Come closer… I won’t tell anyone 😉🔥",
+      "You’re not here by accident… 👀💋",
+      "Hey… don’t be shy, come play 😈🔥",
+      "I think you’ll like what you see… 😏💋",
+      "You + me + this moment… 👀🔥",
+      "I’m doing something you shouldn’t miss 😈",
+      "Come watch… just between us 😉💋",
+      "I see you watching… don’t stop now 😏🔥",
+      "This is your sign to click… 😈",
+      "I’m waiting… are you coming? 👀💋",
+      "Don’t make me wait too long… 😏🔥",
+      "You’ve come this far… finish it 😈",
+      "Come closer… 😈",
+      "Watch me… 🔥",
+      "Just for you 👀",
+      "Don’t stop now 😏",
+      "Enter… 💋",
+      "Hey you… I can feel you watching 😏🖤🔥",
+      "Don’t just stare… come closer 🫦✨",
+      "I know you want this… don’t lie 😈🍷",
+      "You found me… now don’t stop 😏🔐",
+      "Careful… I might be your weakness 🫦🔥",
+      "Come in quietly… it’s just us 🤫💋",
+      "I’ve been waiting for you… 🖤👀",
+      "This isn’t innocent… and you know it 😈⚡",
+      "Don’t make me call you closer… 😏📩",
+      "You shouldn’t be here… but you are 🫦🔥",
+      "Hey… come play with me a little 🎲😈",
+      "I think you’ll lose control here… 😏🖤",
+      "You look like trouble… I like that 😈🍒",
+      "Come closer… I won’t bite (maybe) 🫦😉",
+      "You’re exactly who I wanted… 👀💋",
+      "Don’t be shy… I can see you 😏✨",
+      "This moment feels dangerous… 😈⚡",
+      "Stay a little longer with me… 🖤🔥",
+      "I have something you shouldn’t miss… 🎁😏",
+      "You’re already hooked… admit it 🫦🔥",
+      "Come closer… 🫦",
+      "Watch me… 🔥🖤",
+      "Don’t look away… 👀",
+      "Just you & me 😏",
+      "Enter quietly… 🤫",
+      "You shouldn’t be thinking about me like this… but you are 😏🖤🔥",
+      "I can feel your eyes on me… don’t stop now 👀🫦",
+      "This isn’t innocent… and neither are you 😈🍷",
+      "You came here for a reason… come closer 😏🔐",
+      "Don’t pretend you’re not tempted… I know you are 🫦🔥",
+      "Stay with me… just for a little longer 🖤✨",
+      "You’re exactly where you shouldn’t be… and you like it 😈⚡",
+      "I wonder what you’re thinking right now… 👀💋",
+      "Careful… I might get inside your head 😏🖤",
+      "You’re already addicted… you just don’t admit it yet 🫦🔥",
+      "Hey… I know you didn’t come here by accident 😏🍒",
+      "Don’t just watch… I want you closer 🫦🔥",
+      "You look like trouble… come prove it 😈⚡",
+      "I like the way you’re looking at me… 👀💋",
+      "Come a little closer… just us here 🤫🖤",
+      "You’re making this more fun than it should be 😏🔥",
+      "I think you’ll lose control here… 🫦🍷",
+      "Don’t make me pull you in… 😈🔐",
+      "You’re curious… I can see it 👀🔥",
+      "Stay… I’m not done with you yet 😏🖤",
+      "Don’t stop… 🫦",
+      "Come closer now 😏",
+      "You want this 🔥",
+      "Stay with me 🖤",
+      "Just one tap… 👀",
+      "Hey you… I saved something special just for you 😏🔗",
+      "I’m not supposed to show this… but you can see it here 😈✨",
+      "Don’t just watch me here… come see the real me 🔥👀",
+      "I think you’ll like what I’m hiding… tap and find out 😏🖤",
+      "You’ve been looking… now come a little closer 🔐💋",
+      "I made something you shouldn’t miss… it’s right here 👀🔥",
+      "This is where it gets interesting… don’t stop now 😈⚡",
+      "You found me… now discover more 😏🔗",
+      "I left something for you… don’t make me wait 🫦✨",
+      "Curious what I do in private? …tap quietly 🤫🔥",
+      "Don’t be shy… come see what I’m really doing 😏🔗",
+      "I’m waiting for you on the other side… 👀🔥",
+      "This is just a preview… the rest is here 😈✨",
+      "You’re not ready for what’s behind this 😏🖤",
+      "Come closer… I’ll show you more 🔐💋",
+      "I think you’ve earned a peek… tap it 👀🔥",
+      "This is where I get a little wild… 😈⚡",
+      "Don’t just imagine it… come see it 😏🔗",
+      "You won’t regret opening this… 🫦🔥",
+      "I’m live there… not here 😉👀",
+      "Tap… if you dare 😈",
+      "It gets better here 🔗",
+      "Come see more 👀",
+      "Not safe to ignore 🔥",
+      "Just for you… 🫦",
+      "You didn’t find me by accident… now come see why 😏🔗",
+      "I know that look… don’t stop now 👀🫦",
+      "This is just a glimpse… the rest is waiting for you 😈✨",
+      "You’re already curious… let me make it worse 😏🔥",
+      "I left something for you… don’t keep me waiting 🖤🔐",
+      "Don’t just imagine it… come closer and see 👀💋",
+      "I can tell you want more… it’s right here 😈🔗",
+      "You’ve come this far… don’t turn back now 😏⚡",
+      "This is where it gets a little dangerous… 🔥🖤",
+      "You’re not supposed to see this… but I’ll let you 😈✨",
+      "Hey… I’ve been waiting for someone like you 👀💋",
+      "Don’t be shy… I can feel your curiosity 😏🔥",
+      "Come closer… I’ll show you something better 🫦🔗",
+      "You look like you want more… prove it 😈⚡",
+      "I think you’re exactly who this is for… 👀🖤",
+      "Just one tap… and you’ll understand 😏🔥",
+      "I saved the best part for you… don’t miss it 💋🔐",
+      "You shouldn’t want this… but you do 😈✨",
+      "Stay with me… it gets better from here 👀🔥",
+      "I’m not done with you yet… come see 😏🖤",
+      "Come see more… 😈",
+      "Don’t stop now 👀",
+      "It’s waiting… 🔗",
+      "Just one tap 😏",
+      "You want this 🔥",
+      "You keep looking… so why not come closer? 😏🔥",
+      "I know exactly what you’re thinking… 👀🫦",
+      "This is where things get interesting… don’t miss it 😈🔗",
+      "You’ve been staring long enough… come see more 😏💋",
+      "Something about this feels wrong… but you like it 😈⚡",
+      "I can tell you’re curious… let me show you 😏🔥",
+      "Don’t just scroll… this one’s for you 👀🖤",
+      "You won’t forget what’s behind this… 😈🔐",
+      "I made this a little too tempting… sorry not sorry 😏🔥",
+      "The way you’re looking… I like it 👀💋",
+      "What if I told you it gets better…? 😏🔗",
+      "You’re not ready for this… but try anyway 😈⚡",
+      "Keep watching… or come closer 😏🔥",
+      "There’s a reason you stopped here… 👀🖤",
+      "I wonder how far you’ll go… 😈🔐",
+      "You can leave… or you can explore 😏💋",
+      "Something here wants your attention… 👀🔥",
+      "Not everyone dares to open this… 😈✨",
+      "You’re already thinking about it… 😉🔥",
+      "Go on… I know you want to 😏🔗",
+      "Don’t resist… 😈",
+      "Come inside… 🔥",
+      "You’re curious 👀",
+      "Try me… 😏",
+      "Just tap it 🔗"
+    ];
 const igStoryHot=[
-  "Too hot to keep private tonight 🔥💋",
-  "The temperature just went up 😈",
-  "You feel that heat too? 💦",
-  "Things are getting wild tonight 🔥",
-  "Hotter than your imagination 💋",
-  "This night was made for bad decisions 😈",
-  "The heat is unreal tonight 💦",
-  "You’ll want to stay up late 🔥",
-  "This vibe is dangerously attractive 💋",
-  "One click and the night changes 😈",
-  "You’re not ready for this heat 💦",
-  "The hottest thing you’ll see tonight 🔥",
-  "It’s getting steamy in here 💋",
-  "Don’t blame me if you get obsessed 😈",
-  "This mood hits different after dark 💦",
-  "Heat level: impossible to ignore 🔥",
-  "Bad thoughts start right here 💋",
-  "You’ll crave this later 😈",
-  "Tonight feels a little forbidden 💦",
-  "One glance and it’s over 🔥",
-  "Everything feels hotter after midnight 💋",
-  "The danger makes it exciting 😈",
-  "Come enjoy the heat with me 💦",
-  "Things escalated quickly tonight 🔥",
-  "You can’t fake this chemistry 💋",
-  "The tension is unreal 😈",
-  "Ready for a hotter experience? 💦",
-  "This is where self-control disappears 🔥",
-  "The night is still young 💋",
-  "You’ll keep coming back 😈",
-  "This story comes with temptation 💦",
-  "Not safe for boring people 🔥",
-  "The hottest vibe online tonight 💋",
-  "Tap if you like dangerous fun 😈",
-  "The view gets better and better 💦",
-  "One click. Endless temptation 🔥",
-  "This mood should come with a warning 💋",
-  "Stay for the heat 😈",
-  "You’ll lose track of time here 💦",
-  "The fantasy starts now 🔥",
-  "It only gets hotter from here 💋",
-  "You came looking for excitement 😈",
-  "This energy is impossible to resist 💦",
-  "You’ll remember this tonight 🔥",
-  "The best nights start like this 💋",
-  "You know you want to look 😈",
-  "Dangerously attractive vibes only 💦",
-  "This heat should be illegal 🔥",
-  "Tap now and thank me later 💋",
-  "One story too hot to ignore 😈",
-  "Tonight belongs to temptation 💦",
-  "The chemistry is undeniable 🔥",
-  "Hot vibes. Bad intentions 💋",
-  "This is your midnight weakness 😈",
-  "The heat keeps rising 💦",
-  "You won’t survive this vibe 🔥",
-  "Come closer to the fire 💋",
-  "One click away from trouble 😈",
-  "The hottest part starts now 💦",
-  "Your favorite late night distraction 🔥"
 ];
 const igStoryMystery=[
-  "Some secrets are worth discovering 🌙",
-  "You’re closer than you think 👀",
-  "Not everything should stay hidden 😈",
-  "There’s more behind this story ✨",
-  "The mystery gets deeper tonight 🌙",
-  "You’ll understand after one click 👀",
-  "Curiosity always wins 😏",
-  "The answer is waiting for you ✨",
-  "This story hides something dangerous 🌙",
-  "Not everyone gets access 👀",
-  "The real fun is hidden 😈",
-  "You found the right story ✨",
-  "One secret away from obsession 🌙",
-  "Some doors shouldn’t be opened 👀",
-  "But you’ll open this one anyway 😏",
-  "Everything changes after dark ✨",
-  "The mystery looks good on you 🌙",
-  "This vibe can’t be explained 👀",
-  "Only curious people continue 😈",
-  "The hidden side is better ✨",
-  "What happens next is up to you 🌙",
-  "A secret worth staying for 👀",
-  "The unknown feels exciting 😏",
-  "You’re not imagining the tension ✨",
-  "This story reveals more than expected 🌙",
-  "Something about this feels forbidden 👀",
-  "One click unlocks everything 😈",
-  "The mystery is part of the fun ✨",
-  "You won’t stop thinking about this 🌙",
-  "There’s always more behind the scenes 👀",
-  "The vibe tonight is unreal 😏",
-  "What if this changes your night? ✨",
-  "Hidden things are more exciting 🌙",
-  "You’re exactly where you should be 👀",
-  "The best stories start mysteriously 😈",
-  "Stay curious a little longer ✨",
-  "The secret gets hotter inside 🌙",
-  "You’ll want to know more 👀",
-  "Not safe for innocent minds 😏",
-  "There’s no turning back now ✨",
-  "A mystery made for you 🌙",
-  "The tension says everything 👀",
-  "You can feel the energy 😈",
-  "One tap reveals the truth ✨",
-  "This isn’t an ordinary story 🌙",
-  "Everything feels different tonight 👀",
-  "Your curiosity is showing 😏",
-  "The hidden side looks better ✨",
-  "You were meant to find this 🌙",
-  "The secret vibe is unmatched 👀",
-  "One click closer to temptation 😈",
-  "The unknown is addictive ✨",
-  "You won’t regret exploring 🌙",
-  "Some things are better discovered slowly 👀",
-  "This story gets darker after midnight 😏",
-  "There’s beauty in the mystery ✨",
-  "The suspense makes it hotter 🌙",
-  "Your next obsession is hidden here 👀",
-  "The mystery begins now 😈",
-  "Only the curious will understand ✨"
 ];
 const igStoryPersonal=[
-  "I made this with you in mind 💋",
-  "This vibe feels personal tonight 😈",
-  "I knew you’d stop here 👀",
-  "You always come back eventually 💦",
-  "This one is just for you 🔥",
-  "I can feel you watching 💋",
-  "The connection feels dangerous tonight 😈",
-  "You make this more exciting 👀",
-  "I saved the best part for you 💦",
-  "This story misses your attention 🔥",
-  "I wanted you to see this 💋",
-  "Tonight feels different with you 😈",
-  "I can’t stop thinking about your click 👀",
-  "This energy belongs to us 💦",
-  "You know exactly what this means 🔥",
-  "I like when you stay longer 💋",
-  "You always understand the vibe 😈",
-  "This late night mood suits you 👀",
-  "I was hoping you’d tap 💦",
-  "This feels too good to ignore 🔥",
-  "You’re my favorite viewer 💋",
-  "Some stories are made for certain people 😈",
-  "I think this one’s yours 👀",
-  "You make temptation look easy 💦",
-  "I knew you couldn’t resist 🔥",
-  "Your attention is addictive 💋",
-  "This story gets better with you 😈",
-  "I wanted your eyes on this 👀",
-  "You’re exactly who I wanted here 💦",
-  "The vibe changes when you arrive 🔥",
-  "I know you’re still watching 💋",
-  "This night feels personal 😈",
-  "You always know where to find me 👀",
-  "The chemistry feels real tonight 💦",
-  "I made this impossible to ignore 🔥",
-  "This story was waiting for you 💋",
-  "You’re the reason this feels exciting 😈",
-  "I like your curiosity 👀",
-  "This mood looks good on us 💦",
-  "You know how to keep things interesting 🔥",
-  "I wanted to tempt you a little 💋",
-  "This connection feels addictive 😈",
-  "You fit this vibe perfectly 👀",
-  "The late night energy is yours 💦",
-  "I knew this would catch your attention 🔥",
-  "This story has your name on it 💋",
-  "I wanted you here tonight 😈",
-  "Your curiosity makes this fun 👀",
-  "You always choose the dangerous stories 💦",
-  "This one hits differently with you 🔥",
-  "I think you’ll enjoy this 💋",
-  "The tension feels personal tonight 😈",
-  "I can tell you’re interested 👀",
-  "You make the vibe hotter 💦",
-  "I’ve been waiting for your click 🔥",
-  "You belong in this story 💋",
-  "This energy feels too real 😈",
-  "I can’t ignore your attention 👀",
-  "You’re part of the temptation now 💦",
-  "This story ends with you 🔥"
 ];
 const igStoryConfidence=[
-  "I know exactly how to get your attention 💎",
-  "Confidence looks hotter after dark 😈",
-  "I don’t chase… I attract 🔥",
-  "Too unforgettable to ignore 💋",
-  "I bring the energy you’re looking for 👀",
-  "This vibe speaks for itself 💦",
-  "I was never meant to be ordinary 💎",
-  "The confidence is dangerously attractive 😈",
-  "People stare for a reason 🔥",
-  "I make temptation look easy 💋",
-  "Watch closely and learn 👀",
-  "I know my effect on people 💦",
-  "Confidence changes everything 💎",
-  "The energy is unmatched tonight 😈",
-  "I don’t compete with anyone 🔥",
-  "This level of vibe is rare 💋",
-  "You can feel the difference 👀",
-  "I know what you came for 💦",
-  "The attention follows naturally 💎",
-  "Some people just have the vibe 😈",
-  "I was built for unforgettable nights 🔥",
-  "The confidence hits differently 💋",
-  "You won’t find this everywhere 👀",
-  "This energy can’t be copied 💦",
-  "I make late nights memorable 💎",
-  "The attraction is automatic 😈",
-  "You noticed me instantly 🔥",
-  "I never needed permission to shine 💋",
-  "This vibe is impossible to fake 👀",
-  "People get addicted to energy like this 💦",
-  "I know exactly what I’m doing 💎",
-  "The confidence makes it hotter 😈",
-  "You don’t forget vibes like this 🔥",
-  "Everything feels better around me 💋",
-  "I turn attention into obsession 👀",
-  "This mood is elite 💦",
-  "You can’t ignore real energy 💎",
-  "I attract curious people 😈",
-  "The vibe speaks louder than words 🔥",
-  "I make danger look beautiful 💋",
-  "You’ll remember this feeling 👀",
-  "Nothing average happens here 💦",
-  "I know I caught your attention 💎",
-  "The confidence is the main event 😈",
-  "Some vibes are naturally addictive 🔥",
-  "This story owns the spotlight 💋",
-  "You can feel the power 👀",
-  "I make mystery look attractive 💦",
-  "Not everyone can handle this energy 💎",
-  "I’m exactly your type tonight 😈",
-  "The vibe is too strong to ignore 🔥",
-  "I make late nights exciting 💋",
-  "You stopped scrolling for a reason 👀",
-  "This confidence should be illegal 💦",
-  "The attention feels deserved 💎",
-  "I know the effect I have 😈",
-  "This story carries main character energy 🔥",
-  "The attraction is effortless 💋",
-  "You’re watching something unforgettable 👀",
-  "Confidence never looked this good 💦",  
 ];
 
 function igPick(arr){return arr[Math.floor(Math.random()*arr.length)];}
@@ -1516,18 +1488,36 @@ async function igGenBio(){
 }
 
 async function igGenStory(){
-  const allStory=[...igStoryTease,...igStoryHot,...igStoryMystery,...igStoryPersonal,...igStoryConfidence];
-  const rawResult=igPick(allStory);
-  const el=document.getElementById('ig-story-result');
 
-  let result=rawResult;
-  if(currentLang !== 'en'){
-    showTranslateOverlay(currentFlag);
-    try{ result = await gtranslate(rawResult, currentLang); }
-    finally{ hideTranslateOverlay(); }
+  const allStory = Array.isArray(igStoryTease)
+    ? igStoryTease.filter(Boolean)
+    : [];
+
+  const el = document.getElementById('ig-story-result');
+
+  if(allStory.length === 0){
+    el.innerText = 'Caption story tidak tersedia.';
+    el.classList.add('has-content');
+    return;
   }
 
-  el.innerText=result;
+  const rawResult = igPick(allStory);
+
+  let result = rawResult;
+
+  if(currentLang !== 'en'){
+    showTranslateOverlay(currentFlag);
+
+    try{
+      result = await gtranslate(rawResult, currentLang);
+    }catch(e){
+      result = rawResult;
+    }finally{
+      hideTranslateOverlay();
+    }
+  }
+
+  el.innerText = result;
   el.classList.add('has-content');
 }
 
